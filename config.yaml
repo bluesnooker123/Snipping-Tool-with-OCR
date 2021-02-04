@@ -1,0 +1,5 @@
+logfile: app.log
+debug: false
+max_trace: 5
+interval: 1
+conf_thresh: 80
