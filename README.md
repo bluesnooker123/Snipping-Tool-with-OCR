@@ -15,8 +15,8 @@ python main.py
 
 5. You can change some parameters of app using config.yaml
 
-interval -> time between OCR operation per second
+      interval -> time between OCR operation per second
 
-max_trace -> max count of log
+      max_trace -> max count of log
 
-debug mode -> dump ROI(region of interest) images
+      debug mode -> dump ROI(region of interest) images
