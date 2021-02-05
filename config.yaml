@@ -1,5 +1,16 @@
-logfile: app.log
-debug: false
-max_trace: 5
-interval: 1
 conf_thresh: 80
+debug: false
+interval: 1
+logfile: app.log
+max_trace: 5
+rois:
+  left:
+  - 984
+  - 237
+  - 1052
+  - 844
+  right:
+  - 1341
+  - 237
+  - 1402
+  - 845

@@ -16,26 +16,40 @@ from ocr_utils import extract_data
 
 
 # Default config if not found config.yaml
-config = {
+default_config = {
     'logfile': 'app.log',
     'debug': False,
     'max_trace': 4,
     'max_trace': 10,
     'interval': 0.5,
-    'first_x1_ratio': 0.4005504587155963,
-    'first_x2_ratio': 0.4724770642201835,
-    'second_x1_ratio': 0.9203669724770642,
-    'second_x2_ratio': 0.9977064220183486,
+    'rois': {
+        'left': [0, 0, 0, 0],
+        'right': [0, 0, 0, 0]
+    }
 }
 
 # Overwrite
-try:
-    with open('config.yaml') as f:
-        config = yaml.load(f, Loader=yaml.FullLoader)
-except FileNotFoundError:
-    logging.exception('Not found config file')
-except Exception as e:
-    logging.exception(f'Unexpected error: {e}')
+def load_config(config_file='config.yaml'):
+    config = default_config
+    try:
+        with open('config.yaml') as f:
+            config = yaml.load(f, Loader=yaml.FullLoader)
+    except FileNotFoundError:
+        logging.exception('Not found config file')
+    except Exception as e:
+        logging.exception(f'Unexpected error: {e}')
+    return config
+
+
+def save_config(config, config_file='config.yaml'):
+    try:
+        with open(config_file, 'w') as f:
+            yaml.dump(config, f)
+    except:
+        logging.exception(f'Failed when saving config: {config}')
+
+
+config = load_config()
 
 # Setup logging
 level = logging.DEBUG if config['debug'] else logging.INFO
@@ -67,76 +81,77 @@ sums = {
     'bid': deque([0] * config['max_trace'], maxlen=config['max_trace']),
     'ask': deque([0] * config['max_trace'], maxlen=config['max_trace']),
 }
+mode = None
 
 
-class DebugWindow(QtWidgets.QMainWindow):
-    def __init__(self):
-        super().__init__()
+# class DebugWindow(QtWidgets.QMainWindow):
+#     def __init__(self):
+#         super().__init__()
 
-        # Horizontal layout
-        layout = QtWidgets.QHBoxLayout()
+#         # Horizontal layout
+#         layout = QtWidgets.QHBoxLayout()
         
-        # First column
-        layout.addStretch(1)
-        self.column_1 = QtWidgets.QLabel(self)
-        img1 = Image.fromarray(np.full((300, 300, 3), 255, dtype='uint8'))
-        pixmap_1 = QtGui.QPixmap.fromImage(ImageQt.ImageQt(img1))
-        self.column_1.setPixmap(pixmap_1)
-        layout.addWidget(self.column_1)
-        layout.addStretch(1)
+#         # First column
+#         layout.addStretch(1)
+#         self.column_1 = QtWidgets.QLabel(self)
+#         img1 = Image.fromarray(np.full((300, 300, 3), 255, dtype='uint8'))
+#         pixmap_1 = QtGui.QPixmap.fromImage(ImageQt.ImageQt(img1))
+#         self.column_1.setPixmap(pixmap_1)
+#         layout.addWidget(self.column_1)
+#         layout.addStretch(1)
         
-        # Second column
-        self.column_2 = QtWidgets.QLabel(self)
-        img2 = Image.fromarray(np.full((300, 300, 3), 255, dtype='uint8'))
-        pixmap_2 = QtGui.QPixmap.fromImage(ImageQt.ImageQt(img2))
-        self.column_2.setPixmap(pixmap_2)
-        layout.addWidget(self.column_2)
-        layout.addStretch(1)
+#         # Second column
+#         self.column_2 = QtWidgets.QLabel(self)
+#         img2 = Image.fromarray(np.full((300, 300, 3), 255, dtype='uint8'))
+#         pixmap_2 = QtGui.QPixmap.fromImage(ImageQt.ImageQt(img2))
+#         self.column_2.setPixmap(pixmap_2)
+#         layout.addWidget(self.column_2)
+#         layout.addStretch(1)
 
-        self.setWindowTitle('Debugger')
+#         self.setWindowTitle('Debugger')
         
-        # Initialize
-        self.is_resized = False
-        self.update_images()
+#         # Initialize
+#         self.is_resized = False
+#         self.update_images()
         
-        self.setGeometry(200, 200, 300, 300)
+#         self.setGeometry(200, 200, 300, 300)
         
-        self.timer = QtCore.QTimer(self)
-        self.timer.timeout.connect(self.update_images)
-        self.timer.start(1000)
+#         self.timer = QtCore.QTimer(self)
+#         self.timer.timeout.connect(self.update_images)
+#         self.timer.start(1000)
 
-    def update_images(self):
-        global lock, g_column_data
-        height, width = 300, 300
-        with lock:
-            if g_column_data['column_1']['image'] is not None:
-                # Draw
-                image_1 = g_column_data['column_1']['image']
-                draw_1 = ImageDraw.Draw(image_1)
-                for text_box in g_column_data['column_1']['result']:
-                    x1, y1, text = text_box[0], text_box[1], text_box[4]
-                    draw_1.text((x1, y1), text, fill=(0, 255, 0))
-                pixmap_1 = QtGui.QPixmap.fromImage(ImageQt.ImageQt(image_1))
-                self.column_1.setPixmap(pixmap_1)
-                height = pixmap_1.height()
-                width = pixmap_1.width()
+#     def update_images(self):
+#         global lock, g_column_data
+#         height, width = 300, 300
+#         with lock:
+#             if g_column_data['column_1']['image'] is not None:
+#                 # Draw
+#                 image_1 = g_column_data['column_1']['image']
+#                 draw_1 = ImageDraw.Draw(image_1)
+#                 for text_box in g_column_data['column_1']['result']:
+#                     x1, y1, text = text_box[0], text_box[1], text_box[4]
+#                     draw_1.text((x1, y1), text, fill=(0, 255, 0))
+#                 pixmap_1 = QtGui.QPixmap.fromImage(ImageQt.ImageQt(image_1))
+#                 self.column_1.setPixmap(pixmap_1)
+#                 height = pixmap_1.height()
+#                 width = pixmap_1.width()
         
-        with lock:
-            if g_column_data['column_2']['image'] is not None:
-                # Draw
-                image_2 = g_column_data['column_2']['image']
-                draw_2 = ImageDraw.Draw(image_2)
-                for text_box in g_column_data['column_2']['result']:
-                    x1, y1, text = text_box[0], text_box[1], text_box[4]
-                    draw_2.text((x1, y1), text, fill=(0, 255, 0))
-                pixmap_2 = QtGui.QPixmap.fromImage(ImageQt.ImageQt(image_2))
-                self.column_2.setPixmap(pixmap_2)
-                height = pixmap_2.height()
-                width += pixmap_2.width() + 50
+#         with lock:
+#             if g_column_data['column_2']['image'] is not None:
+#                 # Draw
+#                 image_2 = g_column_data['column_2']['image']
+#                 draw_2 = ImageDraw.Draw(image_2)
+#                 for text_box in g_column_data['column_2']['result']:
+#                     x1, y1, text = text_box[0], text_box[1], text_box[4]
+#                     draw_2.text((x1, y1), text, fill=(0, 255, 0))
+#                 pixmap_2 = QtGui.QPixmap.fromImage(ImageQt.ImageQt(image_2))
+#                 self.column_2.setPixmap(pixmap_2)
+#                 height = pixmap_2.height()
+#                 width += pixmap_2.width() + 50
         
-        if not self.is_resized:
-            self.resize(width, height)
-            self.is_resized = True
+#         if not self.is_resized:
+#             self.resize(width, height)
+#             self.is_resized = True
 
 
 class OCRWorker(QRunnable):
@@ -227,6 +242,7 @@ class ROISelector(QtWidgets.QMainWindow):
     switch_window = QtCore.pyqtSignal()
     def __init__(self):
         super().__init__()
+        global mode
         
         root = tk.Tk()
         screen_width = root.winfo_screenwidth()
@@ -236,14 +252,16 @@ class ROISelector(QtWidgets.QMainWindow):
         self.setWindowTitle(' ')
         
         # ROIs
+        self.mode = mode
         self.rois = [[0, 0, 0, 0], [0, 0, 0, 0]]
         self.selected_rois = 0
         
         self.setWindowOpacity(0.3)
-        QtWidgets.QApplication.setOverrideCursor(
-            QtGui.QCursor(QtCore.Qt.CrossCursor)
-        )
-        self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+        if self.mode != 'view':
+            QtWidgets.QApplication.setOverrideCursor(
+                QtGui.QCursor(QtCore.Qt.CrossCursor)
+            )
+            self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
 
     def paintEvent(self, event):
         qp = QtGui.QPainter(self)
@@ -251,6 +269,10 @@ class ROISelector(QtWidgets.QMainWindow):
         qp.setBrush(QtGui.QColor(128, 128, 255, 128))
 
         # Draw ROIs
+        if self.mode == 'view':
+            # Load data from config
+            self.rois = [config['rois']['left'], config['rois']['right']]
+        
         if self.rois[0][0] > 0:
             left_column_pts = (
                 QtCore.QPoint(*self.rois[0][:2]),
@@ -264,52 +286,62 @@ class ROISelector(QtWidgets.QMainWindow):
                 QtCore.QPoint(*self.rois[1][2:]),
             )
             qp.drawRect(QtCore.QRect(*right_column_pts))
-    
+            
     def keyPressEvent(self, event: QtGui.QKeyEvent) -> None:
         if event.key() == Qt.Key_Escape:
+            self.close()
             self.switch_window.emit()
 
     def mousePressEvent(self, event):
-        self.selected_rois += 1
-        if self.selected_rois == 1:
-            pos = event.pos()
-            x, y = pos.x(), pos.y()
-            self.rois[0] = [x, y, x, y]
-        elif self.selected_rois == 2:
-            pos = event.pos()
-            x, y = pos.x(), pos.y()
-            self.rois[1] = [x, y, x, y]
-            
-        self.update()
+        if self.mode != 'view':
+            self.selected_rois += 1
+            if self.selected_rois == 1:
+                pos = event.pos()
+                x, y = pos.x(), pos.y()
+                self.rois[0] = [x, y, x, y]
+            elif self.selected_rois == 2:
+                pos = event.pos()
+                x, y = pos.x(), pos.y()
+                self.rois[1] = [x, y, x, y]
+                
+            self.update()
+        elif self.mode == 'view':
+            self.close()
+            self.switch_window.emit()
 
     def mouseMoveEvent(self, event):
-        pos = event.pos()
-        x, y = pos.x(), pos.y()
-        if self.selected_rois == 1:
-            self.rois[0][2:] = [x, y]
-        elif self.selected_rois == 2:
-            self.rois[1][2:] = [x, y]
-        self.update()
+        if self.mode != 'view':
+            pos = event.pos()
+            x, y = pos.x(), pos.y()
+            if self.selected_rois == 1:
+                self.rois[0][2:] = [x, y]
+            elif self.selected_rois == 2:
+                self.rois[1][2:] = [x, y]
+            self.update()
 
     def mouseReleaseEvent(self, event):
-        if self.selected_rois == 1:
-            x1, y1, x2, y2 = self.rois[0]
-        elif self.selected_rois >= 2:
-            x1 = min(*self.rois[0][::2], *self.rois[1][::2])
-            y1 = min(*self.rois[0][1::2], *self.rois[1][1::2])
-            x2 = max(*self.rois[0][::2], *self.rois[1][::2])
-            y2 = min(*self.rois[0][1::2], *self.rois[1][1::2])
+        if self.mode != 'view':
+            if self.selected_rois == 1:
+                pos = event.pos()
+                x, y = pos.x(), pos.y()
+                self.rois[0][2:] = x, y
+            elif self.selected_rois == 2:
+                pos = event.pos()
+                x, y = pos.x(), pos.y()
+                self.rois[1][2:] = x, y
+                # x1 = min(*self.rois[0][::2], *self.rois[1][::2])
+                # y1 = min(*self.rois[0][1::2], *self.rois[1][1::2])
+                # x2 = max(*self.rois[0][::2], *self.rois[1][::2])
+                # y2 = max(*self.rois[0][1::2], *self.rois[1][1::2])
 
-            self.setGeometry(x1, y1, (x2 - x1), (y2 - y1))
+                # self.setGeometry(x1, y1, (x2 - x1), (y2 - y1))
+                # Save config
+                config['rois']['left'] = self.rois[0]
+                config['rois']['right'] = self.rois[1]
+                save_config(config)
 
-        if self.selected_rois >= 2:
-            ready_event.set()
-
-            # Extract data
-            pool = QThreadPool.globalInstance()
-            runnable = OCRWorker(self.rois[0], self.rois[1], config['interval'])
-            pool.start(runnable)
-            self.switch_window.emit()
+                self.close()
+                self.switch_window.emit()
 
 
 class MainWindow(QtWidgets.QWidget):
@@ -322,11 +354,10 @@ class MainWindow(QtWidgets.QWidget):
         self.setupUi(self)
 
         self.select_button.clicked.connect(self.select_button_handler)
-        # self.exit_button.clicked.connect(self.on_exit_click)
-        # self.debug_button.clicked.connect(self.on_debug_click)
-        # self.debug_button.setEnabled(False)
-        # self.debug_window = None
+        self.view_button.clicked.connect(self.view_button_handler)
+        self.start_button.clicked.connect(self.start_button_handler)
         
+        self.is_started = False
         QtWidgets.QApplication.setOverrideCursor(
             QtGui.QCursor(QtCore.Qt.ArrowCursor)
         )
@@ -350,17 +381,17 @@ class MainWindow(QtWidgets.QWidget):
         row_widget_1.setLayout(layout_1)
         self.select_button = QtWidgets.QPushButton(Form)
         self.select_button.setObjectName("select_button")
-        # self.debug_button = QtWidgets.QPushButton(Form)
-        # self.debug_button.setObjectName('debug_button')
-        # self.exit_button = QtWidgets.QPushButton(Form)
-        # self.exit_button.setObjectName('exit_button')
+        self.view_button = QtWidgets.QPushButton(Form)
+        self.view_button.setText('View')
+        self.start_button = QtWidgets.QPushButton(Form)
+        self.start_button.setText('Start')
+
         layout_1.addStretch(1)
         layout_1.addWidget(self.select_button)
         layout_1.addStretch(1)
-        # layout_1.addWidget(self.debug_button)
-        # layout_1.addStretch(1)
-        # layout_1.addWidget(self.exit_button)
-        # layout_1.addStretch(1)
+        layout_1.addWidget(self.view_button)
+        layout_1.addStretch(1)
+        layout_1.addWidget(self.start_button)
         
         # Setup row 2
         layout_2 = QtWidgets.QHBoxLayout()
@@ -423,8 +454,6 @@ class MainWindow(QtWidgets.QWidget):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
         self.select_button.setText(_translate("Form", "Select"))
-        # self.exit_button.setText(_translate('Form', 'Exit'))
-        # self.debug_button.setText(_translate('Form', 'Debug'))
     
     def update_sums(self):
         global sums
@@ -435,24 +464,31 @@ class MainWindow(QtWidgets.QWidget):
                     self.values[col_name][i].setText(str(value))
 
     def select_button_handler(self):
+        global mode
+        mode = 'select'
         self.switch_window.emit()
+    
+    def view_button_handler(self):
+        global mode
+        mode = 'view'
+        self.switch_window.emit()
+
+    def start_button_handler(self):
+        if not self.is_started:
+            ready_event.set()
+            
+            config = load_config()
+
+            # Extract data
+            pool = QThreadPool.globalInstance()
+            runnable = OCRWorker(config['rois']['left'], config['rois']['right'], config['interval'])
+            pool.start(runnable)
+            self.is_started = True
     
     def closeEvent(self, event):
         ready_event.clear()
         terminate_event.set()
         self.close()
-    
-    # def on_exit_click(self):
-    #     ready_event.clear()
-    #     terminate_event.set()
-        # if self.debug_window is not None:
-        #     self.debug_window.close()
-        # self.close()
-    
-    # def on_debug_click(self):
-    #     if self.debug_window is None:
-    #         self.debug_window = DebugWindow()
-    #     self.debug_window.show()
 
 
 class Controller:
@@ -473,11 +509,6 @@ class Controller:
         self.window.switch_window.connect(self.show_roi_selector)
         if self.roi_selector is not None:
             self.roi_selector.close()
-        # if self.is_startup:
-        #     self.window.debug_button.setEnabled(False)
-        #     self.is_startup = False
-        # else:
-        #     self.window.debug_button.setEnabled(True)
         self.window.show()
 
 
