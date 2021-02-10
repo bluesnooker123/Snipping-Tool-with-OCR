@@ -15,6 +15,7 @@ import cv2
 from ocr_utils import extract_data
 
 
+
 # Default config if not found config.yaml
 default_config = {
     'logfile': 'app.log',
@@ -261,7 +262,7 @@ class ROISelector(QtWidgets.QMainWindow):
             QtWidgets.QApplication.setOverrideCursor(
                 QtGui.QCursor(QtCore.Qt.CrossCursor)
             )
-            self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+        self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
 
     def paintEvent(self, event):
         qp = QtGui.QPainter(self)
