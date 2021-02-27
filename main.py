@@ -20,8 +20,7 @@ from ocr_utils import extract_data
 default_config = {
     'logfile': 'app.log',
     'debug': False,
-    'max_trace': 4,
-    'max_trace': 10,
+    'time_periods': [1, 5, 20, 60],
     'interval': 0.5,
     'rois': {
         'left': [0, 0, 0, 0],
@@ -79,8 +78,8 @@ g_column_data = {
 
 show_lock = threading.Lock()
 sums = {
-    'bid': deque([0] * config['max_trace'], maxlen=config['max_trace']),
-    'ask': deque([0] * config['max_trace'], maxlen=config['max_trace']),
+    'bid': deque([0] * (len(config['time_periods']) + 1), maxlen=(len(config['time_periods']) + 1)),
+    'ask': deque([0] * (len(config['time_periods']) + 1), maxlen=(len(config['time_periods']) + 1)),
 }
 mode = None
 
@@ -156,7 +155,7 @@ mode = None
 
 
 class OCRWorker(QRunnable):
-    def __init__(self, pts1, pts2, interval=0.5):
+    def __init__(self, pts1, pts2, interval=1):
         super().__init__()
         self.interval = interval
 
@@ -351,11 +350,19 @@ class MainWindow(QtWidgets.QWidget):
 
     def __init__(self):
         QtWidgets.QWidget.__init__(self)
-        
-        self.setWindowFlags(self.windowFlags() | Qt.WindowStaysOnTopHint)
-        
         self.setGeometry(100, 100, 300, 300)
         self.setupUi(self)
+        
+        # Step counter
+        self.step_cnt = 0
+        self.steps = [int(x * 60) for x in config['time_periods']]
+        self.history = {}
+        for period in config['time_periods']:
+            max_len = period * 60
+            self.history[period] = {
+                'bid': deque([0] * max_len, maxlen=max_len),
+                'ask': deque([0] * max_len, maxlen=max_len),
+            }
 
         self.select_button.clicked.connect(self.select_button_handler)
         self.view_button.clicked.connect(self.view_button_handler)
@@ -369,7 +376,9 @@ class MainWindow(QtWidgets.QWidget):
         # Update sums on GUI
         self.timer = QtCore.QTimer(self)
         self.timer.timeout.connect(self.update_sums)
-        self.timer.start(50)
+        self.timer.start(config['interval'] * 1000)
+        
+        self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
     
     def setupUi(self, Form):
         Form.setObjectName('Form')
@@ -405,32 +414,23 @@ class MainWindow(QtWidgets.QWidget):
         layout_2.addWidget(left_widget)
         layout_2.addWidget(right_widget)
         
-        self.values = {
-            'bid': [],
-            'ask': [],
-        }
+        self.values = []
         left_layout = QtWidgets.QVBoxLayout()
         left_widget.setLayout(left_layout)
         right_layout = QtWidgets.QVBoxLayout()
         right_widget.setLayout(right_layout)
 
-        for i in range(config['max_trace']):
+        periods = [0] + config['time_periods']
+        for i, period in enumerate(periods):
             # Left
             left_row_widget = QtWidgets.QWidget()
 
-            left_row_layout = QtWidgets.QHBoxLayout()
+            left_row_layout = QtWidgets.QVBoxLayout()
             if i == 0:
-                left_row_layout.addWidget(QtWidgets.QLabel('Newest result: Bid: '))
+                left_row_layout.addWidget(QtWidgets.QLabel('Newest'))
             else:
-                interval = config['interval']
-                if isinstance(interval, float):
-                    text = '{:.2f} seconds ago: Bid: '.format(interval * i)
-                else:
-                    text = '{:02d} seconds ago: Bid: '.format(interval * i)
+                text = '{:<8}'.format('%s min.' % period)
                 left_row_layout.addWidget(QtWidgets.QLabel(text))
-            value_widget = QtWidgets.QLabel('0')
-            self.values['bid'].append(value_widget)
-            left_row_layout.addWidget(value_widget)
 
             left_row_widget.setLayout(left_row_layout)
             left_layout.addWidget(left_row_widget)
@@ -438,11 +438,13 @@ class MainWindow(QtWidgets.QWidget):
             # Right
             right_row_widget = QtWidgets.QWidget()
 
-            right_row_layout = QtWidgets.QHBoxLayout()
-            right_row_layout.addWidget(QtWidgets.QLabel('Ask:'))
-            value_widget = QtWidgets.QLabel('0')
-            self.values['ask'].append(value_widget)
+            right_row_layout = QtWidgets.QVBoxLayout()
+            left_text = '{:<9}'.format('Bid')
+            right_text = '{:>9}'.format('Ask')
+            text = '{}:{}'.format(left_text, right_text)
+            value_widget = QtWidgets.QLabel(text)
             right_row_layout.addWidget(value_widget)
+            self.values.append(value_widget)
 
             right_row_widget.setLayout(right_row_layout)
             right_layout.addWidget(right_row_widget)
@@ -462,10 +464,46 @@ class MainWindow(QtWidgets.QWidget):
     def update_sums(self):
         global sums
         with show_lock:
-            # Update
-            for col_name, values in sums.items():
-                for i, value in enumerate(values):
-                    self.values[col_name][i].setText(str(value))
+            # Update history
+            for i, period in enumerate(self.history, 1):
+                self.history[period]['bid'].append(sums['bid'][i])
+                self.history[period]['ask'].append(sums['ask'][i])
+                
+            self.step_cnt += 1
+            bid_data = sums['bid']
+            ask_data = sums['ask']
+            
+            # Set first column text
+            if bid_data[0] > 0 and ask_data[0] > 0:
+                bid_text = '{:<9}'.format('Bid %.2f' % bid_data[0])
+                ask_text = '{:>9}'.format('%.2f Ask' % ask_data[0])
+                text = '{}:{}'.format(bid_text, ask_text)
+                self.values[0].setText(text)
+            
+            for i, period in enumerate(config['time_periods'], 1):
+                if self.step_cnt % (period * 60) == 0:
+                    acc_bid = sum(self.history[period]['bid'])
+                    acc_ask = sum(self.history[period]['ask'])
+                    if acc_bid == 0 or acc_ask == 0:
+                        bid_text = '{:<9}'.format('')
+                        ask_text = '{:>9}'.format('')
+                    else:
+                        if acc_bid > acc_ask:
+                            bid_text = '{:<9}'.format('Bid %.2f' % (acc_bid / acc_ask))
+                            ask_text = '1 Ask'
+                        elif acc_ask > acc_bid:
+                            ask_text = '{:>9}'.format('%.2f Ask' % (acc_ask / acc_bid))
+                            bid_text = 'Bid 1'
+                        else:
+                            bid_text = 'Bid 1'
+                            ask_text = '1 Ask'
+
+                    text = '{}:{}'.format(bid_text, ask_text)
+                    self.values[i].setText(text)
+        
+        # Reset
+        if self.step_cnt == self.steps[-1]:
+            self.step_cnt = 0
 
     def select_button_handler(self):
         global mode
@@ -560,11 +598,18 @@ class ActivateWindow(QtWidgets.QWidget):
             self.activate_status.setStyleSheet('color: red')
             return
 
-        status = LexActivator.ActivateLicense()
-        if LexStatusCodes.LA_OK == status or LexStatusCodes.LA_EXPIRED == status or LexStatusCodes.LA_SUSPENDED == status:
-            self.switch_window.emit()
-            self.close()
-        else:
+        # self.switch_window.emit()
+        # self.close()
+        try:
+            status = LexActivator.ActivateLicense()
+            if LexStatusCodes.LA_OK == status or LexStatusCodes.LA_EXPIRED == status or LexStatusCodes.LA_SUSPENDED == status:
+                self.switch_window.emit()
+                self.close()
+            else:
+                self.activate_status.setText('failed')
+                self.activate_status.setStyleSheet('color: red')
+        except Exception as e:
+            logger.error(f'Failed when activate license: {e}')
             self.activate_status.setText('failed')
             self.activate_status.setStyleSheet('color: red')
 
