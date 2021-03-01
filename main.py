@@ -1,6 +1,7 @@
 import sys
 import time
 import threading
+from numpy.core.numeric import True_
 import yaml
 import logging
 from logging.handlers import RotatingFileHandler
@@ -367,16 +368,12 @@ class MainWindow(QtWidgets.QWidget):
         self.select_button.clicked.connect(self.select_button_handler)
         self.view_button.clicked.connect(self.view_button_handler)
         self.start_button.clicked.connect(self.start_button_handler)
+        self.stop_button.clicked.connect(self.stop_button_handler)
         
         self.is_started = False
         QtWidgets.QApplication.setOverrideCursor(
             QtGui.QCursor(QtCore.Qt.ArrowCursor)
         )
-        
-        # Update sums on GUI
-        self.timer = QtCore.QTimer(self)
-        self.timer.timeout.connect(self.update_sums)
-        self.timer.start(config['interval'] * 1000)
         
         self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
     
@@ -398,6 +395,8 @@ class MainWindow(QtWidgets.QWidget):
         self.view_button.setText('View')
         self.start_button = QtWidgets.QPushButton(Form)
         self.start_button.setText('Start')
+        self.stop_button = QtWidgets.QPushButton(Form)
+        self.stop_button.setText('Stop')
 
         layout_1.addStretch(1)
         layout_1.addWidget(self.select_button)
@@ -405,6 +404,8 @@ class MainWindow(QtWidgets.QWidget):
         layout_1.addWidget(self.view_button)
         layout_1.addStretch(1)
         layout_1.addWidget(self.start_button)
+        layout_1.addStretch(1)
+        layout_1.addWidget(self.stop_button)
         
         # Setup row 2
         layout_2 = QtWidgets.QHBoxLayout()
@@ -458,7 +459,7 @@ class MainWindow(QtWidgets.QWidget):
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate('Form', 'Form'))
+        Form.setWindowTitle(_translate('Form', 'L2-easy'))
         self.select_button.setText(_translate('Form', 'Select'))
     
     def update_sums(self):
@@ -468,16 +469,16 @@ class MainWindow(QtWidgets.QWidget):
             for i, period in enumerate(self.history, 1):
                 self.history[period]['bid'].append(sums['bid'][i])
                 self.history[period]['ask'].append(sums['ask'][i])
-                
+            
             self.step_cnt += 1
             bid_data = sums['bid']
             ask_data = sums['ask']
             
             # Set first column text
             if bid_data[0] > 0 and ask_data[0] > 0:
-                bid_text = '{:<9}'.format('Bid %.2f' % bid_data[0])
-                ask_text = '{:>9}'.format('%.2f Ask' % ask_data[0])
-                text = '{}:{}'.format(bid_text, ask_text)
+                bid_text = '{:<9}'.format('Bid %d' % bid_data[0])
+                ask_text = '{:>9}'.format('%d Ask' % ask_data[0])
+                text = '{} {}'.format(bid_text, ask_text)
                 self.values[0].setText(text)
             
             for i, period in enumerate(config['time_periods'], 1):
@@ -516,16 +517,34 @@ class MainWindow(QtWidgets.QWidget):
         self.switch_window.emit()
 
     def start_button_handler(self):
-        if not self.is_started:
+        if not self.is_started:        
             ready_event.set()
             
             config = load_config()
+            
+            # Update sums on GUI
+            self.timer = QtCore.QTimer(self)
+            self.timer.timeout.connect(self.update_sums)
+            self.timer.start(config['interval'] * 1000)
 
             # Extract data
-            pool = QThreadPool.globalInstance()
+            self.pool = QThreadPool.globalInstance()
             runnable = OCRWorker(config['rois']['left'], config['rois']['right'], config['interval'])
-            pool.start(runnable)
+            self.pool.start(runnable)
             self.is_started = True
+            
+            # Disable view
+            self.view_button.setEnabled(False)
+            self.select_button.setEnabled(False)
+
+    def stop_button_handler(self):
+        ready_event.clear()
+        terminate_event.set()
+        self.is_started = False
+        self.view_button.setEnabled(True)
+        self.select_button.setEnabled(True)
+        self.timer.stop()
+        self.step_cnt = 0
     
     def closeEvent(self, event):
         ready_event.clear()
@@ -677,7 +696,7 @@ class Controller:
             elif LexStatusCodes.LA_TRIAL_EXPIRED == trial_status:
                 logger.info('Trial has expired!')
                 # Time to buy the license and activate the app
-                activate_message = 'The trial has expired. Please visit https://buyit.com to get activation key!'
+                activate_message = 'The trial has expired. Please visit https://market-lv2data.com to get activation key!'
                 activate_required = True
             else:
                 try:
@@ -687,15 +706,15 @@ class Controller:
                         activate_required = False
                     elif LexStatusCodes.LA_TRIAL_EXPIRED == status:
                         logger.info("Product trial has expired")
-                        activate_message = 'The trial has expired. Please visit https://buyit.com to get activation key!'
+                        activate_message = 'The trial has expired. Please visit https://market-lv2data.com to get activation key!'
                         activate_required = True
                     else:
                         logger.info("Product trial has failed")
-                        activate_message = 'The trial has failed. Please visit https://buyit.com to get activation key!'
+                        activate_message = 'The trial has failed. Please visit https://market-lv2data.com to get activation key!'
                         activate_required = True
                 except Exception as e:
                     logger.error(f'Trial activation has failed')
-                    activate_message = 'The trial activation has failed. Please visit https://buyit.com to get activation key!'
+                    activate_message = 'The trial activation has failed. Please visit https://market-lv2data.com to get activation key!'
                     activate_required = True
 
         if activate_required:
