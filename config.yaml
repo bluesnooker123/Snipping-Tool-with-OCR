@@ -1,16 +1,22 @@
 conf_thresh: 80
-debug: false
+debug: true
 interval: 1
 logfile: app.log
-max_trace: 5
 rois:
   left:
-  - 984
-  - 237
-  - 1052
-  - 844
+  - 991
+  - 239
+  - 1053
+  - 841
   right:
-  - 1341
-  - 237
-  - 1402
-  - 845
+  - 1338
+  - 239
+  - 1401
+  - 848
+time_periods:
+- 20
+- 60
+- 300
+- 1200
+- 3600
+- 7200

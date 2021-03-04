@@ -1,7 +1,10 @@
+"""L2-easy application
+
+The application uses Tesseract to extract bid and ask values in real time.
+"""
 import sys
 import time
 import threading
-from numpy.core.numeric import True_
 import yaml
 import logging
 from logging.handlers import RotatingFileHandler
@@ -9,10 +12,8 @@ from collections import deque
 from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtCore import QRunnable, Qt, QThreadPool
 import tkinter as tk
-from PIL import Image, ImageDraw, ImageGrab, ImageQt
-from cryptlex.lexactivator import LexActivator, LexStatusCodes, PermissionFlags, LexActivatorException
-import numpy as np
-import cv2
+from PIL import ImageGrab
+from cryptlex.lexactivator import LexActivator, LexStatusCodes, PermissionFlags
 
 from ocr_utils import extract_data
 
@@ -29,7 +30,7 @@ default_config = {
     }
 }
 
-# Overwrite
+
 def load_config(config_file='config.yaml'):
     config = default_config
     try:
@@ -50,6 +51,7 @@ def save_config(config, config_file='config.yaml'):
         logging.exception(f'Failed when saving config: {config}')
 
 
+# Load global config
 config = load_config()
 
 # Setup logging
@@ -67,96 +69,39 @@ logger.addHandler(handler)
 
 
 # Define global vars
+# Ready event is used to notice the extraction thread starts
 ready_event = threading.Event()
+
+# Notice the extraction thread stops
 terminate_event = threading.Event()
 ready_event.clear()
 terminate_event.clear()
-lock = threading.Lock()
-g_column_data = {
-    'bid': {'image': None, 'result': []},
-    'ask': {'image': None, 'result': []}
-}
 
+# Control access to shared `sums` variable
 show_lock = threading.Lock()
 sums = {
     'bid': deque([0] * (len(config['time_periods']) + 1), maxlen=(len(config['time_periods']) + 1)),
     'ask': deque([0] * (len(config['time_periods']) + 1), maxlen=(len(config['time_periods']) + 1)),
 }
+
+# The application mode: ['view']
 mode = None
-
-
-# class DebugWindow(QtWidgets.QMainWindow):
-#     def __init__(self):
-#         super().__init__()
-
-#         # Horizontal layout
-#         layout = QtWidgets.QHBoxLayout()
-        
-#         # First column
-#         layout.addStretch(1)
-#         self.column_1 = QtWidgets.QLabel(self)
-#         img1 = Image.fromarray(np.full((300, 300, 3), 255, dtype='uint8'))
-#         pixmap_1 = QtGui.QPixmap.fromImage(ImageQt.ImageQt(img1))
-#         self.column_1.setPixmap(pixmap_1)
-#         layout.addWidget(self.column_1)
-#         layout.addStretch(1)
-        
-#         # Second column
-#         self.column_2 = QtWidgets.QLabel(self)
-#         img2 = Image.fromarray(np.full((300, 300, 3), 255, dtype='uint8'))
-#         pixmap_2 = QtGui.QPixmap.fromImage(ImageQt.ImageQt(img2))
-#         self.column_2.setPixmap(pixmap_2)
-#         layout.addWidget(self.column_2)
-#         layout.addStretch(1)
-
-#         self.setWindowTitle('Debugger')
-        
-#         # Initialize
-#         self.is_resized = False
-#         self.update_images()
-        
-#         self.setGeometry(200, 200, 300, 300)
-        
-#         self.timer = QtCore.QTimer(self)
-#         self.timer.timeout.connect(self.update_images)
-#         self.timer.start(1000)
-
-#     def update_images(self):
-#         global lock, g_column_data
-#         height, width = 300, 300
-#         with lock:
-#             if g_column_data['column_1']['image'] is not None:
-#                 # Draw
-#                 image_1 = g_column_data['column_1']['image']
-#                 draw_1 = ImageDraw.Draw(image_1)
-#                 for text_box in g_column_data['column_1']['result']:
-#                     x1, y1, text = text_box[0], text_box[1], text_box[4]
-#                     draw_1.text((x1, y1), text, fill=(0, 255, 0))
-#                 pixmap_1 = QtGui.QPixmap.fromImage(ImageQt.ImageQt(image_1))
-#                 self.column_1.setPixmap(pixmap_1)
-#                 height = pixmap_1.height()
-#                 width = pixmap_1.width()
-        
-#         with lock:
-#             if g_column_data['column_2']['image'] is not None:
-#                 # Draw
-#                 image_2 = g_column_data['column_2']['image']
-#                 draw_2 = ImageDraw.Draw(image_2)
-#                 for text_box in g_column_data['column_2']['result']:
-#                     x1, y1, text = text_box[0], text_box[1], text_box[4]
-#                     draw_2.text((x1, y1), text, fill=(0, 255, 0))
-#                 pixmap_2 = QtGui.QPixmap.fromImage(ImageQt.ImageQt(image_2))
-#                 self.column_2.setPixmap(pixmap_2)
-#                 height = pixmap_2.height()
-#                 width += pixmap_2.width() + 50
-        
-#         if not self.is_resized:
-#             self.resize(width, height)
-#             self.is_resized = True
 
 
 class OCRWorker(QRunnable):
     def __init__(self, pts1, pts2, interval=1):
+        """OCR worker thread. This thread extracts data from the given region of interest
+        on screen.
+        
+        Args
+        :pts1: (x1, y1, x2, y2) Region of interest of Bid column
+        :pts2: (x1, y1, x2, y2) Region of interest of Ask column
+        
+        Attributes
+        :debug: Enable debug mode if true
+        :conf_thresh: Tesseract confidence thresh
+        :inputs: A dict stores the above RoIs
+        """
         super().__init__()
         self.interval = interval
 
@@ -170,7 +115,7 @@ class OCRWorker(QRunnable):
         }
     
     def _process_results(self, results):
-        """
+        """Post process the given results.
         """
         sorted_rs = sorted(results, key=lambda x: x[1])
         prev = None
@@ -190,13 +135,14 @@ class OCRWorker(QRunnable):
         return data
 
     def run(self):
-        """
-        """
-        global lock, g_column_data, show_lock, sums
+        """Extract bid and ask values from the input RoIs"""
+        global show_lock, sums
         while True:
+            # Check terminate signal
             if terminate_event.wait(0.01):
                 break
             
+            # Check ready signal
             if not ready_event.wait(self.interval):
                 continue
                         
@@ -205,26 +151,27 @@ class OCRWorker(QRunnable):
             for col_name, roi in self.inputs.items():
                 x1, y1, x2, y2 = roi
                 try:
+                    # Crop RoI
                     img = ImageGrab.grab((x1, y1, x2, y2))
                     if self.debug:
                         filename = f'roi_{col_name}.png'
                         img.save(filename)
                         logger.debug('Dump image as {}'.format(filename))
+                    
+                    # Extract data actually
                     col_result = extract_data(img, self.conf_thresh, col_name, self.debug)
-                    if self.debug:
-                        with lock:
-                            g_column_data[col_name]['image'] = img
-                            g_column_data[col_name]['result'] = col_result
                 except Exception as e:
-                    logger.exception(f'Error while captured: {e}')
+                    logger.error(f'Error while extracting data: {e}')
                     continue
                 
+                # Sorted by y-axis
                 col_result = sorted(col_result, key=lambda x: x[1])
                 results[col_name] = col_result
-                
+
             # Post-processing
             if len(results) > 0:
                 with show_lock:
+                    # Take sum of each column
                     for col_name, rs in results.items():
                         if self.debug:
                             logger.info('{} with result: {}'.format(col_name, rs))
@@ -242,6 +189,14 @@ class OCRWorker(QRunnable):
 class ROISelector(QtWidgets.QMainWindow):
     switch_window = QtCore.pyqtSignal()
     def __init__(self):
+        """Popup window helps to select bid and ask column.
+        
+        Attributes
+        :is_selected: The state.
+        :mode: 'view' or 'selecting'?
+        :rois: Stores coordinates of the 2 RoIs
+        :selected_rois: Number of RoIs are selected.
+        """
         super().__init__()
         global mode
         
@@ -330,12 +285,7 @@ class ROISelector(QtWidgets.QMainWindow):
                 pos = event.pos()
                 x, y = pos.x(), pos.y()
                 self.rois[1][2:] = x, y
-                # x1 = min(*self.rois[0][::2], *self.rois[1][::2])
-                # y1 = min(*self.rois[0][1::2], *self.rois[1][1::2])
-                # x2 = max(*self.rois[0][::2], *self.rois[1][::2])
-                # y2 = max(*self.rois[0][1::2], *self.rois[1][1::2])
 
-                # self.setGeometry(x1, y1, (x2 - x1), (y2 - y1))
                 # Save config
                 config['rois']['left'] = self.rois[0]
                 config['rois']['right'] = self.rois[1]
@@ -350,16 +300,19 @@ class MainWindow(QtWidgets.QWidget):
     switch_window = QtCore.pyqtSignal()
 
     def __init__(self):
+        """
+        """
         QtWidgets.QWidget.__init__(self)
-        self.setGeometry(100, 100, 300, 300)
+        self.setGeometry(400, 400, 300, 300)
+        self.text_len = 13
         self.setupUi(self)
         
         # Step counter
         self.step_cnt = 0
-        self.steps = [int(x * 60) for x in config['time_periods']]
+        self.steps = [int(x) for x in config['time_periods']]
         self.history = {}
         for period in config['time_periods']:
-            max_len = period * 60
+            max_len = int(period)
             self.history[period] = {
                 'bid': deque([0] * max_len, maxlen=max_len),
                 'ask': deque([0] * max_len, maxlen=max_len),
@@ -379,7 +332,7 @@ class MainWindow(QtWidgets.QWidget):
     
     def setupUi(self, Form):
         Form.setObjectName('Form')
-        Form.resize(300, 300)
+        Form.resize(70, 300)
         g_layout = QtWidgets.QVBoxLayout()
         row_widget_1 = QtWidgets.QWidget()
         row_widget_2 = QtWidgets.QWidget()
@@ -387,7 +340,7 @@ class MainWindow(QtWidgets.QWidget):
         g_layout.addWidget(row_widget_2)
 
         # Setup row 1
-        layout_1 = QtWidgets.QHBoxLayout()
+        layout_1 = QtWidgets.QGridLayout()
         row_widget_1.setLayout(layout_1)
         self.select_button = QtWidgets.QPushButton(Form)
         self.select_button.setObjectName('select_button')
@@ -398,62 +351,76 @@ class MainWindow(QtWidgets.QWidget):
         self.stop_button = QtWidgets.QPushButton(Form)
         self.stop_button.setText('Stop')
 
-        layout_1.addStretch(1)
-        layout_1.addWidget(self.select_button)
-        layout_1.addStretch(1)
-        layout_1.addWidget(self.view_button)
-        layout_1.addStretch(1)
-        layout_1.addWidget(self.start_button)
-        layout_1.addStretch(1)
-        layout_1.addWidget(self.stop_button)
+        layout_1.addWidget(self.select_button, 0, 0)
+        layout_1.addWidget(self.view_button, 0, 1)
+        layout_1.addWidget(self.start_button, 1, 0)
+        layout_1.addWidget(self.stop_button, 1, 1)
         
         # Setup row 2
-        layout_2 = QtWidgets.QHBoxLayout()
-        row_widget_2.setLayout(layout_2)
-        left_widget = QtWidgets.QWidget()
-        right_widget = QtWidgets.QWidget()
-        layout_2.addWidget(left_widget)
-        layout_2.addWidget(right_widget)
-        
-        self.values = []
-        left_layout = QtWidgets.QVBoxLayout()
-        left_widget.setLayout(left_layout)
-        right_layout = QtWidgets.QVBoxLayout()
-        right_widget.setLayout(right_layout)
+        row_widget_2_layout = QtWidgets.QHBoxLayout()
+        row_widget_2.setLayout(row_widget_2_layout)
 
+        label_widget = QtWidgets.QWidget()
+        label_widget_layout = QtWidgets.QVBoxLayout()
+        label_widget.setLayout(label_widget_layout)
+        row_widget_2_layout.addWidget(label_widget)
+
+        bid_widget = QtWidgets.QWidget()
+        bid_widget_layout = QtWidgets.QVBoxLayout()
+        bid_widget.setLayout(bid_widget_layout)
+        row_widget_2_layout.addWidget(bid_widget)
+        
+        value_widget = QtWidgets.QWidget()
+        value_widget_layout = QtWidgets.QVBoxLayout()
+        value_widget.setLayout(value_widget_layout)
+        row_widget_2_layout.addWidget(value_widget)
+        
+        ask_widget = QtWidgets.QWidget()
+        ask_widget_layout = QtWidgets.QVBoxLayout()
+        ask_widget.setLayout(ask_widget_layout)
+        row_widget_2_layout.addWidget(ask_widget)
+        
+        self.values = []  # Store these widgets to update later
+        
+        # Initialize number of widgets as the same as number of periods + 1
         periods = [0] + config['time_periods']
         for i, period in enumerate(periods):
-            # Left
-            left_row_widget = QtWidgets.QWidget()
-
-            left_row_layout = QtWidgets.QVBoxLayout()
+            # Label column
             if i == 0:
-                left_row_layout.addWidget(QtWidgets.QLabel('Newest'))
+                label_widget_layout.addWidget(QtWidgets.QLabel('Newest'))
             else:
-                text = '{:<8}'.format('%s min.' % period)
-                left_row_layout.addWidget(QtWidgets.QLabel(text))
+                if period < 60:
+                    text = '{:<8}'.format('%s sec.' % period)
+                else:
+                    if period % 60 == 0:
+                        text = '{:<8}'.format('%d min.' % (period // 60))
+                    else:
+                        text = '{:<8}'.format('%.2f min.' % (period / 70))
+                label_widget_layout.addWidget(QtWidgets.QLabel(text))
 
-            left_row_widget.setLayout(left_row_layout)
-            left_layout.addWidget(left_row_widget)
+            # Bid column
+            bid_widget_layout.addWidget(QtWidgets.QLabel('Bid'))
+            bid_widget_layout.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter)
             
-            # Right
-            right_row_widget = QtWidgets.QWidget()
-
-            right_row_layout = QtWidgets.QVBoxLayout()
-            left_text = '{:<9}'.format('Bid')
-            right_text = '{:>9}'.format('Ask')
-            text = '{}:{}'.format(left_text, right_text)
-            value_widget = QtWidgets.QLabel(text)
-            right_row_layout.addWidget(value_widget)
-            self.values.append(value_widget)
-
-            right_row_widget.setLayout(right_row_layout)
-            right_layout.addWidget(right_row_widget)
+            # Value column
+            if i == 0:
+                left_text = ' ' * self.text_len
+                right_text = ' ' * self.text_len
+                text = '{} {}'.format(left_text, right_text)
+            else:
+                left_text = ' ' * self.text_len
+                right_text = ' ' * self.text_len
+                text = '{} {}'.format(left_text, right_text)
+            widget = QtWidgets.QLabel(text)
+            self.values.append(widget)
+            value_widget_layout.addWidget(widget)
+            
+            # Ask column
+            label = QtWidgets.QLabel('Ask')
+            label.setAlignment(QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter)
+            ask_widget_layout.addWidget(label)
             
         self.setLayout(g_layout)
-
-        # self.setWindowFlag(Qt.WindowCloseButtonHint, False)
-
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
@@ -476,30 +443,32 @@ class MainWindow(QtWidgets.QWidget):
             
             # Set first column text
             if bid_data[0] > 0 and ask_data[0] > 0:
-                bid_text = '{:<9}'.format('Bid %d' % bid_data[0])
-                ask_text = '{:>9}'.format('%d Ask' % ask_data[0])
+                bid_text = '{label:<{n}}'.format(label='%d' % bid_data[0], n=self.text_len)
+                ask_text = '{label:>{n}}'.format(label='%d' % ask_data[0], n=self.text_len)
                 text = '{} {}'.format(bid_text, ask_text)
                 self.values[0].setText(text)
             
             for i, period in enumerate(config['time_periods'], 1):
-                if self.step_cnt % (period * 60) == 0:
+                if self.step_cnt % period == 0:
                     acc_bid = sum(self.history[period]['bid'])
                     acc_ask = sum(self.history[period]['ask'])
                     if acc_bid == 0 or acc_ask == 0:
-                        bid_text = '{:<9}'.format('')
-                        ask_text = '{:>9}'.format('')
-                    else:
-                        if acc_bid > acc_ask:
-                            bid_text = '{:<9}'.format('Bid %.2f' % (acc_bid / acc_ask))
-                            ask_text = '1 Ask'
-                        elif acc_ask > acc_bid:
-                            ask_text = '{:>9}'.format('%.2f Ask' % (acc_ask / acc_bid))
-                            bid_text = 'Bid 1'
-                        else:
-                            bid_text = 'Bid 1'
-                            ask_text = '1 Ask'
+                        bid_text = ' ' * self.text_len
+                        ask_text = ' ' * self.text_len
+                        text = '{} {}'.format(bid_text, ask_text)
+                        self.values[i].setText(text)
+                        continue
 
-                    text = '{}:{}'.format(bid_text, ask_text)
+                    if acc_bid > acc_ask:
+                        bid_text = '{label:>{n}}'.format(label='%.2f' % (acc_bid / acc_ask), n=self.text_len)
+                        ask_text = '{label:<{n}}'.format(label='1', n=self.text_len)
+                    elif acc_ask > acc_bid:
+                        ask_text = '{label:<{n}}'.format(label='%.2f' % (acc_ask / acc_bid), n=self.text_len)
+                        bid_text = '{label:>{n}}'.format(label='1', n=self.text_len)
+                    else:
+                        bid_text = '{label:>{n}}'.format(label='1', n=self.text_len)
+                        ask_text = '{label:<{n}}'.format(label='1', n=self.text_len)
+                    text = '{} : {}'.format(bid_text, ask_text)
                     self.values[i].setText(text)
         
         # Reset
@@ -519,6 +488,7 @@ class MainWindow(QtWidgets.QWidget):
     def start_button_handler(self):
         if not self.is_started:        
             ready_event.set()
+            terminate_event.clear()
             
             config = load_config()
             
@@ -534,15 +504,24 @@ class MainWindow(QtWidgets.QWidget):
             self.is_started = True
             
             # Disable view
+            self.start_button.setEnabled(False)
             self.view_button.setEnabled(False)
             self.select_button.setEnabled(False)
 
     def stop_button_handler(self):
+        # Reset UI
+        for i, widget in enumerate(self.values):
+            left_text = ' ' * (self.text_len + 4)
+            right_text = ' ' * (self.text_len + 4)
+            text = '{} {}'.format(left_text, right_text)
+            widget.setText(text)
+        
         ready_event.clear()
         terminate_event.set()
         self.is_started = False
         self.view_button.setEnabled(True)
         self.select_button.setEnabled(True)
+        self.start_button.setEnabled(True)
         self.timer.stop()
         self.step_cnt = 0
     
@@ -580,8 +559,6 @@ class ActivateWindow(QtWidgets.QWidget):
         font = self.activate_input_box.font()
         font.setPointSize(10)
         self.activate_input_box.setFont(font)
-        # self.activate_input_box.setMaxLength(1000)
-        # self.activate_input_box.setMaximumWidth(1000)
         self.activate_button = QtWidgets.QPushButton()
         self.activate_button.setObjectName('activate_button')
         self.activate_status = QtWidgets.QLabel()
@@ -617,8 +594,6 @@ class ActivateWindow(QtWidgets.QWidget):
             self.activate_status.setStyleSheet('color: red')
             return
 
-        # self.switch_window.emit()
-        # self.close()
         try:
             status = LexActivator.ActivateLicense()
             if LexStatusCodes.LA_OK == status or LexStatusCodes.LA_EXPIRED == status or LexStatusCodes.LA_SUSPENDED == status:

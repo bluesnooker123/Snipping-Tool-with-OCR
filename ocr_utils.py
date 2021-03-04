@@ -34,7 +34,16 @@ def load_image(image, temp_dir='./tmp', min_width=500, dpi=300):
 
 
 def extract_data(image, conf_thresh=80, col_name=None, debug=False):
-    """
+    """Extract data from the given image.
+    
+    Args
+    :image: numpy array
+    :conf_thresh: Confidence thresh
+    :col_name: Bid or Ask column?
+    :debug: Enable debug mode if true
+    
+    Returns
+    :results: A list of detected data.
     """
     image = load_image(image)
     rgb = np.array(image)
