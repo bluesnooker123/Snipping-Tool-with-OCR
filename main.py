@@ -10,7 +10,9 @@ import logging
 from logging.handlers import RotatingFileHandler
 from collections import deque
 from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QSpinBox, QLabel
 from PyQt5.QtCore import QRunnable, Qt, QThreadPool
+from PyQt5.QtGui import QIntValidator
 import tkinter as tk
 from PIL import ImageGrab
 from cryptlex.lexactivator import LexActivator, LexStatusCodes, PermissionFlags
@@ -183,7 +185,7 @@ class OCRWorker(QRunnable):
                                 pass
                         sums[col_name].appendleft(sum_)
             else:
-                logger.warn('Not found anything')
+                logger.warning('Not found anything')
 
 
 class ROISelector(QtWidgets.QMainWindow):
@@ -297,6 +299,7 @@ class ROISelector(QtWidgets.QMainWindow):
 
 class MainWindow(QtWidgets.QWidget):
 
+    open_setting = QtCore.pyqtSignal()
     switch_window = QtCore.pyqtSignal()
 
     def __init__(self):
@@ -306,6 +309,7 @@ class MainWindow(QtWidgets.QWidget):
         self.setGeometry(400, 400, 300, 300)
         self.text_len = 13
         self.setupUi(self)
+        self.setFixedSize(300, 320) 
         
         # Step counter
         self.step_cnt = 0
@@ -322,6 +326,8 @@ class MainWindow(QtWidgets.QWidget):
         self.view_button.clicked.connect(self.view_button_handler)
         self.start_button.clicked.connect(self.start_button_handler)
         self.stop_button.clicked.connect(self.stop_button_handler)
+
+        self.setting_button.clicked.connect(self.setting_button_handler)
         
         self.is_started = False
         QtWidgets.QApplication.setOverrideCursor(
@@ -335,8 +341,11 @@ class MainWindow(QtWidgets.QWidget):
         Form.resize(70, 300)
         g_layout = QtWidgets.QVBoxLayout()
         row_widget_1 = QtWidgets.QWidget()
+        row_widget_1_setting = QtWidgets.QWidget()
         row_widget_2 = QtWidgets.QWidget()
+        
         g_layout.addWidget(row_widget_1)
+        g_layout.addWidget(row_widget_1_setting)
         g_layout.addWidget(row_widget_2)
 
         # Setup row 1
@@ -356,6 +365,15 @@ class MainWindow(QtWidgets.QWidget):
         layout_1.addWidget(self.start_button, 1, 0)
         layout_1.addWidget(self.stop_button, 1, 1)
         
+        # Setup setting row
+        layout_1_setting = QtWidgets.QHBoxLayout()
+        row_widget_1_setting.setLayout(layout_1_setting)
+
+        self.setting_button = QtWidgets.QPushButton(Form)
+        self.setting_button.setText('Settings')
+
+        layout_1_setting.addWidget(self.setting_button)
+
         # Setup row 2
         row_widget_2_layout = QtWidgets.QHBoxLayout()
         row_widget_2.setLayout(row_widget_2_layout)
@@ -524,6 +542,11 @@ class MainWindow(QtWidgets.QWidget):
         self.start_button.setEnabled(True)
         self.timer.stop()
         self.step_cnt = 0
+
+    def setting_button_handler(self):
+        global mode
+        mode = 'setting'
+        self.open_setting.emit()
     
     def closeEvent(self, event):
         ready_event.clear()
@@ -607,12 +630,236 @@ class ActivateWindow(QtWidgets.QWidget):
             self.activate_status.setText('failed')
             self.activate_status.setStyleSheet('color: red')
 
+class SettingWindow(QtWidgets.QWidget):
+    save_event = QtCore.pyqtSignal()
+    cancel_event = QtCore.pyqtSignal()
+    def __init__(self):
+        QtWidgets.QWidget.__init__(self)
+        self.setGeometry(300, 300, 600, 100)
+        self.setWindowFlags( self.windowFlags() & ~QtCore.Qt.WindowMinMaxButtonsHint & ~QtCore.Qt.WindowCloseButtonHint )
+        self.setupUi(self)
+        self.save_button.clicked.connect(self.save_button_handler)
+        self.cancel_button.clicked.connect(self.cancel_button_handler)
+   
+    def setupUi(self, Form):
+        Form.setObjectName('Settings')
+        Form.setFixedSize(300,420)
+                
+        config = load_config()
 
+        g_layout = QtWidgets.QVBoxLayout()
+
+        interval_widget = QtWidgets.QWidget()
+        font1 = QtGui.QFont("Times", 8, QtGui.QFont.Normal)
+        interval_widget.setFont(font1)
+        interval_widget_layout = QtWidgets.QHBoxLayout()
+        interval_widget.setLayout(interval_widget_layout)
+
+        interval_widget_layout.addWidget(QtWidgets.QLabel('Screen scanning period. Min. is 1 second.'))
+        self.interval_val_spin = QSpinBox(self)
+        self.interval_val_spin.setMinimum(1) 
+        self.interval_val_spin.setMaximum(300)
+        self.interval_val_spin.setValue(config['interval']);
+        interval_widget_layout.addWidget(self.interval_val_spin)
+        #interval_widget_layout.addStretch()
+
+        font2 = QtGui.QFont("Times", 12, QtGui.QFont.Normal)
+
+        time_frame_widget_A = QtWidgets.QWidget()
+        time_frame_widget_A.setFont(font2)
+        time_frame_widget_layout_A = QtWidgets.QHBoxLayout()
+        time_frame_widget_A.setLayout(time_frame_widget_layout_A)
+
+        time_frame_widget_layout_A.addStretch(5)
+        time_frame_widget_layout_A.addWidget(QtWidgets.QLabel('Time Frame A'))
+        self.edit_A = QtWidgets.QLineEdit()
+        self.edit_A.setFixedWidth(70)
+        self.onlyInt = QIntValidator()
+        self.edit_A.setValidator(self.onlyInt)
+        #self.edit_A.setMaxLength(4)
+        self.edit_A.setText(str(config['time_periods'][0]));
+        time_frame_widget_layout_A.addStretch(2)
+        time_frame_widget_layout_A.addWidget(self.edit_A)
+        time_frame_widget_layout_A.addWidget(QtWidgets.QLabel('sec'))
+        time_frame_widget_layout_A.addStretch(5)
+
+
+        time_frame_widget_B = QtWidgets.QWidget()
+        time_frame_widget_B.setFont(font2)
+        time_frame_widget_layout_B = QtWidgets.QHBoxLayout()
+        time_frame_widget_B.setLayout(time_frame_widget_layout_B)
+
+        time_frame_widget_layout_B.addStretch(5)
+        time_frame_widget_layout_B.addWidget(QtWidgets.QLabel('Time Frame B'))
+        self.edit_B = QtWidgets.QLineEdit()
+        self.edit_B.setFixedWidth(70)
+        self.onlyInt = QIntValidator()
+        self.edit_B.setValidator(self.onlyInt)
+        #self.edit_B.setMaxLength(4)
+        self.edit_B.setText(str(config['time_periods'][1]));
+        time_frame_widget_layout_B.addStretch(2)
+        time_frame_widget_layout_B.addWidget(self.edit_B)
+        time_frame_widget_layout_B.addWidget(QtWidgets.QLabel('sec'))
+        time_frame_widget_layout_B.addStretch(5)
+
+
+        time_frame_widget_C = QtWidgets.QWidget()
+        time_frame_widget_C.setFont(font2)
+        time_frame_widget_layout_C = QtWidgets.QHBoxLayout()
+        time_frame_widget_C.setLayout(time_frame_widget_layout_C)
+
+        time_frame_widget_layout_C.addStretch(5)
+        time_frame_widget_layout_C.addWidget(QtWidgets.QLabel('Time Frame C'))
+        self.edit_C = QtWidgets.QLineEdit()
+        self.edit_C.setFixedWidth(70)
+        self.onlyInt = QIntValidator()
+        self.edit_C.setValidator(self.onlyInt)
+        #self.edit_C.setMaxLength(4)
+        self.edit_C.setText(str(config['time_periods'][2]));
+        time_frame_widget_layout_C.addStretch(2)
+        time_frame_widget_layout_C.addWidget(self.edit_C)
+        time_frame_widget_layout_C.addWidget(QtWidgets.QLabel('sec'))
+        time_frame_widget_layout_C.addStretch(5)
+
+
+        time_frame_widget_D = QtWidgets.QWidget()
+        time_frame_widget_D.setFont(font2)
+        time_frame_widget_layout_D = QtWidgets.QHBoxLayout()
+        time_frame_widget_D.setLayout(time_frame_widget_layout_D)
+
+        time_frame_widget_layout_D.addStretch(5)
+        time_frame_widget_layout_D.addWidget(QtWidgets.QLabel('Time Frame D'))
+        self.edit_D = QtWidgets.QLineEdit()
+        self.edit_D.setFixedWidth(70)
+        self.onlyInt = QIntValidator()
+        self.edit_D.setValidator(self.onlyInt)
+        #self.edit_D.setMaxLength(4)
+        self.edit_D.setText(str(config['time_periods'][3]));
+        time_frame_widget_layout_D.addStretch(2)
+        time_frame_widget_layout_D.addWidget(self.edit_D)
+        time_frame_widget_layout_D.addWidget(QtWidgets.QLabel('sec'))
+        time_frame_widget_layout_D.addStretch(5)
+
+
+        time_frame_widget_E = QtWidgets.QWidget()
+        time_frame_widget_E.setFont(font2)
+        time_frame_widget_layout_E = QtWidgets.QHBoxLayout()
+        time_frame_widget_E.setLayout(time_frame_widget_layout_E)
+
+        time_frame_widget_layout_E.addStretch(5)
+        time_frame_widget_layout_E.addWidget(QtWidgets.QLabel('Time Frame E'))
+        self.edit_E = QtWidgets.QLineEdit()
+        self.edit_E.setFixedWidth(70)
+        self.onlyInt = QIntValidator()
+        self.edit_E.setValidator(self.onlyInt)
+        #self.edit_E.setMaxLength(4)
+        self.edit_E.setText(str(config['time_periods'][4]));
+        time_frame_widget_layout_E.addStretch(2)
+        time_frame_widget_layout_E.addWidget(self.edit_E)
+        time_frame_widget_layout_E.addWidget(QtWidgets.QLabel('sec'))
+        time_frame_widget_layout_E.addStretch(5)
+
+
+        time_frame_widget_F = QtWidgets.QWidget()
+        time_frame_widget_F.setFont(font2)
+        time_frame_widget_layout_F = QtWidgets.QHBoxLayout()
+        time_frame_widget_F.setLayout(time_frame_widget_layout_F)
+
+        time_frame_widget_layout_F.addStretch(5)
+        time_frame_widget_layout_F.addWidget(QtWidgets.QLabel('Time Frame F'))
+        self.edit_F = QtWidgets.QLineEdit()
+        self.edit_F.setFixedWidth(70)
+        self.onlyInt = QIntValidator()
+        self.edit_F.setValidator(self.onlyInt)
+        #self.edit_F.setMaxLength(4)
+        self.edit_F.setText(str(config['time_periods'][5]));
+        time_frame_widget_layout_F.addStretch(2)
+        time_frame_widget_layout_F.addWidget(self.edit_F)
+        time_frame_widget_layout_F.addWidget(QtWidgets.QLabel('sec'))
+        time_frame_widget_layout_F.addStretch(5)
+
+
+        time_frame_widget_G = QtWidgets.QWidget()
+        time_frame_widget_G.setFont(font2)
+        time_frame_widget_layout_G = QtWidgets.QHBoxLayout()
+        time_frame_widget_G.setLayout(time_frame_widget_layout_G)
+
+        time_frame_widget_layout_G.addStretch(5)
+        time_frame_widget_layout_G.addWidget(QtWidgets.QLabel('Time Frame G'))
+        self.edit_G = QtWidgets.QLineEdit()
+        self.edit_G.setFixedWidth(70)
+        self.onlyInt = QIntValidator()
+        self.edit_G.setValidator(self.onlyInt)
+        #self.edit_G.setMaxLength(4)
+        self.edit_G.setText(str(config['time_periods'][6]));
+        time_frame_widget_layout_G.addStretch(2)
+        time_frame_widget_layout_G.addWidget(self.edit_G)
+        time_frame_widget_layout_G.addWidget(QtWidgets.QLabel('sec'))
+        time_frame_widget_layout_G.addStretch(5)
+
+
+        button_widget = QtWidgets.QWidget()
+        button_widget.setFont(font2)
+        button_widget_layout = QtWidgets.QHBoxLayout()
+        button_widget.setLayout(button_widget_layout)
+
+        self.save_button = QtWidgets.QPushButton(Form)
+        self.save_button.setText('Save')
+        self.save_button.setFixedWidth(100)
+       
+        self.cancel_button = QtWidgets.QPushButton(Form)
+        self.cancel_button.setText('Cancel')
+        self.cancel_button.setFixedWidth(100)
+
+        button_widget_layout.addStretch(5)
+        button_widget_layout.addWidget(self.save_button)
+        button_widget_layout.addStretch(5)
+        button_widget_layout.addWidget(self.cancel_button)
+        button_widget_layout.addStretch(5)
+
+
+        g_layout.addWidget(interval_widget)
+        g_layout.addWidget(time_frame_widget_A)
+        g_layout.addWidget(time_frame_widget_B)
+        g_layout.addWidget(time_frame_widget_C)
+        g_layout.addWidget(time_frame_widget_D)
+        g_layout.addWidget(time_frame_widget_E)
+        g_layout.addWidget(time_frame_widget_F)
+        g_layout.addWidget(time_frame_widget_G)
+        g_layout.addWidget(button_widget)
+
+        self.setLayout(g_layout)
+        self.retranslateUi(self)
+
+    def save_button_handler(self):
+        self.time_A = int(self.edit_A.text())
+        self.time_B = int(self.edit_B.text())
+        self.time_C = int(self.edit_C.text())
+        self.time_D = int(self.edit_D.text())
+        self.time_E = int(self.edit_E.text())
+        self.time_F = int(self.edit_F.text())
+        self.time_G = int(self.edit_G.text())
+
+        config['interval'] = int(self.interval_val_spin.value())
+        config['time_periods'] = [self.time_A, self.time_B, self.time_C, self.time_D, self.time_E, self.time_F, self.time_G]
+        
+        save_config(config)
+        self.save_event.emit()
+
+    def cancel_button_handler(self):
+        self.cancel_event.emit()
+
+    
+    def retranslateUi(self, Form):
+        _translate = QtCore.QCoreApplication.translate
+        Form.setWindowTitle(_translate('Form', 'Settings'))
+      
 class Controller:
     def __init__(self):
         self.roi_selector = None
         self.window = None
         self.activate_window = None
+        self.setting_window = None
         self.is_startup = True
 
     def show_roi_selector(self):
@@ -623,15 +870,39 @@ class Controller:
             self.window.hide()
 
     def show_main(self):
+        
+        
         self.window = MainWindow()
+        self.window.open_setting.connect(self.show_setting_window)
         self.window.switch_window.connect(self.show_roi_selector)
+
         if self.roi_selector is not None:
             self.roi_selector.close()
         
         if self.activate_window is not None:
             self.activate_window.close()
+
+        if self.setting_window is not None:
+            self.setting_window.close()
+
         self.window.show()
-    
+
+    def show_setting_window(self):
+        self.setting_window = SettingWindow()
+        self.setting_window.save_event.connect(self.save_setting)
+        self.setting_window.cancel_event.connect(self.cancel_setting)
+        self.setting_window.show()
+        if self.window is not None:
+            self.window.hide()
+
+    def save_setting(self):
+        self.show_main()
+
+    def cancel_setting(self):
+        if self.setting_window is not None:
+            self.setting_window.close()
+        self.window.show()
+
     def show_activate(self):
         # Initialize license verification
         LexActivator.SetProductFile('product_v5b67c9c8-4094-4f55-b3d3-fd1227899e1a.dat')

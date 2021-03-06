@@ -1,0 +1,58 @@
+1. You have to install tesseract-ocr-w64-setup-v5.0.0-alpha.20200328.exe to run this program
+
+URL: 
+https://medium.com/quantrium-tech/installing-and-using-tesseract-4-on-windows-10-4f7930313f82
+
+2. Please install miniconda (Python version: 3.8)
+URL:
+https://docs.conda.io/en/latest/miniconda.html
+
+3. Goto source code directory and run below command
+pip install -r requirements.txt
+
+4. Run program using below command
+python app.py
+
+5. You can change some parameters of app using config.yaml
+
+interval -> time between OCR operation per second
+
+debug mode -> dump ROI(region of interest) images
+
+x1, x2, y1, y2 -> adjust ROI
+
+first_x1_ratio: 0.4005504587155963
+first_x2_ratio: 0.4724770642201835
+second_x1_ratio: 0.9203669724770642
+second_x2_ratio: 0.9977064220183486
+
+max_trace -> number of latest results
+
+------- Cryptlex --------
+pip install cryptlex.lexactivator
+
+pyinstaller app.py -w --add-data config.yaml;. --add-data tessdata/;tessdata/ --add-data product_v5b67c9c8-4094-4f55-b3d3-fd1227899e1a.dat;. --add-data LexActivator.dll;. --clean -y
+
+build command
+
+make sure you put product.dat file in the same level as app.py
+
+Once activated, then the activation window doesn't appear when open program later.
+
+----------------
+the id is: 5b67c9c8-4094-4f55-b3d3-fd1227899e1a
+
+here is the product dat file
+product_v5b67c9c8-4094-4f55-b3d3-fd1227899e1a.dat
+
+I updated the policy to allow VM work 
+
+here is also a license key 
+License Key: 32B010-956CC4-42D3B1-4FE4D2-072630-5E467D
+
+---------- Version 10 -------------
+build command:
+pyinstaller app.py --add-data config.yaml;. --add-data tessdata;tessdata --add-data LexActivator.dll;. --add-data product_v5b67c9c8-4094-4f55-b3d3-fd1227899e1a.dat;. -w --clean -y
+
+---------- Version 13 or updated Version ------------
+pyinstaller app.py --add-data config.yaml;. --add-data tessdata;tessdata --add-data LexActivator.dll;. --add-data product_v5b67c9c8-4094-4f55-b3d3-fd1227899e1a.dat;. -w --clean -y --name L2-easy
