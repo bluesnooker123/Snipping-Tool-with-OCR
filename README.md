@@ -8,7 +8,7 @@ Please refer this: https://medium.com/quantrium-tech/installing-and-using-tesser
 https://docs.conda.io/en/latest/miniconda.html
 
 3. Goto source code directory and run below command
-pip install -r modules.txt
+pip install -r requirements.txt
 
 4. Run program using below command
 python main.py
