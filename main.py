@@ -20,6 +20,7 @@ from cryptlex.lexactivator import LexActivator, LexStatusCodes, PermissionFlags
 from ocr_utils import extract_data
 
 
+
 # Default config if not found config.yaml
 default_config = {
     'logfile': 'app.log',
@@ -309,7 +310,7 @@ class MainWindow(QtWidgets.QWidget):
         self.setGeometry(400, 400, 300, 300)
         self.text_len = 13
         self.setupUi(self)
-        self.setFixedSize(300, 320) 
+        #self.setFixedSize(300, 320) 
         
         # Step counter
         self.step_cnt = 0
@@ -330,11 +331,14 @@ class MainWindow(QtWidgets.QWidget):
         self.setting_button.clicked.connect(self.setting_button_handler)
         
         self.is_started = False
-        QtWidgets.QApplication.setOverrideCursor(
-            QtGui.QCursor(QtCore.Qt.ArrowCursor)
-        )
-        
-        self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
+
+        ### Always make cursor to Arrow pointer ###
+        #QtWidgets.QApplication.setOverrideCursor(
+        #    QtGui.QCursor(QtCore.Qt.ArrowCursor)
+        #)
+        ###########################################
+
+        self.setWindowFlags(self.windowFlags() | QtCore.Qt.CustomizeWindowHint | QtCore.Qt.WindowStaysOnTopHint)
     
     def setupUi(self, Form):
         Form.setObjectName('Form')
@@ -444,7 +448,7 @@ class MainWindow(QtWidgets.QWidget):
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate('Form', 'L2-easy'))
+        Form.setWindowTitle(_translate('Form', 'market-lv2data.com'))
         self.select_button.setText(_translate('Form', 'Select'))
     
     def update_sums(self):
@@ -598,7 +602,7 @@ class ActivateWindow(QtWidgets.QWidget):
     
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate('Form', 'Activate'))
+        Form.setWindowTitle(_translate('Form', 'To purchase a license, please visit our website at market-lv2data.com'))
         self.activate_button.setText(_translate('Form', 'Activate'))
         self.activate_input_box.setFixedSize(330, 25)
         self.activate_button.setFixedSize(60, 30)
@@ -643,7 +647,8 @@ class SettingWindow(QtWidgets.QWidget):
    
     def setupUi(self, Form):
         Form.setObjectName('Settings')
-        Form.setFixedSize(300,420)
+        #Form.setFixedSize(300,420)
+        Form.resize(300,420)
                 
         config = load_config()
 
