@@ -23,6 +23,8 @@ python main.py
       
       time_periods -> second of time periods
       
-6. You can make exe file using below command.( For version 8.0 which include Cryptlex)
-pyinstaller main.py -w --add-data config.yaml;. --add-data tessdata/;tessdata/ --add-data product_v5b67c9c8-4094-4f55-b3d3-fd1227899e1a.dat;. --add-data LexActivator.dll;. --clean -y
+6. You can make exe file using below command.
+
+pyinstaller app.py --add-data config.yaml;. --add-data tessdata;tessdata --add-data LexActivator.dll;. --add-data product_v5b67c9c8-4094-4f55-b3d3-fd1227899e1a.dat;. -w --clean -y --name L2-easy
+
       
