@@ -216,10 +216,10 @@ class ROISelector(QtWidgets.QMainWindow):
         self.selected_rois = 0
         
         self.setWindowOpacity(0.3)
-        if self.mode != 'view':
-            QtWidgets.QApplication.setOverrideCursor(
-                QtGui.QCursor(QtCore.Qt.CrossCursor)
-            )
+        #if self.mode != 'view':
+        #    QtWidgets.QApplication.setOverrideCursor(
+        #        QtGui.QCursor(QtCore.Qt.CrossCursor)
+        #    )
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
 
     def paintEvent(self, event):
