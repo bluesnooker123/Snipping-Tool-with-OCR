@@ -464,11 +464,12 @@ class MainWindow(QtWidgets.QWidget):
             ask_data = sums['ask']
             
             # Set first column text
-            if bid_data[0] > 0 and ask_data[0] > 0:
-                bid_text = '{label:<{n}}'.format(label='%d' % bid_data[0], n=self.text_len)
-                ask_text = '{label:>{n}}'.format(label='%d' % ask_data[0], n=self.text_len)
-                text = '{} {}'.format(bid_text, ask_text)
-                self.values[0].setText(text)
+            if self.step_cnt % config['interval'] == 0:
+                if bid_data[0] > 0 and ask_data[0] > 0:
+                    bid_text = '{label:<{n}}'.format(label='%d' % bid_data[0], n=self.text_len)
+                    ask_text = '{label:>{n}}'.format(label='%d' % ask_data[0], n=self.text_len)
+                    text = '{} {}'.format(bid_text, ask_text)
+                    self.values[0].setText(text)
             
             for i, period in enumerate(config['time_periods'], 1):
                 if self.step_cnt % period == 0:
@@ -517,7 +518,8 @@ class MainWindow(QtWidgets.QWidget):
             # Update sums on GUI
             self.timer = QtCore.QTimer(self)
             self.timer.timeout.connect(self.update_sums)
-            self.timer.start(config['interval'] * 1000)
+            #self.timer.start(config['interval'] * 1000)
+            self.timer.start(1000)
 
             # Extract data
             self.pool = QThreadPool.globalInstance()
@@ -664,7 +666,8 @@ class SettingWindow(QtWidgets.QWidget):
         self.interval_val_spin = QSpinBox(self)
         self.interval_val_spin.setMinimum(1) 
         self.interval_val_spin.setMaximum(300)
-        self.interval_val_spin.setValue(config['interval']);
+        self.interval_val_spin.setValue(config['interval'])
+        self.interval_val_spin.setEnabled(False)
         interval_widget_layout.addWidget(self.interval_val_spin)
         #interval_widget_layout.addStretch()
 
