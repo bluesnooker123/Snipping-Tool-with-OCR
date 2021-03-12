@@ -29,7 +29,7 @@ pyinstaller app.py --add-data config.yaml;. --add-data tessdata;tessdata --add-d
 
 7. How to make installer file
 
-You can use Advanced Installer[https://www.advancedinstaller.com/?utm_source=adwords&utm_medium=paid&utm_campaign=advancedinstaller&gclid=EAIaIQobChMIgL3TgO-q7wIVFpayCh17BwBIEAAYASAAEgJmrfD_BwE]  to make installer file.
+You can use Advanced Installer (https://www.advancedinstaller.com/?utm_source=adwords&utm_medium=paid&utm_campaign=advancedinstaller&gclid=EAIaIQobChMIgL3TgO-q7wIVFpayCh17BwBIEAAYASAAEgJmrfD_BwE)  to make installer file.
 
 To make simple setting for installer file, you can use trial version of Advanced Installer
 
