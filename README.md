@@ -27,4 +27,10 @@ python main.py
 
 pyinstaller app.py --add-data config.yaml;. --add-data tessdata;tessdata --add-data LexActivator.dll;. --add-data product_v5b67c9c8-4094-4f55-b3d3-fd1227899e1a.dat;. -w --clean -y --name L2-easy
 
+7. How to make installer file
+
+You can use Advanced Installer[https://www.advancedinstaller.com/?utm_source=adwords&utm_medium=paid&utm_campaign=advancedinstaller&gclid=EAIaIQobChMIgL3TgO-q7wIVFpayCh17BwBIEAAYASAAEgJmrfD_BwE]  to make installer file.
+
+To make simple setting for installer file, you can use trial version of Advanced Installer
+
       
