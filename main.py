@@ -169,7 +169,9 @@ class OCRWorker(QRunnable):
                 
                 # Sorted by y-axis
                 col_result = sorted(col_result, key=lambda x: x[1])
+                #print(col_result)
                 results[col_name] = col_result
+                #print(results[col_name])
 
             # Post-processing
             if len(results) > 0:
@@ -181,7 +183,8 @@ class OCRWorker(QRunnable):
                         sum_ = 0
                         for cell in rs:
                             try:
-                                sum_ += int(cell[4])
+                                sum_ += float(cell[4].replace(",", ""))
+                                #sum_ += float(cell[4])
                             except:
                                 pass
                         sums[col_name].appendleft(sum_)
@@ -466,8 +469,8 @@ class MainWindow(QtWidgets.QWidget):
             # Set first column text
             if self.step_cnt % config['interval'] == 0:
                 if bid_data[0] > 0 and ask_data[0] > 0:
-                    bid_text = '{label:<{n}}'.format(label='%d' % bid_data[0], n=self.text_len)
-                    ask_text = '{label:>{n}}'.format(label='%d' % ask_data[0], n=self.text_len)
+                    bid_text = '{label:<{n}}'.format(label='%.3f' % bid_data[0], n=self.text_len)
+                    ask_text = '{label:>{n}}'.format(label='%.3f' % ask_data[0], n=self.text_len)
                     text = '{} {}'.format(bid_text, ask_text)
                     self.values[0].setText(text)
             
