@@ -8,10 +8,10 @@
     <ROW Property="ARPURLINFOABOUT" Value="market-lv2data.com"/>
     <ROW Property="ARPURLUPDATEINFO" Value="market-lv2data.com"/>
     <ROW Property="Manufacturer" Value="market-lv2data.com"/>
-    <ROW Property="ProductCode" Value="1033:{07187B77-AD43-4153-B00A-4F37D6714CA8} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{5A226E5B-B3F2-4AA3-88FD-A131BFE1C4A5} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="L2-easy"/>
-    <ROW Property="ProductVersion" Value="1.0.0" Type="32"/>
+    <ROW Property="ProductVersion" Value="2.0.0" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{02F86287-F147-4DDA-B60A-458D5F787C3F}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
