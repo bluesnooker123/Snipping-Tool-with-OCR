@@ -469,8 +469,8 @@ class MainWindow(QtWidgets.QWidget):
             # Set first column text
             if self.step_cnt % config['interval'] == 0:
                 if bid_data[0] > 0 and ask_data[0] > 0:
-                    bid_text = '{label:<{n}}'.format(label='%.3f' % bid_data[0], n=self.text_len)
-                    ask_text = '{label:>{n}}'.format(label='%.3f' % ask_data[0], n=self.text_len)
+                    bid_text = '{label:<{n}}'.format(label='%.2f' % bid_data[0], n=self.text_len)
+                    ask_text = '{label:>{n}}'.format(label='%.2f' % ask_data[0], n=self.text_len)
                     text = '{} {}'.format(bid_text, ask_text)
                     self.values[0].setText(text)
             
