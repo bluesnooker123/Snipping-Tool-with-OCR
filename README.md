@@ -20,7 +20,7 @@ After creating virtual environment, you have to activate virtual environment.
 ```
 Note: 
 If you want to run program in the new device, you have to recreate virtual environment again.
-Because every virtual environment include its own device information (for example: Path), so you have to delete virtual environment and recreate virtual environment again for a new device.
+Because each virtual environment include its own device information (for example: Path), so you have to delete virtual environment and recreate virtual environment again for a new device.
 ```
 
 3. Goto source code directory and run below command.
