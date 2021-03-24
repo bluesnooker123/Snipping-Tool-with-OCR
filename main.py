@@ -155,7 +155,10 @@ class OCRWorker(QRunnable):
                 x1, y1, x2, y2 = roi
                 try:
                     # Crop RoI
-                    img = ImageGrab.grab((x1, y1, x2, y2))
+                    #img = ImageGrab.grab((x1, y1, x2, y2))
+                    #img = ImageGrab.grab(bbox=None, include_layered_windows=False, all_screens=True)
+                    img = ImageGrab.grab(bbox=(x1, y1, x2, y2), include_layered_windows=False, all_screens=True)
+                    
                     if self.debug:
                         filename = f'roi_{col_name}.png'
                         img.save(filename)
@@ -210,7 +213,8 @@ class ROISelector(QtWidgets.QMainWindow):
         screen_width = root.winfo_screenwidth()
         screen_height = root.winfo_screenheight()
         self.is_selected = False
-        self.setGeometry(0, 0, screen_width, screen_height)
+        self.showFullScreen();
+        #self.setGeometry(0, 0, screen_width, screen_height)
         self.setWindowTitle(' ')
         
         # ROIs
