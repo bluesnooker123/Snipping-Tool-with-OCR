@@ -90,6 +90,10 @@ sums = {
 # The application mode: ['view']
 mode = None
 
+#flag for Multiple Display
+flag_display = 'first display'
+offset_X_for_second_display = 0
+offset_Y_for_second_display = 0
 
 class OCRWorker(QRunnable):
     def __init__(self, pts1, pts2, interval=1):
@@ -140,6 +144,7 @@ class OCRWorker(QRunnable):
     def run(self):
         """Extract bid and ask values from the input RoIs"""
         global show_lock, sums
+        global flag_display, offset_X_for_second_display, offset_Y_for_second_display
         while True:
             # Check terminate signal
             if terminate_event.wait(0.01):
@@ -157,8 +162,12 @@ class OCRWorker(QRunnable):
                     # Crop RoI
                     #img = ImageGrab.grab((x1, y1, x2, y2))
                     #img = ImageGrab.grab(bbox=None, include_layered_windows=False, all_screens=True)
-                    img = ImageGrab.grab(bbox=(x1, y1, x2, y2), include_layered_windows=False, all_screens=True)
-                    
+                    if flag_display == 'first display':
+                        img = ImageGrab.grab(bbox=(x1, y1, x2, y2), include_layered_windows=False, all_screens=True)
+                    elif flag_display == 'second display':
+                        #img = ImageGrab.grab(bbox=(offset_X_for_second_display + x1, y1, offset_X_for_second_display + x2, y2), include_layered_windows=False, all_screens=True)
+                        img = ImageGrab.grab(bbox=(offset_X_for_second_display + x1, offset_Y_for_second_display + y1, offset_X_for_second_display + x2, offset_Y_for_second_display + y2), include_layered_windows=False, all_screens=True)
+
                     if self.debug:
                         filename = f'roi_{col_name}.png'
                         img.save(filename)
@@ -208,15 +217,27 @@ class ROISelector(QtWidgets.QMainWindow):
         """
         super().__init__()
         global mode
+        global flag_display, offset_X_for_second_display, offset_Y_for_second_display
         
         root = tk.Tk()
-        screen_width = root.winfo_screenwidth()
-        screen_height = root.winfo_screenheight()
+        first_screen_width = root.winfo_screenwidth()				# Get the width of first display
+        #first_screen_height = root.winfo_screenheight()			# Get the height of first display
         self.is_selected = False
         self.showFullScreen();
-        #self.setGeometry(0, 0, screen_width, screen_height)
+        #self.setGeometry(0, 0, first_screen_width, #first_screen_height)
         self.setWindowTitle(' ')
         
+        print(self.pos())      # output: QPoint(1927,304)
+        if self.pos().x() >= first_screen_width:
+            flag_display = 'second display'
+            offset_X_for_second_display = first_screen_width     # According to test, this is best solution
+            offset_Y_for_second_display = self.pos().y()
+        else:
+            flag_display = 'first display'
+            offset_X_for_second_display = 0
+            offset_Y_for_second_display = 0
+        print(offset_X_for_second_display, self.pos().x())
+
         # ROIs
         self.mode = mode
         self.rois = [[0, 0, 0, 0], [0, 0, 0, 0]]
@@ -314,7 +335,7 @@ class MainWindow(QtWidgets.QWidget):
         """
         """
         QtWidgets.QWidget.__init__(self)
-        self.setGeometry(400, 400, 300, 300)
+        #self.setGeometry(400, 400, 300, 300)
         self.text_len = 13
         self.setupUi(self)
         #self.setFixedSize(300, 320) 
@@ -648,7 +669,7 @@ class SettingWindow(QtWidgets.QWidget):
     cancel_event = QtCore.pyqtSignal()
     def __init__(self):
         QtWidgets.QWidget.__init__(self)
-        self.setGeometry(300, 300, 600, 100)
+        #self.setGeometry(300, 300, 600, 100)
         self.setWindowFlags( self.windowFlags() & ~QtCore.Qt.WindowMinMaxButtonsHint & ~QtCore.Qt.WindowCloseButtonHint )
         self.setupUi(self)
         self.save_button.clicked.connect(self.save_button_handler)
@@ -952,7 +973,7 @@ class Controller:
             if LexStatusCodes.LA_OK == trial_status:
                 trial_expiry_date = LexActivator.GetTrialExpiryDate()
                 days_left = (trial_expiry_date - time.time()) / 86400
-                logger.info('Trial days left: ', days_left)
+                logger.info('Trial days left: {}'.format(days_left))
                 activate_required = False
             elif LexStatusCodes.LA_TRIAL_EXPIRED == trial_status:
                 logger.info('Trial has expired!')
