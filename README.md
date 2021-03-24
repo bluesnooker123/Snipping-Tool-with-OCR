@@ -1,16 +1,34 @@
 # Snipping-Tool-with-OCR
 The program snips the screen and get text from area using OCR.
 
-1. You have to install tesseract-ocr-w64-setup-v5.0.0-alpha.20200328.exe to run this program
+1. You have to install tesseract-ocr-w64-setup-v5.0.0-alpha.20200328.exe to run this program.
+
 Please refer this: https://medium.com/quantrium-tech/installing-and-using-tesseract-4-on-windows-10-4f7930313f82
 
 2. Please install miniconda (Python version: 3.8)
+
 https://docs.conda.io/en/latest/miniconda.html
 
-3. Goto source code directory and run below command
+If you want to run program without installing miniconda, you can also use virtual environment in Python.
+
+About how to use virtual environment in Python, please refer this:
+
+https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/
+
+After creating virtual environment, you have to activate virtual environment.
+
+```
+Note: 
+If you want to run program in the new device, you have to recreate virtual environment again.
+Because every virtual environment include its own device information (for example: Path), so you have to delete virtual environment and recreate virtual environment again for a new device.
+```
+
+3. Goto source code directory and run below command.
+
 pip install -r requirements.txt
 
-4. Run program using below command
+4. Run program using below command.
+
 python main.py
 
 5. You can change some parameters of app using config.yaml
