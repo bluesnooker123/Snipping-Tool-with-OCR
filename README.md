@@ -18,9 +18,13 @@ https://packaging.python.org/guides/installing-using-pip-and-virtual-environment
 After creating virtual environment, you have to activate virtual environment.
 
 ```
-Note: 
+Note 1: 
 If you want to run program in the new device, you have to recreate virtual environment again.
 Because each virtual environment include its own device information (for example: Path), so you have to delete virtual environment and recreate virtual environment again for a new device.
+After creating virtual environment, please install needed python module using 'pip install' command
+
+Note 2:
+You have to install pyinstaller module to virtual environment to create exe file using pyinstaller command
 ```
 
 3. Goto source code directory and run below command.
