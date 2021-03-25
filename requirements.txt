@@ -1,5 +1,6 @@
-opencv-python==4.2.0.32
+opencv-python
 pyqt5
 pytesseract
 pyyaml
 cryptlex.lexactivator
+mss

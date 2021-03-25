@@ -20,7 +20,7 @@ from mss import mss
 from PIL import Image
 from ctypes import windll, byref, Structure, WinError, POINTER, WINFUNCTYPE
 from ctypes.wintypes import BOOL, HMONITOR, HDC, RECT, LPARAM, DWORD, BYTE, WCHAR, HANDLE
-import wmi
+#import wmi
 
 
 from ocr_utils import extract_data
@@ -114,10 +114,12 @@ sums = {
 # The application mode: ['view']
 mode = None
 
-#flag for Multiple Display
-flag_display = 'first display'
-offset_X_for_second_display = 0
-offset_Y_for_second_display = 0
+screen_id = 0
+
+# #flag for Multiple Display
+# flag_display = 'first display'
+# offset_X_for_second_display = 0
+# offset_Y_for_second_display = 0
 
 class OCRWorker(QRunnable):
     def __init__(self, pts1, pts2, interval=1):
@@ -168,7 +170,8 @@ class OCRWorker(QRunnable):
     def run(self):
         """Extract bid and ask values from the input RoIs"""
         global show_lock, sums
-        global flag_display, offset_X_for_second_display, offset_Y_for_second_display
+        #global flag_display, offset_X_for_second_display, offset_Y_for_second_display
+        global screen_id
         while True:
             # Check terminate signal
             if terminate_event.wait(0.01):
@@ -183,7 +186,7 @@ class OCRWorker(QRunnable):
             for col_name, roi in self.inputs.items():
                 x1, y1, x2, y2 = roi
                 try:
-                    captured_img = capture_screenshot(2)
+                    captured_img = capture_screenshot(screen_id)
                     img = captured_img.crop(box=(x1, y1, x2, y2))
 
                     # Crop RoI
@@ -245,7 +248,8 @@ class ROISelector(QtWidgets.QMainWindow):
         """
         super().__init__()
         global mode
-        global flag_display, offset_X_for_second_display, offset_Y_for_second_display
+        #global flag_display, offset_X_for_second_display, offset_Y_for_second_display
+        global screen_id
         
         #root = tk.Tk()
         #first_screen_width = root.winfo_screenwidth()				# Get the width of first display
@@ -277,11 +281,18 @@ class ROISelector(QtWidgets.QMainWindow):
         MONITOR_DEFAULTTOPRIMARY = 1
         MONITOR_DEFAULTTONEAREST = 2
         monitorID = windll.user32.MonitorFromWindow(winID, MONITOR_DEFAULTTONEAREST)
-        print ("This is your active monitor handle: ", monitorID)
+        print ("This is your active monitor handle: ", monitorID)	# Type : HMONITOR
         ###############################################################
 
 
-
+        array_monitor = _enumerate_monitors()
+        #print(array_monitor)
+        screen_id = 1;
+        for item in array_monitor:
+            if item.value == monitorID:
+            	break
+            screen_id += 1
+        #print("screen_id: ", screen_id)
 
         # ROIs
         self.mode = mode
@@ -301,12 +312,6 @@ class ROISelector(QtWidgets.QMainWindow):
         # for item in displays:
         #     print (item)
 		############################################	
-
-        array_monitor = _enumerate_monitors()
-        print(array_monitor)
-
-
-
 
     def paintEvent(self, event):
         qp = QtGui.QPainter(self)
