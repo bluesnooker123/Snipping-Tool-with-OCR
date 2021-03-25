@@ -4,3 +4,6 @@ pytesseract
 pyyaml
 cryptlex.lexactivator
 mss
+cython
+zmq
+pyinstaller
