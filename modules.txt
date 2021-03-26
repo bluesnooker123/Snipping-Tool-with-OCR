@@ -1,4 +1,0 @@
-opencv-python==4.2.0.32
-pyqt5
-pytesseract
-pyyaml

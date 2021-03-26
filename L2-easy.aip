@@ -8,10 +8,10 @@
     <ROW Property="ARPURLINFOABOUT" Value="market-lv2data.com"/>
     <ROW Property="ARPURLUPDATEINFO" Value="market-lv2data.com"/>
     <ROW Property="Manufacturer" Value="market-lv2data.com"/>
-    <ROW Property="ProductCode" Value="1033:{C784B7EB-93F7-457D-903D-AFBC3CE9C61C} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{97D05373-9092-4105-A33E-E0641791CBF6} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
-    <ROW Property="ProductName" Value="L2-easy 2.6"/>
-    <ROW Property="ProductVersion" Value="2.6.0" Type="32"/>
+    <ROW Property="ProductName" Value="L2-easy"/>
+    <ROW Property="ProductVersion" Value="3.0.0" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{02F86287-F147-4DDA-B60A-458D5F787C3F}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -1795,7 +1795,7 @@
     <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
-    <ROW Shortcut="L2easy2.6" Directory_="DesktopFolder" Name="L2-EAS~1.6|L2-easy 2.6" Component_="L2easy.exe" Target="[#L2easy.exe]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="L2easy_Dir" CustomFlags="1"/>
+    <ROW Shortcut="L2easy2.6" Directory_="DesktopFolder" Name="L2-EAS~1.0|L2-easy 3.0" Component_="L2easy.exe" Target="[#L2easy.exe]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="L2easy_Dir" CustomFlags="1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>
