@@ -89,7 +89,6 @@ def _get_rect_from_monitors():		#Get array of Rect
     return Rects
 
 def set_screen_id():
-    #global screen_id
     ###############################################################
     #Get active window id
     # https://msdn.microsoft.com/en-us/library/ms633505
@@ -159,8 +158,6 @@ sums = {
 # The application mode: ['view']
 mode = None
 
-#screen_id = 0
-
 class OCRWorker(QRunnable):
     def __init__(self, pts1, pts2, interval=1):
         """OCR worker thread. This thread extracts data from the given region of interest
@@ -210,7 +207,6 @@ class OCRWorker(QRunnable):
     def run(self):
         """Extract bid and ask values from the input RoIs"""
         global show_lock, sums
-        #global screen_id
         while True:
             # Check terminate signal
             if terminate_event.wait(0.01):
@@ -226,7 +222,6 @@ class OCRWorker(QRunnable):
                 x1, y1, x2, y2 = roi
                 try:
                     # Crop RoI
-                    #captured_img = capture_screenshot(screen_id)
                     captured_img = capture_screenshot(config['screen_id'])
                     img = captured_img.crop(box=(x1, y1, x2, y2))
 
@@ -282,7 +277,6 @@ class ROISelector(QtWidgets.QMainWindow):
         """
         super().__init__()
         global mode
-        #global screen_id
         
         #root = tk.Tk()
         #first_screen_width = root.winfo_screenwidth()				# Get the width of first display
