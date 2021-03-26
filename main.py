@@ -532,6 +532,7 @@ class MainWindow(QtWidgets.QWidget):
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
+        self.setWindowIcon(QtGui.QIcon('L2-easy.ico'))
         Form.setWindowTitle(_translate('Form', 'market-lv2data.com'))
         self.select_button.setText(_translate('Form', 'Select'))
     
@@ -689,6 +690,7 @@ class ActivateWindow(QtWidgets.QWidget):
     
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
+        self.setWindowIcon(QtGui.QIcon('L2-easy.ico'))
         Form.setWindowTitle(_translate('Form', 'To purchase a license, please visit our website at market-lv2data.com'))
         self.activate_button.setText(_translate('Form', 'Activate'))
         self.activate_input_box.setFixedSize(330, 25)
@@ -945,6 +947,7 @@ class SettingWindow(QtWidgets.QWidget):
     
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
+        self.setWindowIcon(QtGui.QIcon('L2-easy.ico'))
         Form.setWindowTitle(_translate('Form', 'Settings'))
       
 class Controller:
