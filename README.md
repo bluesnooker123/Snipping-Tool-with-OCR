@@ -43,6 +43,8 @@ python main.py
 
       debug mode -> dump ROI(region of interest) images
       
+      screen_id -> ID of screen in multiple displays
+      
       time_periods -> second of time periods
       
 6. You can make exe file using below command.
