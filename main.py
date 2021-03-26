@@ -18,24 +18,27 @@ from PIL import ImageGrab
 from cryptlex.lexactivator import LexActivator, LexStatusCodes, PermissionFlags
 from mss import mss
 from PIL import Image
-from ctypes import windll, byref, Structure, WinError, POINTER, WINFUNCTYPE
+from ctypes import windll, byref, Structure, WinError, POINTER, WINFUNCTYPE, c_int, c_ulong, c_double
 from ctypes.wintypes import BOOL, HMONITOR, HDC, RECT, LPARAM, DWORD, BYTE, WCHAR, HANDLE
 
 from ocr_utils import extract_data
 
 # Default config if not found config.yaml
 default_config = {
-    'logfile': 'app.log',
+    'conf_thresh' : 80,
     'debug': False,
-    'time_periods': [1, 5, 20, 60],
-    'interval': 0.5,
+    'interval': 1,
+    'logfile': 'app.log',
+    'screen_id' : 1,   
     'rois': {
         'left': [0, 0, 0, 0],
         'right': [0, 0, 0, 0]
-    }
+    },
+    'time_periods': [10, 20, 30, 60, 300, 1200, 1800],
 }
 
-_MONITORENUMPROC = WINFUNCTYPE(BOOL, HMONITOR, HDC, POINTER(RECT), LPARAM)
+_MONITORENUMPROC_HMONITOR = WINFUNCTYPE(BOOL, HMONITOR, HDC, POINTER(RECT), LPARAM)
+_MONITORENUMPROC_RECT = WINFUNCTYPE(c_int, c_ulong, c_ulong, POINTER(RECT), c_double)
 
 def load_config(config_file='config.yaml'):
     config = default_config
@@ -72,12 +75,21 @@ def _enumerate_monitors():		#Get array of HMONITOR
         MONITORS.append(HMONITOR(hmonitor))
         return True
 
-    if not windll.user32.EnumDisplayMonitors(None, None, _MONITORENUMPROC(callback), None):
+    if not windll.user32.EnumDisplayMonitors(None, None, _MONITORENUMPROC_HMONITOR(callback), None):
         raise WinError('EnumDisplayMonitors failed')
     return MONITORS
 
+def _get_rect_from_monitors():		#Get array of Rect
+    Rects = []
+    def _callback(hmonitor, hdc, lprect, lparam):
+        Rects.append(QtCore.QRect(QtCore.QPoint(lprect.contents.left, lprect.contents.top), QtCore.QPoint(lprect.contents.right, lprect.contents.bottom)))
+        return True
+    callback = _MONITORENUMPROC_RECT(_callback)
+    temp = windll.user32.EnumDisplayMonitors(None, None, callback, None)
+    return Rects
+
 def set_screen_id():
-    global screen_id
+    #global screen_id
     ###############################################################
     #Get active window id
     # https://msdn.microsoft.com/en-us/library/ms633505
@@ -94,12 +106,21 @@ def set_screen_id():
 
     array_monitor = _enumerate_monitors()
     #print(array_monitor)
+
     screen_id = 1;
     for item in array_monitor:
         if item.value == monitorID:
         	break
         screen_id += 1
+
+    config['screen_id'] = screen_id
+    save_config(config)
+
     #print("screen_id: ", screen_id)
+
+def get_screen_position():
+	array_rect = _get_rect_from_monitors()
+	print (array_rect)
 
 
 # Load global config
@@ -138,7 +159,7 @@ sums = {
 # The application mode: ['view']
 mode = None
 
-screen_id = 0
+#screen_id = 0
 
 class OCRWorker(QRunnable):
     def __init__(self, pts1, pts2, interval=1):
@@ -189,7 +210,7 @@ class OCRWorker(QRunnable):
     def run(self):
         """Extract bid and ask values from the input RoIs"""
         global show_lock, sums
-        global screen_id
+        #global screen_id
         while True:
             # Check terminate signal
             if terminate_event.wait(0.01):
@@ -205,7 +226,8 @@ class OCRWorker(QRunnable):
                 x1, y1, x2, y2 = roi
                 try:
                     # Crop RoI
-                    captured_img = capture_screenshot(screen_id)
+                    #captured_img = capture_screenshot(screen_id)
+                    captured_img = capture_screenshot(config['screen_id'])
                     img = captured_img.crop(box=(x1, y1, x2, y2))
 
                     #img = ImageGrab.grab((x1, y1, x2, y2))
@@ -260,19 +282,22 @@ class ROISelector(QtWidgets.QMainWindow):
         """
         super().__init__()
         global mode
-        global screen_id
+        #global screen_id
         
         #root = tk.Tk()
         #first_screen_width = root.winfo_screenwidth()				# Get the width of first display
         #first_screen_height = root.winfo_screenheight()			# Get the height of first display
         self.is_selected = False
-        self.showFullScreen();
-        #self.setGeometry(0, 0, first_screen_width, #first_screen_height)
+        #self.showFullScreen();
+        #self.setGeometry(0, 0, first_screen_width, first_screen_height)
         self.setWindowTitle(' ')
         
-        print(self.pos())      # output: QPoint(1927,304)
-
-        set_screen_id()
+        array_rect = _get_rect_from_monitors()
+        #print('screen_id: ', config['screen_id'])
+        #print('old position: ', self.pos())
+        self.setGeometry(array_rect[config['screen_id'] - 1])
+        #self.move(array_rect[config['screen_id'] - 1].topLeft())
+        #print('new position: ', array_rect[config['screen_id'] - 1].topLeft())
 
         # ROIs
         self.mode = mode
@@ -360,7 +385,8 @@ class ROISelector(QtWidgets.QMainWindow):
 
                 self.close()
                 self.switch_window.emit()
-
+        set_screen_id()
+        #get_screen_position()
 
 class MainWindow(QtWidgets.QWidget):
 
@@ -395,8 +421,6 @@ class MainWindow(QtWidgets.QWidget):
         self.setting_button.clicked.connect(self.setting_button_handler)
         
         self.is_started = False
-
-        set_screen_id()
 
         ### Always make cursor to Arrow pointer ###
         #QtWidgets.QApplication.setOverrideCursor(
@@ -567,6 +591,7 @@ class MainWindow(QtWidgets.QWidget):
     def select_button_handler(self):
         global mode
         mode = 'select'
+        set_screen_id()
         self.switch_window.emit()
     
     def view_button_handler(self):

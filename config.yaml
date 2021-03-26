@@ -4,15 +4,16 @@ interval: 1
 logfile: app.log
 rois:
   left:
-  - 991
-  - 239
-  - 1053
-  - 841
+  - 627
+  - 337
+  - 676
+  - 606
   right:
-  - 1338
-  - 239
-  - 1401
-  - 848
+  - 944
+  - 337
+  - 1017
+  - 644
+screen_id: 1
 time_periods:
 - 10
 - 20
