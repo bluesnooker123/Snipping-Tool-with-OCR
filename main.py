@@ -797,7 +797,10 @@ class SettingWindow(QtWidgets.QWidget):
         time_frame_widget_layout_Newest_YesNo.addWidget(self.radio_Newest_Active_Yes)
         time_frame_widget_layout_Newest_YesNo.addStretch()
         time_frame_widget_layout_Newest_YesNo.addWidget(self.radio_Newest_Active_No)
-        self.radio_Newest_Active_Yes.setChecked(True)
+        if config['alarm_active'][0] == True:
+        	self.radio_Newest_Active_Yes.setChecked(True)
+        else:
+        	self.radio_Newest_Active_No.setChecked(True)
 
 #####################################################################################
         time_frame_widget_A = QtWidgets.QWidget()
@@ -847,7 +850,10 @@ class SettingWindow(QtWidgets.QWidget):
         time_frame_widget_layout_A_YesNo.addWidget(self.radio_A_Active_Yes)
         time_frame_widget_layout_A_YesNo.addStretch()
         time_frame_widget_layout_A_YesNo.addWidget(self.radio_A_Active_No)
-        self.radio_A_Active_Yes.setChecked(True)
+        if config['alarm_active'][1] == True:
+        	self.radio_A_Active_Yes.setChecked(True)
+        else:
+        	self.radio_A_Active_No.setChecked(True)
 
 #####################################################################################
 
@@ -898,8 +904,10 @@ class SettingWindow(QtWidgets.QWidget):
         time_frame_widget_layout_B_YesNo.addWidget(self.radio_B_Active_Yes)
         time_frame_widget_layout_B_YesNo.addStretch()
         time_frame_widget_layout_B_YesNo.addWidget(self.radio_B_Active_No)
-        self.radio_B_Active_Yes.setChecked(True)
-
+        if config['alarm_active'][2] == True:
+        	self.radio_B_Active_Yes.setChecked(True)
+        else:
+        	self.radio_B_Active_No.setChecked(True)
 #####################################################################################
 
         time_frame_widget_C = QtWidgets.QWidget()
@@ -949,7 +957,10 @@ class SettingWindow(QtWidgets.QWidget):
         time_frame_widget_layout_C_YesNo.addWidget(self.radio_C_Active_Yes)
         time_frame_widget_layout_C_YesNo.addStretch()
         time_frame_widget_layout_C_YesNo.addWidget(self.radio_C_Active_No)
-        self.radio_C_Active_Yes.setChecked(True)
+        if config['alarm_active'][3] == True:
+        	self.radio_C_Active_Yes.setChecked(True)
+        else:
+        	self.radio_C_Active_No.setChecked(True)
 
 #####################################################################################
 
@@ -1000,7 +1011,10 @@ class SettingWindow(QtWidgets.QWidget):
         time_frame_widget_layout_D_YesNo.addWidget(self.radio_D_Active_Yes)
         time_frame_widget_layout_D_YesNo.addStretch()
         time_frame_widget_layout_D_YesNo.addWidget(self.radio_D_Active_No)
-        self.radio_D_Active_Yes.setChecked(True)
+        if config['alarm_active'][4] == True:
+        	self.radio_D_Active_Yes.setChecked(True)
+        else:
+        	self.radio_D_Active_No.setChecked(True)
 
 #####################################################################################
 
@@ -1051,7 +1065,10 @@ class SettingWindow(QtWidgets.QWidget):
         time_frame_widget_layout_E_YesNo.addWidget(self.radio_E_Active_Yes)
         time_frame_widget_layout_E_YesNo.addStretch()
         time_frame_widget_layout_E_YesNo.addWidget(self.radio_E_Active_No)
-        self.radio_E_Active_Yes.setChecked(True)
+        if config['alarm_active'][5] == True:
+        	self.radio_E_Active_Yes.setChecked(True)
+        else:
+        	self.radio_E_Active_No.setChecked(True)
 
 #####################################################################################
 
@@ -1102,7 +1119,10 @@ class SettingWindow(QtWidgets.QWidget):
         time_frame_widget_layout_F_YesNo.addWidget(self.radio_F_Active_Yes)
         time_frame_widget_layout_F_YesNo.addStretch()
         time_frame_widget_layout_F_YesNo.addWidget(self.radio_F_Active_No)
-        self.radio_F_Active_Yes.setChecked(True)
+        if config['alarm_active'][6] == True:
+        	self.radio_F_Active_Yes.setChecked(True)
+        else:
+        	self.radio_F_Active_No.setChecked(True)
 
 #####################################################################################
 
@@ -1153,7 +1173,10 @@ class SettingWindow(QtWidgets.QWidget):
         time_frame_widget_layout_G_YesNo.addWidget(self.radio_G_Active_Yes)
         time_frame_widget_layout_G_YesNo.addStretch()
         time_frame_widget_layout_G_YesNo.addWidget(self.radio_G_Active_No)
-        self.radio_G_Active_Yes.setChecked(True)
+        if config['alarm_active'][7] == True:
+        	self.radio_G_Active_Yes.setChecked(True)
+        else:
+        	self.radio_G_Active_No.setChecked(True)
 
 #####################################################################################
 
