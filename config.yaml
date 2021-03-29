@@ -22,3 +22,21 @@ time_periods:
 - 300
 - 1200
 - 3600
+alarm_threshold_bid:
+- 7
+- 7
+- 7
+- 7
+- 7
+- 7
+- 7
+- 7
+alarm_threshold_ask:
+- 3
+- 3
+- 3
+- 3
+- 3
+- 3
+- 3
+- 3
