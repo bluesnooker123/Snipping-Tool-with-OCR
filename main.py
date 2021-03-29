@@ -1171,12 +1171,17 @@ class SettingWindow(QtWidgets.QWidget):
 
         time_frame_widget_layout_header_1 = QtWidgets.QHBoxLayout()
         time_frame_widget_layout_header_1.addStretch()
-        time_frame_widget_layout_header_1.addWidget(QtWidgets.QLabel('Alarm Threshold'))
+        time_frame_widget_layout_header_1_label = QtWidgets.QLabel('Alarm Threshold')
+        time_frame_widget_layout_header_1_label.setToolTip('Sound alarm can be set through the threshold boxes')
+        time_frame_widget_layout_header_1.addWidget(time_frame_widget_layout_header_1_label)
         time_frame_widget_layout_header_1.addStretch()
+        
 
         time_frame_widget_layout_header_2 = QtWidgets.QHBoxLayout()
         time_frame_widget_layout_header_2.addStretch()
-        time_frame_widget_layout_header_2.addWidget(QtWidgets.QLabel('Active'))
+        time_frame_widget_layout_header_2_label = QtWidgets.QLabel('Active')
+        time_frame_widget_layout_header_2_label.setToolTip('Check Yes/No')
+        time_frame_widget_layout_header_2.addWidget(time_frame_widget_layout_header_2_label)
         time_frame_widget_layout_header_2.addStretch()
 
         g_grid_widget_layout.addLayout(time_frame_widget_layout_header_1,0,1)
