@@ -760,6 +760,19 @@ class SettingWindow(QtWidgets.QWidget):
 
         font2 = QtGui.QFont("Times", 12, QtGui.QFont.Normal)
 
+################### Header ######################
+        time_frame_widget_header = QtWidgets.QWidget()
+        time_frame_widget_header.setFont(font2)
+        time_frame_widget_layout_header = QtWidgets.QHBoxLayout()
+        time_frame_widget_header.setLayout(time_frame_widget_layout_header)
+
+        time_frame_widget_layout_header.addStretch(10)
+        time_frame_widget_layout_header.addWidget(QtWidgets.QLabel('Alarm Threshold'))
+        time_frame_widget_layout_header.addStretch(5)
+        time_frame_widget_layout_header.addWidget(QtWidgets.QLabel('Active'))
+        time_frame_widget_layout_header.addStretch(5)
+
+#################################################
 
 #####################################################################################
         time_frame_widget_Newest = QtWidgets.QWidget()
@@ -767,55 +780,42 @@ class SettingWindow(QtWidgets.QWidget):
         time_frame_widget_layout_Newest = QtWidgets.QHBoxLayout()
         time_frame_widget_Newest.setLayout(time_frame_widget_layout_Newest)
 
-        time_frame_widget_layout_Newest.addStretch(5)
+        time_frame_widget_layout_Newest.addStretch(8)
 
-        # Widget for Alarm Threshold
-        time_frame_widget_Newest_AlarmThreshold = QtWidgets.QWidget()
-        time_frame_widget_layout_Newest_AlarmThreshold = QtWidgets.QVBoxLayout()
-        time_frame_widget_Newest_AlarmThreshold.setLayout(time_frame_widget_layout_Newest_AlarmThreshold)
-
-        time_frame_widget_Newest_AlarmThreshold_Bid_Ask = QtWidgets.QWidget()
-        time_frame_widget_layout_Newest_AlarmThreshold_Bid_Ask = QtWidgets.QHBoxLayout()
-        time_frame_widget_Newest_AlarmThreshold_Bid_Ask.setLayout(time_frame_widget_layout_Newest_AlarmThreshold_Bid_Ask)
+        # Widget for Bid and Ask (Alarm Threshold)
+        time_frame_widget_Newest_Bid_Ask = QtWidgets.QWidget()
+        time_frame_widget_layout_Newest_Bid_Ask = QtWidgets.QHBoxLayout()
+        time_frame_widget_Newest_Bid_Ask.setLayout(time_frame_widget_layout_Newest_Bid_Ask)
         self.edit_Alarm_Newest_Bid = QtWidgets.QLineEdit()
-        self.edit_Alarm_Newest_Bid.setFixedWidth(70)
+        self.edit_Alarm_Newest_Bid.setFixedWidth(90)
         self.onlyInt = QIntValidator()
         self.edit_Alarm_Newest_Bid.setValidator(self.onlyInt)
         self.edit_Alarm_Newest_Bid.setText(str(config['alarm_threshold_bid'][0]));
         self.edit_Alarm_Newest_Ask = QtWidgets.QLineEdit()
-        self.edit_Alarm_Newest_Ask.setFixedWidth(70)
+        self.edit_Alarm_Newest_Ask.setFixedWidth(90)
         self.onlyInt = QIntValidator()
         self.edit_Alarm_Newest_Ask.setValidator(self.onlyInt)
         self.edit_Alarm_Newest_Ask.setText(str(config['alarm_threshold_ask'][0]));
-        time_frame_widget_layout_Newest_AlarmThreshold_Bid_Ask.addWidget(QtWidgets.QLabel('Bid'))
-        time_frame_widget_layout_Newest_AlarmThreshold_Bid_Ask.addWidget(self.edit_Alarm_Newest_Bid)
-        time_frame_widget_layout_Newest_AlarmThreshold_Bid_Ask.addWidget(self.edit_Alarm_Newest_Ask)
-        time_frame_widget_layout_Newest_AlarmThreshold_Bid_Ask.addWidget(QtWidgets.QLabel('Ask'))
+        time_frame_widget_layout_Newest_Bid_Ask.addWidget(QtWidgets.QLabel('Bid'))
+        time_frame_widget_layout_Newest_Bid_Ask.addWidget(self.edit_Alarm_Newest_Bid)
+        time_frame_widget_layout_Newest_Bid_Ask.addWidget(self.edit_Alarm_Newest_Ask)
+        time_frame_widget_layout_Newest_Bid_Ask.addWidget(QtWidgets.QLabel('Ask'))
 
-        time_frame_widget_layout_Newest_AlarmThreshold.addWidget(QtWidgets.QLabel('Alarm Threshold'))
-        time_frame_widget_layout_Newest_AlarmThreshold.addWidget(time_frame_widget_Newest_AlarmThreshold_Bid_Ask)
-
-        # Widget for Active
-        time_frame_widget_Newest_Active = QtWidgets.QWidget()
-        time_frame_widget_layout_Newest_Active = QtWidgets.QVBoxLayout()
-        time_frame_widget_Newest_Active.setLayout(time_frame_widget_layout_Newest_Active)
-        
-        time_frame_widget_Newest_Active_YesNo = QtWidgets.QWidget()
-        time_frame_widget_layout_Newest_Active_YesNo = QtWidgets.QHBoxLayout()
-        time_frame_widget_Newest_Active_YesNo.setLayout(time_frame_widget_layout_Newest_Active_YesNo)
+        # Widget for Yes and No (Active)      
+        time_frame_widget_Newest_YesNo = QtWidgets.QWidget()
+        time_frame_widget_layout_Newest_YesNo = QtWidgets.QHBoxLayout()
+        time_frame_widget_Newest_YesNo.setLayout(time_frame_widget_layout_Newest_YesNo)
 
         self.radio_Newest_Active_Yes = QtWidgets.QRadioButton("Yes")
         self.radio_Newest_Active_No = QtWidgets.QRadioButton("No")
-        time_frame_widget_layout_Newest_Active_YesNo.addWidget(self.radio_Newest_Active_Yes)
-        time_frame_widget_layout_Newest_Active_YesNo.addWidget(self.radio_Newest_Active_No)
+        time_frame_widget_layout_Newest_YesNo.addWidget(self.radio_Newest_Active_Yes)
+        time_frame_widget_layout_Newest_YesNo.addWidget(self.radio_Newest_Active_No)
 
-        time_frame_widget_layout_Newest_Active.addWidget(QtWidgets.QLabel('Active'))
-        time_frame_widget_layout_Newest_Active.addWidget(time_frame_widget_Newest_Active_YesNo)
-
+        # Add all widgets
         time_frame_widget_layout_Newest.addWidget(QtWidgets.QLabel('Newest Time Frame'))
-        time_frame_widget_layout_Newest.addWidget(time_frame_widget_Newest_AlarmThreshold)
-        time_frame_widget_layout_Newest.addWidget(time_frame_widget_Newest_Active)
-        time_frame_widget_layout_Newest.addStretch(5)
+        time_frame_widget_layout_Newest.addWidget(time_frame_widget_Newest_Bid_Ask)
+        time_frame_widget_layout_Newest.addWidget(time_frame_widget_Newest_YesNo)
+        time_frame_widget_layout_Newest.addStretch(3)
 
 #####################################################################################
         time_frame_widget_A = QtWidgets.QWidget()
@@ -824,7 +824,6 @@ class SettingWindow(QtWidgets.QWidget):
         time_frame_widget_A.setLayout(time_frame_widget_layout_A)
 
         time_frame_widget_layout_A.addStretch(5)
-        time_frame_widget_layout_A.addWidget(QtWidgets.QLabel('Time Frame A'))
         self.edit_A = QtWidgets.QLineEdit()
         self.edit_A.setFixedWidth(70)
         self.onlyInt = QIntValidator()
@@ -832,10 +831,45 @@ class SettingWindow(QtWidgets.QWidget):
         #self.edit_A.setMaxLength(4)
         self.edit_A.setText(str(config['time_periods'][0]));
         time_frame_widget_layout_A.addStretch(2)
+        
+        # Widget for Bid and Ask (Alarm Threshold)
+        time_frame_widget_A_Bid_Ask = QtWidgets.QWidget()
+        time_frame_widget_layout_A_Bid_Ask = QtWidgets.QHBoxLayout()
+        time_frame_widget_A_Bid_Ask.setLayout(time_frame_widget_layout_A_Bid_Ask)
+        self.edit_Alarm_A_Bid = QtWidgets.QLineEdit()
+        self.edit_Alarm_A_Bid.setFixedWidth(90)
+        self.onlyInt = QIntValidator()
+        self.edit_Alarm_A_Bid.setValidator(self.onlyInt)
+        self.edit_Alarm_A_Bid.setText(str(config['alarm_threshold_bid'][0]));
+        self.edit_Alarm_A_Ask = QtWidgets.QLineEdit()
+        self.edit_Alarm_A_Ask.setFixedWidth(90)
+        self.onlyInt = QIntValidator()
+        self.edit_Alarm_A_Ask.setValidator(self.onlyInt)
+        self.edit_Alarm_A_Ask.setText(str(config['alarm_threshold_ask'][0]));
+        time_frame_widget_layout_A_Bid_Ask.addWidget(QtWidgets.QLabel('Bid'))
+        time_frame_widget_layout_A_Bid_Ask.addWidget(self.edit_Alarm_A_Bid)
+        time_frame_widget_layout_A_Bid_Ask.addWidget(self.edit_Alarm_A_Ask)
+        time_frame_widget_layout_A_Bid_Ask.addWidget(QtWidgets.QLabel('Ask'))
+
+        # Widget for Yes and No (Active)      
+        time_frame_widget_A_YesNo = QtWidgets.QWidget()
+        time_frame_widget_layout_A_YesNo = QtWidgets.QHBoxLayout()
+        time_frame_widget_A_YesNo.setLayout(time_frame_widget_layout_A_YesNo)
+
+        self.radio_A_Active_Yes = QtWidgets.QRadioButton("Yes")
+        self.radio_A_Active_No = QtWidgets.QRadioButton("No")
+        time_frame_widget_layout_A_YesNo.addWidget(self.radio_A_Active_Yes)
+        time_frame_widget_layout_A_YesNo.addWidget(self.radio_A_Active_No)
+
+        time_frame_widget_layout_A.addWidget(QtWidgets.QLabel('Time Frame A'))
         time_frame_widget_layout_A.addWidget(self.edit_A)
         time_frame_widget_layout_A.addWidget(QtWidgets.QLabel('sec'))
+        time_frame_widget_layout_A.addWidget(time_frame_widget_A_Bid_Ask)
+        time_frame_widget_layout_A.addWidget(time_frame_widget_A_YesNo)
+
         time_frame_widget_layout_A.addStretch(5)
 
+#####################################################################################
 
         time_frame_widget_B = QtWidgets.QWidget()
         time_frame_widget_B.setFont(font2)
@@ -972,6 +1006,7 @@ class SettingWindow(QtWidgets.QWidget):
 
 
         g_layout.addWidget(interval_widget)
+        g_layout.addWidget(time_frame_widget_header)
         g_layout.addWidget(time_frame_widget_Newest)
         g_layout.addWidget(time_frame_widget_A)
         g_layout.addWidget(time_frame_widget_B)
