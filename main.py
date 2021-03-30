@@ -20,6 +20,7 @@ from mss import mss
 from PIL import Image
 from ctypes import windll, byref, Structure, WinError, POINTER, WINFUNCTYPE, c_int, c_ulong, c_double
 from ctypes.wintypes import BOOL, HMONITOR, HDC, RECT, LPARAM, DWORD, BYTE, WCHAR, HANDLE
+from playsound import playsound
 
 from ocr_utils import extract_data
 
@@ -555,6 +556,12 @@ class MainWindow(QtWidgets.QWidget):
                     ask_text = '{label:>{n}}'.format(label='%.2f' % ask_data[0], n=self.text_len)
                     text = '{} {}'.format(bid_text, ask_text)
                     self.values[0].setText(text)
+
+                    cur_scale = bid_data[0] / ask_data[0]
+                    config_scale = config['alarm_threshold_bid'][0]/config['alarm_threshold_ask'][0]
+                    #print(cur_scale, " : ", config_scale)
+                    if(cur_scale >= config_scale):
+                    	playsound('alarm.mp3',False)
             
             for i, period in enumerate(config['time_periods'], 1):
                 if self.step_cnt % period == 0:
