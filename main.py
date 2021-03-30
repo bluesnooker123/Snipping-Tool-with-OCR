@@ -568,10 +568,11 @@ class MainWindow(QtWidgets.QWidget):
                     text = '{} {}'.format(bid_text, ask_text)
                     self.values[0].setText(text)
 
-                    cur_scale = bid_data[0] / ask_data[0]
-                    config_scale = config['alarm_threshold_bid'][0]/config['alarm_threshold_ask'][0]
-                    #print(cur_scale, " : ", config_scale)
-                    if(cur_scale >= config_scale) and (config['alarm_active'][0] == True):
+                if (config['alarm_active'][0] == True):
+                    if(bid_data[0] >= config['alarm_threshold_bid'][0]):
+                        if not global_voice.get_busy():
+                            global_voice.play(global_sound)
+                    if(ask_data[0] >= config['alarm_threshold_ask'][0]):
                         if not global_voice.get_busy():
                             global_voice.play(global_sound)
             
@@ -598,14 +599,13 @@ class MainWindow(QtWidgets.QWidget):
                     text = '{} : {}'.format(bid_text, ask_text)
                     self.values[i].setText(text)
 
-                    cur_scale = acc_bid / acc_ask
-                    config_scale = config['alarm_threshold_bid'][i]/config['alarm_threshold_ask'][i]
-                    #print(cur_scale, " : ", config_scale)
-                    if(cur_scale >= config_scale)  and (config['alarm_active'][i] == True):
-                        if not global_voice.get_busy():
-                            global_voice.play(global_sound)
-
-        
+                    if (config['alarm_active'][i] == True):
+                        if acc_bid >= config['alarm_threshold_bid'][i]:
+                            if not global_voice.get_busy():
+                                global_voice.play(global_sound)
+                        if acc_ask >= config['alarm_threshold_ask'][i]:
+                            if not global_voice.get_busy():
+                                global_voice.play(global_sound)
         # Reset
         if self.step_cnt == self.steps[-1]:
             self.step_cnt = 0
