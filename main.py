@@ -430,6 +430,8 @@ class MainWindow(QtWidgets.QWidget):
         #)
         ###########################################
 
+        self.stop_button.setEnabled(False)
+
         self.setWindowFlags(self.windowFlags() | QtCore.Qt.CustomizeWindowHint | QtCore.Qt.WindowStaysOnTopHint)
 
     
@@ -640,6 +642,7 @@ class MainWindow(QtWidgets.QWidget):
             
             # Disable view
             self.start_button.setEnabled(False)
+            self.stop_button.setEnabled(True)
             self.view_button.setEnabled(False)
             self.select_button.setEnabled(False)
 
@@ -657,6 +660,7 @@ class MainWindow(QtWidgets.QWidget):
         self.view_button.setEnabled(True)
         self.select_button.setEnabled(True)
         self.start_button.setEnabled(True)
+        self.stop_button.setEnabled(False)
         self.timer.stop()
         self.step_cnt = 0
 
@@ -854,12 +858,12 @@ class SettingWindow(QtWidgets.QWidget):
         self.edit_Alarm_A_Bid.setFixedWidth(90)
         self.onlyInt = QIntValidator()
         self.edit_Alarm_A_Bid.setValidator(self.onlyInt)
-        self.edit_Alarm_A_Bid.setText(str(config['alarm_threshold_bid'][0]));
+        self.edit_Alarm_A_Bid.setText(str(config['alarm_threshold_bid'][1]));
         self.edit_Alarm_A_Ask = QtWidgets.QLineEdit()
         self.edit_Alarm_A_Ask.setFixedWidth(90)
         self.onlyInt = QIntValidator()
         self.edit_Alarm_A_Ask.setValidator(self.onlyInt)
-        self.edit_Alarm_A_Ask.setText(str(config['alarm_threshold_ask'][0]));
+        self.edit_Alarm_A_Ask.setText(str(config['alarm_threshold_ask'][1]));
         time_frame_widget_layout_A_Bid_Ask.addWidget(QtWidgets.QLabel('Bid'))
         time_frame_widget_layout_A_Bid_Ask.addWidget(self.edit_Alarm_A_Bid)
         time_frame_widget_layout_A_Bid_Ask.addStretch()
@@ -908,12 +912,12 @@ class SettingWindow(QtWidgets.QWidget):
         self.edit_Alarm_B_Bid.setFixedWidth(90)
         self.onlyInt = QIntValidator()
         self.edit_Alarm_B_Bid.setValidator(self.onlyInt)
-        self.edit_Alarm_B_Bid.setText(str(config['alarm_threshold_bid'][0]));
+        self.edit_Alarm_B_Bid.setText(str(config['alarm_threshold_bid'][2]));
         self.edit_Alarm_B_Ask = QtWidgets.QLineEdit()
         self.edit_Alarm_B_Ask.setFixedWidth(90)
         self.onlyInt = QIntValidator()
         self.edit_Alarm_B_Ask.setValidator(self.onlyInt)
-        self.edit_Alarm_B_Ask.setText(str(config['alarm_threshold_ask'][0]));
+        self.edit_Alarm_B_Ask.setText(str(config['alarm_threshold_ask'][2]));
         time_frame_widget_layout_B_Bid_Ask.addWidget(QtWidgets.QLabel('Bid'))
         time_frame_widget_layout_B_Bid_Ask.addWidget(self.edit_Alarm_B_Bid)
         time_frame_widget_layout_B_Bid_Ask.addStretch()
@@ -961,12 +965,12 @@ class SettingWindow(QtWidgets.QWidget):
         self.edit_Alarm_C_Bid.setFixedWidth(90)
         self.onlyInt = QIntValidator()
         self.edit_Alarm_C_Bid.setValidator(self.onlyInt)
-        self.edit_Alarm_C_Bid.setText(str(config['alarm_threshold_bid'][0]));
+        self.edit_Alarm_C_Bid.setText(str(config['alarm_threshold_bid'][3]));
         self.edit_Alarm_C_Ask = QtWidgets.QLineEdit()
         self.edit_Alarm_C_Ask.setFixedWidth(90)
         self.onlyInt = QIntValidator()
         self.edit_Alarm_C_Ask.setValidator(self.onlyInt)
-        self.edit_Alarm_C_Ask.setText(str(config['alarm_threshold_ask'][0]));
+        self.edit_Alarm_C_Ask.setText(str(config['alarm_threshold_ask'][3]));
         time_frame_widget_layout_C_Bid_Ask.addWidget(QtWidgets.QLabel('Bid'))
         time_frame_widget_layout_C_Bid_Ask.addWidget(self.edit_Alarm_C_Bid)
         time_frame_widget_layout_C_Bid_Ask.addStretch()
@@ -1015,12 +1019,12 @@ class SettingWindow(QtWidgets.QWidget):
         self.edit_Alarm_D_Bid.setFixedWidth(90)
         self.onlyInt = QIntValidator()
         self.edit_Alarm_D_Bid.setValidator(self.onlyInt)
-        self.edit_Alarm_D_Bid.setText(str(config['alarm_threshold_bid'][0]));
+        self.edit_Alarm_D_Bid.setText(str(config['alarm_threshold_bid'][4]));
         self.edit_Alarm_D_Ask = QtWidgets.QLineEdit()
         self.edit_Alarm_D_Ask.setFixedWidth(90)
         self.onlyInt = QIntValidator()
         self.edit_Alarm_D_Ask.setValidator(self.onlyInt)
-        self.edit_Alarm_D_Ask.setText(str(config['alarm_threshold_ask'][0]));
+        self.edit_Alarm_D_Ask.setText(str(config['alarm_threshold_ask'][4]));
         time_frame_widget_layout_D_Bid_Ask.addWidget(QtWidgets.QLabel('Bid'))
         time_frame_widget_layout_D_Bid_Ask.addWidget(self.edit_Alarm_D_Bid)
         time_frame_widget_layout_D_Bid_Ask.addStretch()
@@ -1069,12 +1073,12 @@ class SettingWindow(QtWidgets.QWidget):
         self.edit_Alarm_E_Bid.setFixedWidth(90)
         self.onlyInt = QIntValidator()
         self.edit_Alarm_E_Bid.setValidator(self.onlyInt)
-        self.edit_Alarm_E_Bid.setText(str(config['alarm_threshold_bid'][0]));
+        self.edit_Alarm_E_Bid.setText(str(config['alarm_threshold_bid'][5]));
         self.edit_Alarm_E_Ask = QtWidgets.QLineEdit()
         self.edit_Alarm_E_Ask.setFixedWidth(90)
         self.onlyInt = QIntValidator()
         self.edit_Alarm_E_Ask.setValidator(self.onlyInt)
-        self.edit_Alarm_E_Ask.setText(str(config['alarm_threshold_ask'][0]));
+        self.edit_Alarm_E_Ask.setText(str(config['alarm_threshold_ask'][5]));
         time_frame_widget_layout_E_Bid_Ask.addWidget(QtWidgets.QLabel('Bid'))
         time_frame_widget_layout_E_Bid_Ask.addWidget(self.edit_Alarm_E_Bid)
         time_frame_widget_layout_E_Bid_Ask.addStretch()
@@ -1123,12 +1127,12 @@ class SettingWindow(QtWidgets.QWidget):
         self.edit_Alarm_F_Bid.setFixedWidth(90)
         self.onlyInt = QIntValidator()
         self.edit_Alarm_F_Bid.setValidator(self.onlyInt)
-        self.edit_Alarm_F_Bid.setText(str(config['alarm_threshold_bid'][0]));
+        self.edit_Alarm_F_Bid.setText(str(config['alarm_threshold_bid'][6]));
         self.edit_Alarm_F_Ask = QtWidgets.QLineEdit()
         self.edit_Alarm_F_Ask.setFixedWidth(90)
         self.onlyInt = QIntValidator()
         self.edit_Alarm_F_Ask.setValidator(self.onlyInt)
-        self.edit_Alarm_F_Ask.setText(str(config['alarm_threshold_ask'][0]));
+        self.edit_Alarm_F_Ask.setText(str(config['alarm_threshold_ask'][6]));
         time_frame_widget_layout_F_Bid_Ask.addWidget(QtWidgets.QLabel('Bid'))
         time_frame_widget_layout_F_Bid_Ask.addWidget(self.edit_Alarm_F_Bid)
         time_frame_widget_layout_F_Bid_Ask.addStretch()
@@ -1177,12 +1181,12 @@ class SettingWindow(QtWidgets.QWidget):
         self.edit_Alarm_G_Bid.setFixedWidth(90)
         self.onlyInt = QIntValidator()
         self.edit_Alarm_G_Bid.setValidator(self.onlyInt)
-        self.edit_Alarm_G_Bid.setText(str(config['alarm_threshold_bid'][0]));
+        self.edit_Alarm_G_Bid.setText(str(config['alarm_threshold_bid'][7]));
         self.edit_Alarm_G_Ask = QtWidgets.QLineEdit()
         self.edit_Alarm_G_Ask.setFixedWidth(90)
         self.onlyInt = QIntValidator()
         self.edit_Alarm_G_Ask.setValidator(self.onlyInt)
-        self.edit_Alarm_G_Ask.setText(str(config['alarm_threshold_ask'][0]));
+        self.edit_Alarm_G_Ask.setText(str(config['alarm_threshold_ask'][7]));
         time_frame_widget_layout_G_Bid_Ask.addWidget(QtWidgets.QLabel('Bid'))
         time_frame_widget_layout_G_Bid_Ask.addWidget(self.edit_Alarm_G_Bid)
         time_frame_widget_layout_G_Bid_Ask.addStretch()
