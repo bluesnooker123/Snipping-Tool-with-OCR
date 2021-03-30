@@ -10,9 +10,9 @@ import logging
 from logging.handlers import RotatingFileHandler
 from collections import deque
 from PyQt5 import QtWidgets, QtCore, QtGui
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QSpinBox, QLabel
+from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QSpinBox, QLabel, QMessageBox
 from PyQt5.QtCore import QRunnable, Qt, QThreadPool
-from PyQt5.QtGui import QIntValidator
+from PyQt5.QtGui import QIntValidator, QIcon
 import tkinter as tk
 from PIL import ImageGrab
 from cryptlex.lexactivator import LexActivator, LexStatusCodes, PermissionFlags
@@ -1293,6 +1293,42 @@ class SettingWindow(QtWidgets.QWidget):
         self.retranslateUi(self)
 
     def save_button_handler(self):
+
+        msgBox = QMessageBox()
+        msgBox.setWindowIcon(QtGui.QIcon('L2-easy.ico'))
+        msgBox.setIcon(QtWidgets.QMessageBox.Warning)
+        msgBox.setText("Input field cannot be blanked!")
+        msgBox.setWindowTitle("Warning")
+        msgBox.setStandardButtons(QMessageBox.Ok)
+        
+        if self.edit_A.text() == '' or self.edit_B.text() == '' or self.edit_C.text() == '' or self.edit_D.text() == '' or self.edit_E.text() == '' or self.edit_F.text() == '' or self.edit_G.text() == '':
+            returnValue = msgBox.exec()
+            return
+        if self.edit_Alarm_Newest_Bid.text() == '' or self.edit_Alarm_Newest_Ask.text() == '':
+            returnValue = msgBox.exec()
+            return
+        if self.edit_Alarm_A_Bid.text() == '' or self.edit_Alarm_A_Ask.text() == '':
+            returnValue = msgBox.exec()
+            return
+        if self.edit_Alarm_B_Bid.text() == '' or self.edit_Alarm_B_Ask.text() == '':
+            returnValue = msgBox.exec()
+            return
+        if self.edit_Alarm_C_Bid.text() == '' or self.edit_Alarm_C_Ask.text() == '':
+            returnValue = msgBox.exec()
+            return
+        if self.edit_Alarm_D_Bid.text() == '' or self.edit_Alarm_D_Ask.text() == '':
+            returnValue = msgBox.exec()
+            return
+        if self.edit_Alarm_E_Bid.text() == '' or self.edit_Alarm_E_Ask.text() == '':
+            returnValue = msgBox.exec()
+            return
+        if self.edit_Alarm_F_Bid.text() == '' or self.edit_Alarm_F_Ask.text() == '':
+            returnValue = msgBox.exec()
+            return
+        if self.edit_Alarm_G_Bid.text() == '' or self.edit_Alarm_G_Ask.text() == '':
+            returnValue = msgBox.exec()
+            return
+
         self.time_A = int(self.edit_A.text())
         self.time_B = int(self.edit_B.text())
         self.time_C = int(self.edit_C.text())

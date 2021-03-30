@@ -8,39 +8,39 @@ alarm_active:
 - true
 - true
 alarm_threshold_ask:
-- 3
-- 3
-- 3
-- 3
-- 3
-- 3
-- 3
-- 3
+- 3000
+- 4
+- 2
+- 1
+- 1
+- 1
+- 1
+- 5
 alarm_threshold_bid:
-- 6
-- 6
-- 6
-- 6
-- 6
-- 6
-- 6
-- 6
+- 8000
+- 2
+- 2
+- 2
+- 2
+- 2
+- 2
+- 2
 conf_thresh: 80
 debug: true
 interval: 1
 logfile: app.log
 rois:
   left:
-  - 627
-  - 337
-  - 676
-  - 606
+  - 85
+  - 326
+  - 131
+  - 413
   right:
-  - 944
-  - 337
-  - 1017
-  - 644
-screen_id: 1
+  - 200
+  - 323
+  - 261
+  - 410
+screen_id: 2
 time_periods:
 - 10
 - 20
