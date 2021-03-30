@@ -8,10 +8,10 @@
     <ROW Property="ARPURLINFOABOUT" Value="market-lv2data.com"/>
     <ROW Property="ARPURLUPDATEINFO" Value="market-lv2data.com"/>
     <ROW Property="Manufacturer" Value="market-lv2data.com"/>
-    <ROW Property="ProductCode" Value="1033:{748B5AAB-A0AC-475B-A663-52981EEFA268} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{7FA2DE50-FF67-4A8F-9CBC-49C3FB22750F} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="L2-easy"/>
-    <ROW Property="ProductVersion" Value="3.4.0" Type="32"/>
+    <ROW Property="ProductVersion" Value="3.8.0" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{02F86287-F147-4DDA-B60A-458D5F787C3F}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -91,225 +91,225 @@
     <ROW Directory="yaml_Dir" Directory_Parent="L2easy_Dir" DefaultDir="yaml"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="ACT" ComponentId="{80D443C7-FA2C-448C-AEF5-95F19A46CBC9}" Directory_="Australia_Dir" Attributes="0" KeyPath="ACT" Type="0"/>
+    <ROW Component="ACT" ComponentId="{81BCC8FE-79E0-45B7-AF25-074F7B27B771}" Directory_="Australia_Dir" Attributes="0" KeyPath="ACT" Type="0"/>
     <ROW Component="APPDIR" ComponentId="{E6FEB112-8AD2-4A5C-B0CA-6FF54772FDBB}" Directory_="APPDIR" Attributes="0"/>
-    <ROW Component="AST4" ComponentId="{C7ED4363-5E49-47C1-9F24-09A342EFF6D7}" Directory_="SystemV_Dir" Attributes="0" KeyPath="AST4" Type="0"/>
-    <ROW Component="AUTHORS" ComponentId="{746D532F-98B1-4D38-9BA6-41E06C67CA2C}" Directory_="doc_Dir" Attributes="0" KeyPath="AUTHORS" Type="0"/>
-    <ROW Component="Abidjan" ComponentId="{1352B267-72DD-4FB7-B254-26B85B2C5463}" Directory_="Africa_Dir" Attributes="0" KeyPath="Abidjan" Type="0"/>
-    <ROW Component="Acre" ComponentId="{E19BC470-D576-4419-B685-1DE055AE3E5D}" Directory_="Brazil_Dir" Attributes="0" KeyPath="Acre" Type="0"/>
-    <ROW Component="Adak" ComponentId="{D5B54A66-1748-49BD-BCB7-C2D1ABD4329E}" Directory_="America_Dir" Attributes="0" KeyPath="Adak" Type="0"/>
-    <ROW Component="Aden" ComponentId="{86EA71DC-B129-4130-B677-8F5BAAA0E04B}" Directory_="Asia_Dir" Attributes="0" KeyPath="Aden" Type="0"/>
-    <ROW Component="Alaska" ComponentId="{789B990F-4D63-461B-8435-A169FCED0D26}" Directory_="US_Dir" Attributes="0" KeyPath="Alaska" Type="0"/>
-    <ROW Component="Amsterdam" ComponentId="{20645188-A6B6-4C87-98AA-440300D07728}" Directory_="Europe_Dir" Attributes="0" KeyPath="Amsterdam" Type="0"/>
-    <ROW Component="Antananarivo" ComponentId="{6063D143-BD62-4080-9140-75970B368016}" Directory_="Indian_Dir" Attributes="0" KeyPath="Antananarivo" Type="0"/>
-    <ROW Component="Apia" ComponentId="{4F69891B-0FF9-46A6-A481-3A90828A0781}" Directory_="Pacific_Dir" Attributes="0" KeyPath="Apia" Type="0"/>
-    <ROW Component="Atlantic" ComponentId="{2C91B0DA-F8A8-4C4F-A516-C72167F7BCF2}" Directory_="Canada_Dir" Attributes="0" KeyPath="Atlantic" Type="0"/>
-    <ROW Component="Azores" ComponentId="{55CDF5B6-52DA-44F9-910E-6F41306C6501}" Directory_="Atlantic_Dir" Attributes="0" KeyPath="Azores" Type="0"/>
-    <ROW Component="BajaNorte" ComponentId="{7189849A-ECA2-4944-BE99-D2610A1241A2}" Directory_="Mexico_Dir" Attributes="0" KeyPath="BajaNorte" Type="0"/>
-    <ROW Component="Beulah" ComponentId="{36BC033E-4E0D-4A83-8D25-BA8F280632D1}" Directory_="North_Dakota_Dir" Attributes="0" KeyPath="Beulah" Type="0"/>
-    <ROW Component="Buenos_Aires" ComponentId="{47066073-B561-4F0F-9203-A61F47687B02}" Directory_="Argentina_Dir" Attributes="0" KeyPath="Buenos_Aires" Type="0"/>
-    <ROW Component="CET" ComponentId="{F8EE4CCE-7663-42B5-8475-50EE49ECA999}" Directory_="tzdata_Dir" Attributes="0" KeyPath="CET" Type="0"/>
-    <ROW Component="Casey" ComponentId="{63F8B5BF-535D-4282-983B-B276D80B4941}" Directory_="Antarctica_Dir" Attributes="0" KeyPath="Casey" Type="0"/>
-    <ROW Component="Continental" ComponentId="{96E15AF2-90CC-4BFD-AC3B-FA3AAB098CB2}" Directory_="Chile_Dir" Attributes="0" KeyPath="Continental" Type="0"/>
-    <ROW Component="GMT" ComponentId="{722BEB0D-ADF8-428D-9D08-070C8D5E9D65}" Directory_="Etc_Dir" Attributes="0" KeyPath="GMT" Type="0"/>
-    <ROW Component="Indianapolis" ComponentId="{71D9771A-F19C-44D8-B0AB-1D7D0F00795D}" Directory_="Indiana_Dir" Attributes="0" KeyPath="Indianapolis" Type="0"/>
-    <ROW Component="L2easy.exe" ComponentId="{01466BA3-8C9A-46BC-AF19-44C7F6E2B852}" Directory_="L2easy_Dir" Attributes="256" KeyPath="L2easy.exe"/>
-    <ROW Component="LexActivator.dll" ComponentId="{724329CB-DFC7-433D-9855-52F6686D30B3}" Directory_="L2easy_Dir" Attributes="256" KeyPath="LexActivator.dll"/>
-    <ROW Component="Longyearbyen" ComponentId="{7A6DFA85-B4F9-4777-BC5C-F33D3FD12425}" Directory_="Arctic_Dir" Attributes="0" KeyPath="Longyearbyen" Type="0"/>
-    <ROW Component="Louisville" ComponentId="{62149E24-C8B6-4C0C-8892-70EC9644E31F}" Directory_="Kentucky_Dir" Attributes="0" KeyPath="Louisville" Type="0"/>
-    <ROW Component="MSVCP140.dll" ComponentId="{3E4B2BFC-A69F-48A2-876C-29763D8999BB}" Directory_="L2easy_Dir" Attributes="256" KeyPath="MSVCP140.dll"/>
-    <ROW Component="MSVCP140_1.dll" ComponentId="{FA047623-5C14-4689-BE99-FF07E3DD1A4F}" Directory_="L2easy_Dir" Attributes="256" KeyPath="MSVCP140_1.dll"/>
+    <ROW Component="AST4" ComponentId="{C9C0523D-FF3D-4849-94BA-A0F7312F6A38}" Directory_="SystemV_Dir" Attributes="0" KeyPath="AST4" Type="0"/>
+    <ROW Component="AUTHORS" ComponentId="{35ED71A4-881E-4269-8762-BA6CDD56473C}" Directory_="doc_Dir" Attributes="0" KeyPath="AUTHORS" Type="0"/>
+    <ROW Component="Abidjan" ComponentId="{76E6D51A-E413-4590-A8A3-4F109989DAED}" Directory_="Africa_Dir" Attributes="0" KeyPath="Abidjan" Type="0"/>
+    <ROW Component="Acre" ComponentId="{06AA8AFA-B0A5-4735-9912-504D99B4F742}" Directory_="Brazil_Dir" Attributes="0" KeyPath="Acre" Type="0"/>
+    <ROW Component="Adak" ComponentId="{B52DE164-7CB1-44AC-9B37-0A9170219FA9}" Directory_="America_Dir" Attributes="0" KeyPath="Adak" Type="0"/>
+    <ROW Component="Aden" ComponentId="{2EA88AFF-21EA-4E8E-8619-35D78D17D813}" Directory_="Asia_Dir" Attributes="0" KeyPath="Aden" Type="0"/>
+    <ROW Component="Alaska" ComponentId="{00BBFE29-5A32-41D5-897A-AF8BEBD8A134}" Directory_="US_Dir" Attributes="0" KeyPath="Alaska" Type="0"/>
+    <ROW Component="Amsterdam" ComponentId="{257A2AC0-15B3-41A8-9573-C8B51A9CF35D}" Directory_="Europe_Dir" Attributes="0" KeyPath="Amsterdam" Type="0"/>
+    <ROW Component="Antananarivo" ComponentId="{B09890C8-FB9C-4E52-9D6C-3E6ACAA745E5}" Directory_="Indian_Dir" Attributes="0" KeyPath="Antananarivo" Type="0"/>
+    <ROW Component="Apia" ComponentId="{97420B8A-6A2A-4388-A332-1552FDB7DC96}" Directory_="Pacific_Dir" Attributes="0" KeyPath="Apia" Type="0"/>
+    <ROW Component="Atlantic" ComponentId="{EB38C531-E46D-4F51-B764-BFA81971D44C}" Directory_="Canada_Dir" Attributes="0" KeyPath="Atlantic" Type="0"/>
+    <ROW Component="Azores" ComponentId="{DED92956-C6ED-42D5-A8AD-19DF4700538F}" Directory_="Atlantic_Dir" Attributes="0" KeyPath="Azores" Type="0"/>
+    <ROW Component="BajaNorte" ComponentId="{BCCF0AA5-D4A7-43B1-A7E3-1BB617C04D52}" Directory_="Mexico_Dir" Attributes="0" KeyPath="BajaNorte" Type="0"/>
+    <ROW Component="Beulah" ComponentId="{9532911A-4A25-49C7-A3A1-BE49052ABE1E}" Directory_="North_Dakota_Dir" Attributes="0" KeyPath="Beulah" Type="0"/>
+    <ROW Component="Buenos_Aires" ComponentId="{59C8A0CF-E690-4C18-BC2A-41E0DE746AB2}" Directory_="Argentina_Dir" Attributes="0" KeyPath="Buenos_Aires" Type="0"/>
+    <ROW Component="CET" ComponentId="{1B70880C-2BC4-4E95-95C5-334250DDEEEF}" Directory_="tzdata_Dir" Attributes="0" KeyPath="CET" Type="0"/>
+    <ROW Component="Casey" ComponentId="{4EDE8301-A02F-4481-A76C-1B0348269500}" Directory_="Antarctica_Dir" Attributes="0" KeyPath="Casey" Type="0"/>
+    <ROW Component="Continental" ComponentId="{03E1E770-B842-4D33-899E-DD5EAE7A4E46}" Directory_="Chile_Dir" Attributes="0" KeyPath="Continental" Type="0"/>
+    <ROW Component="GMT" ComponentId="{EAE6CA6D-60A5-43C0-ADC1-96275AA82553}" Directory_="Etc_Dir" Attributes="0" KeyPath="GMT" Type="0"/>
+    <ROW Component="Indianapolis" ComponentId="{1A68252B-C51D-4B17-B465-58BF6DED4B47}" Directory_="Indiana_Dir" Attributes="0" KeyPath="Indianapolis" Type="0"/>
+    <ROW Component="L2easy.exe" ComponentId="{B3A0AB91-B3AC-4D9B-B418-CA7483055A46}" Directory_="L2easy_Dir" Attributes="256" KeyPath="L2easy.exe"/>
+    <ROW Component="LexActivator.dll" ComponentId="{BF30CF38-A23E-4C13-B326-7C7D8F780046}" Directory_="L2easy_Dir" Attributes="256" KeyPath="LexActivator.dll"/>
+    <ROW Component="Longyearbyen" ComponentId="{5598052B-4E74-47D6-BFAB-03AF677930F9}" Directory_="Arctic_Dir" Attributes="0" KeyPath="Longyearbyen" Type="0"/>
+    <ROW Component="Louisville" ComponentId="{33408B7E-840E-4F5B-83B8-340E40E21848}" Directory_="Kentucky_Dir" Attributes="0" KeyPath="Louisville" Type="0"/>
+    <ROW Component="MSVCP140.dll" ComponentId="{7737644A-9657-4F46-B41C-BAA3DA08B233}" Directory_="L2easy_Dir" Attributes="256" KeyPath="MSVCP140.dll"/>
+    <ROW Component="MSVCP140_1.dll" ComponentId="{84AC9080-6780-42ED-A19F-FBE851E639E8}" Directory_="L2easy_Dir" Attributes="256" KeyPath="MSVCP140_1.dll"/>
     <ROW Component="ProductInformation" ComponentId="{BC716334-29C3-4ADE-A04D-67FE6D807935}" Directory_="APPDIR" Attributes="260" KeyPath="Version"/>
-    <ROW Component="Qt5Core.dll" ComponentId="{AF80646C-29C6-47E1-840F-945CA73F2F83}" Directory_="L2easy_Dir" Attributes="256" KeyPath="Qt5Core.dll"/>
-    <ROW Component="Qt5DBus.dll" ComponentId="{8588E02D-EE98-48E5-A912-C4FFBE93E524}" Directory_="L2easy_Dir" Attributes="256" KeyPath="Qt5DBus.dll"/>
-    <ROW Component="Qt5Gui.dll" ComponentId="{7F31C7B4-3990-4D81-B88B-25E9744BC024}" Directory_="L2easy_Dir" Attributes="256" KeyPath="Qt5Gui.dll"/>
-    <ROW Component="Qt5Network.dll" ComponentId="{38E2FFE6-34D5-4AFE-86D0-C822ED30B6B3}" Directory_="L2easy_Dir" Attributes="256" KeyPath="Qt5Network.dll"/>
-    <ROW Component="Qt5Qml.dll" ComponentId="{11B664B2-5C8E-46C2-A6A3-B4C705054D2F}" Directory_="L2easy_Dir" Attributes="256" KeyPath="Qt5Qml.dll"/>
-    <ROW Component="Qt5QmlModels.dll" ComponentId="{C7C965CA-9565-4566-A4E3-837C770CEAE3}" Directory_="L2easy_Dir" Attributes="256" KeyPath="Qt5QmlModels.dll"/>
-    <ROW Component="Qt5Quick.dll" ComponentId="{4751F592-3D70-4140-A7CE-701122ACE044}" Directory_="L2easy_Dir" Attributes="256" KeyPath="Qt5Quick.dll"/>
-    <ROW Component="Qt5Svg.dll" ComponentId="{74027BC7-CAC1-4631-98DF-407996B514AB}" Directory_="L2easy_Dir" Attributes="256" KeyPath="Qt5Svg.dll"/>
-    <ROW Component="Qt5WebSockets.dll" ComponentId="{0316877A-3B87-47BE-885D-9500A80B8D3F}" Directory_="L2easy_Dir" Attributes="256" KeyPath="Qt5WebSockets.dll"/>
-    <ROW Component="Qt5Widgets.dll" ComponentId="{A2B7638C-C8D0-4B64-B505-101A2EC9B4FB}" Directory_="L2easy_Dir" Attributes="256" KeyPath="Qt5Widgets.dll"/>
-    <ROW Component="QtCore.pyd" ComponentId="{C799332F-D219-4102-BEF2-5636CC9FB3E0}" Directory_="PyQt5_Dir" Attributes="256" KeyPath="QtCore.pyd" Type="0"/>
-    <ROW Component="SDL2.dll" ComponentId="{F388D5CA-54AD-47A5-965E-ECF0394FAECC}" Directory_="L2easy_Dir" Attributes="256" KeyPath="SDL2.dll"/>
-    <ROW Component="SDL2_image.dll" ComponentId="{65A9A9DD-24C1-4846-9DB0-842DB90CDEA9}" Directory_="L2easy_Dir" Attributes="256" KeyPath="SDL2_image.dll"/>
-    <ROW Component="SDL2_mixer.dll" ComponentId="{928F824F-E165-4304-84CA-D8C112972531}" Directory_="L2easy_Dir" Attributes="256" KeyPath="SDL2_mixer.dll"/>
-    <ROW Component="SDL2_ttf.dll" ComponentId="{A584C8AA-E2A8-4AAE-9D36-E86DB24D2D9C}" Directory_="L2easy_Dir" Attributes="256" KeyPath="SDL2_ttf.dll"/>
-    <ROW Component="VCRUNTIME140.dll" ComponentId="{23246D1D-43E8-4BCB-BEFC-97A0433C608E}" Directory_="L2easy_Dir" Attributes="256" KeyPath="VCRUNTIME140.dll"/>
-    <ROW Component="VCRUNTIME140_1.dll" ComponentId="{2F8E4CF1-FC86-4FA9-8AE0-D9D7EC8BB7E7}" Directory_="L2easy_Dir" Attributes="256" KeyPath="VCRUNTIME140_1.dll"/>
-    <ROW Component="_imaging.cp37win_amd64.pyd" ComponentId="{3740C406-EF0C-487A-AF87-9CC17BD8A571}" Directory_="PIL_Dir" Attributes="256" KeyPath="_imaging.cp37win_amd64.pyd" Type="0"/>
-    <ROW Component="_multiarray_tests.cp37win_amd64.pyd" ComponentId="{AD3BB770-3A93-48EE-A366-4E96E97FDD0E}" Directory_="core_Dir" Attributes="256" KeyPath="_multiarray_tests.cp37win_amd64.pyd" Type="0"/>
-    <ROW Component="_pocketfft_internal.cp37win_amd64.pyd" ComponentId="{FFB68287-3AAA-435D-A6E9-1DF950915385}" Directory_="fft_Dir" Attributes="256" KeyPath="_pocketfft_internal.cp37win_amd64.pyd" Type="0"/>
-    <ROW Component="_yaml.cp37win_amd64.pyd" ComponentId="{4CB7936E-AE58-4D8B-9438-12471444B7A1}" Directory_="yaml_Dir" Attributes="256" KeyPath="_yaml.cp37win_amd64.pyd" Type="0"/>
-    <ROW Component="af.msg" ComponentId="{1B950418-B487-48DE-A171-CBEC2C9D6E3F}" Directory_="msgs_Dir" Attributes="0" KeyPath="af.msg" Type="0"/>
-    <ROW Component="alarm.mp3" ComponentId="{2EF02A48-78E8-48AE-BA9E-1317A4167FF7}" Directory_="L2easy_Dir" Attributes="0" KeyPath="alarm.mp3" Type="0"/>
-    <ROW Component="altTheme.tcl" ComponentId="{1503C987-A4F8-4D73-B25A-45EF67216FA1}" Directory_="ttk_Dir" Attributes="0" KeyPath="altTheme.tcl" Type="0"/>
-    <ROW Component="alto" ComponentId="{8C688B6E-6E01-412A-A06A-64CD681726D6}" Directory_="configs_Dir" Attributes="0" KeyPath="alto" Type="0"/>
-    <ROW Component="ambiguous_words.1.html" ComponentId="{5A5C7629-D06E-4CB8-B378-0FDE159522E1}" Directory_="TesseractOCR_Dir" Attributes="0" KeyPath="ambiguous_words.1.html" Type="0"/>
-    <ROW Component="ambiguous_words.exe" ComponentId="{3412DDC5-90EF-4EC6-B142-4DE78ED92064}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="ambiguous_words.exe"/>
-    <ROW Component="apimswincoreconsolel110.dll" ComponentId="{A78D1692-7D8C-48C2-AA42-990ABFFC597F}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincoreconsolel110.dll"/>
-    <ROW Component="apimswincoredatetimel110.dll" ComponentId="{A5542F17-1BC3-42A4-A2D0-164F8E195BA2}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincoredatetimel110.dll"/>
-    <ROW Component="apimswincoredebugl110.dll" ComponentId="{AD5CE53D-C409-4EEE-81B6-823F2EBA0BD7}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincoredebugl110.dll"/>
-    <ROW Component="apimswincoreerrorhandlingl110.dll" ComponentId="{DE8A4534-B1F9-4CD1-A3D7-670197C44B2F}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincoreerrorhandlingl110.dll"/>
-    <ROW Component="apimswincorefilel110.dll" ComponentId="{B71E17C9-373E-4C2A-9999-41412F43BADD}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincorefilel110.dll"/>
-    <ROW Component="apimswincorefilel120.dll" ComponentId="{80BC9CDE-EECB-454B-B1FF-AFBC5FD29D1B}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincorefilel120.dll"/>
-    <ROW Component="apimswincorefilel210.dll" ComponentId="{A0EEECEE-F278-4113-8647-C7099D0E30AB}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincorefilel210.dll"/>
-    <ROW Component="apimswincorehandlel110.dll" ComponentId="{BA36100E-AA8E-4BA4-8E3D-C09E1A069E66}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincorehandlel110.dll"/>
-    <ROW Component="apimswincoreheapl110.dll" ComponentId="{05A3233C-FDD8-43CF-A72C-8101E8ADCF85}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincoreheapl110.dll"/>
-    <ROW Component="apimswincoreinterlockedl110.dll" ComponentId="{EF91B034-C7E4-4014-B9DF-FF0146BF72F8}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincoreinterlockedl110.dll"/>
-    <ROW Component="apimswincorelibraryloaderl110.dll" ComponentId="{449A697D-80FA-4D2E-B053-8E53980E69C1}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincorelibraryloaderl110.dll"/>
-    <ROW Component="apimswincorelocalizationl120.dll" ComponentId="{216ABE98-15DE-4B40-AA36-3168A42803D8}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincorelocalizationl120.dll"/>
-    <ROW Component="apimswincorememoryl110.dll" ComponentId="{52020837-04B2-4519-BB88-4377945F52D9}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincorememoryl110.dll"/>
-    <ROW Component="apimswincorenamedpipel110.dll" ComponentId="{0E1DCD96-705B-4CE2-B8FC-060F8BCBFF34}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincorenamedpipel110.dll"/>
-    <ROW Component="apimswincoreprocessenvironmentl110.dll" ComponentId="{DC9CD8ED-24F2-488A-BE7E-069CDC75E4FE}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincoreprocessenvironmentl110.dll"/>
-    <ROW Component="apimswincoreprocessthreadsl110.dll" ComponentId="{79BE280B-54BE-4BDC-9408-F4587F6BE1C9}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincoreprocessthreadsl110.dll"/>
-    <ROW Component="apimswincoreprocessthreadsl111.dll" ComponentId="{7F6FDFC3-6BA1-4536-B9AA-B394D17B5593}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincoreprocessthreadsl111.dll"/>
-    <ROW Component="apimswincoreprofilel110.dll" ComponentId="{0CAFE2EF-0EE9-41E5-8201-E80B7975A25A}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincoreprofilel110.dll"/>
-    <ROW Component="apimswincorertlsupportl110.dll" ComponentId="{3FB48A11-BD0C-4CEF-8A12-F5AF1EEB8C28}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincorertlsupportl110.dll"/>
-    <ROW Component="apimswincorestringl110.dll" ComponentId="{694CC9C6-6DDC-4834-A942-F87CD9DA45D9}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincorestringl110.dll"/>
-    <ROW Component="apimswincoresynchl110.dll" ComponentId="{53222AED-6D93-4420-8001-235F67D9AA39}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincoresynchl110.dll"/>
-    <ROW Component="apimswincoresynchl120.dll" ComponentId="{2D785150-731A-4840-8099-4F25FF978D09}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincoresynchl120.dll"/>
-    <ROW Component="apimswincoresysinfol110.dll" ComponentId="{26723A6E-3122-45DB-B63F-FCEA7A7DDB74}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincoresysinfol110.dll"/>
-    <ROW Component="apimswincoretimezonel110.dll" ComponentId="{34F16FBB-5C23-47B3-AE46-13FB84B49773}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincoretimezonel110.dll"/>
-    <ROW Component="apimswincoreutill110.dll" ComponentId="{015848A0-F887-44A7-9450-920E04A7EF41}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincoreutill110.dll"/>
-    <ROW Component="apimswincrtconiol110.dll" ComponentId="{4327ABC7-30DF-4B2C-8BAB-159646F073E6}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincrtconiol110.dll"/>
-    <ROW Component="apimswincrtconvertl110.dll" ComponentId="{F15B8BEB-8441-488B-A1F6-082F5307485C}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincrtconvertl110.dll"/>
-    <ROW Component="apimswincrtenvironmentl110.dll" ComponentId="{E616CD7A-91B8-4199-8EC3-740AD53A8F68}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincrtenvironmentl110.dll"/>
-    <ROW Component="apimswincrtfilesysteml110.dll" ComponentId="{827C2666-FFBB-4943-829F-0AB043BB8ADB}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincrtfilesysteml110.dll"/>
-    <ROW Component="apimswincrtheapl110.dll" ComponentId="{1FF6A140-3A50-43B7-AE28-74C740741B69}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincrtheapl110.dll"/>
-    <ROW Component="apimswincrtlocalel110.dll" ComponentId="{3C71D47D-FFF5-4B30-ABA4-989D52178EF1}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincrtlocalel110.dll"/>
-    <ROW Component="apimswincrtmathl110.dll" ComponentId="{FEA43FCA-7980-4F2C-9803-2AC25D83A3CD}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincrtmathl110.dll"/>
-    <ROW Component="apimswincrtprocessl110.dll" ComponentId="{9139795C-79F6-469B-9A50-45A7C0DF6484}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincrtprocessl110.dll"/>
-    <ROW Component="apimswincrtruntimel110.dll" ComponentId="{E0824F6D-655A-4FE4-A8E6-503771474DCA}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincrtruntimel110.dll"/>
-    <ROW Component="apimswincrtstdiol110.dll" ComponentId="{52FDF4FF-9504-4671-839D-5EACA1504A93}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincrtstdiol110.dll"/>
-    <ROW Component="apimswincrtstringl110.dll" ComponentId="{78FC21D3-3733-459A-A8FC-D9BEE797712C}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincrtstringl110.dll"/>
-    <ROW Component="apimswincrttimel110.dll" ComponentId="{4A096D21-FD97-4667-9C9D-95B6E92F452B}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincrttimel110.dll"/>
-    <ROW Component="apimswincrtutilityl110.dll" ComponentId="{23212CB3-8E07-44FA-9951-283AB6C60DC5}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincrtutilityl110.dll"/>
-    <ROW Component="ascii.enc" ComponentId="{3F6BD8F5-E9CA-4732-A442-6FFF7F23E500}" Directory_="encoding_Dir" Attributes="0" KeyPath="ascii.enc" Type="0"/>
-    <ROW Component="auto.tcl" ComponentId="{7561E13C-C7F5-4511-8AAB-A0DD2915F41B}" Directory_="tcl_Dir" Attributes="0" KeyPath="auto.tcl" Type="0"/>
-    <ROW Component="base.cp37win_amd64.pyd" ComponentId="{FDA707B3-B25F-4F92-AC25-92C72ADAD7B1}" Directory_="pygame_Dir" Attributes="256" KeyPath="base.cp37win_amd64.pyd" Type="0"/>
-    <ROW Component="batch" ComponentId="{611DA878-DF92-4CD1-A9D0-48A2BF7B5823}" Directory_="tessconfigs_Dir" Attributes="0" KeyPath="batch" Type="0"/>
-    <ROW Component="bgerror.tcl" ComponentId="{485F6A2E-6CE1-4B67-8C4F-2989AFAC4DAB}" Directory_="tk_Dir" Attributes="0" KeyPath="bgerror.tcl" Type="0"/>
-    <ROW Component="bit_generator.cp37win_amd64.pyd" ComponentId="{BFA695B5-AAA7-4BDE-8612-02A3324E42BF}" Directory_="random_Dir" Attributes="256" KeyPath="bit_generator.cp37win_amd64.pyd" Type="0"/>
-    <ROW Component="classifier_tester.exe" ComponentId="{A7E44837-9BDF-4730-B299-C5822A717A15}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="classifier_tester.exe"/>
-    <ROW Component="cntraining.exe" ComponentId="{FD975F0A-680D-400A-98B2-18EDC94F7FFA}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="cntraining.exe"/>
-    <ROW Component="combine_lang_model.exe" ComponentId="{8457E97A-BC16-4383-A4E1-1F5F978C5A8E}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="combine_lang_model.exe"/>
-    <ROW Component="combine_tessdata.exe" ComponentId="{9D2009E1-2EF8-4200-BDC4-ECA6DF9C6F7C}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="combine_tessdata.exe"/>
-    <ROW Component="cs.msg" ComponentId="{B1D26FBD-1D0A-4343-A499-D2FD0545CEC3}" Directory_="msgs_1_Dir" Attributes="0" KeyPath="cs.msg_1" Type="0"/>
-    <ROW Component="cv2.cp37win_amd64.pyd" ComponentId="{193F1549-6E30-4322-9D18-480EF5715C7D}" Directory_="cv2_Dir" Attributes="256" KeyPath="cv2.cp37win_amd64.pyd" Type="0"/>
-    <ROW Component="d3dcompiler_47.dll" ComponentId="{E815F681-F28F-4253-8BC9-1FA6708888C9}" Directory_="L2easy_Dir" Attributes="256" KeyPath="d3dcompiler_47.dll"/>
-    <ROW Component="dawg2wordlist.exe" ComponentId="{D07F226E-1FF3-4DEA-AECA-B78093075683}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="dawg2wordlist.exe"/>
-    <ROW Component="digits_comma.traineddata" ComponentId="{1CF3ACB5-A26D-4B84-833D-70E82A212484}" Directory_="tessdata_Dir" Attributes="0" KeyPath="digits_comma.traineddata" Type="0"/>
-    <ROW Component="eng.traineddata" ComponentId="{C48787E7-E511-41C4-BE05-F6D6C37FD4F7}" Directory_="tessdata_1_Dir" Attributes="0" KeyPath="eng.traineddata" Type="0"/>
-    <ROW Component="http.tcl" ComponentId="{F1632ECD-4352-467C-9F9A-AAE69EECB3CE}" Directory_="http1.0_Dir" Attributes="0" KeyPath="http.tcl" Type="0"/>
-    <ROW Component="http2.9.0.tm" ComponentId="{DCE69199-393F-47F5-95FC-1D9D4AB97B31}" Directory_="__2_Dir" Attributes="0" KeyPath="http2.9.0.tm" Type="0"/>
-    <ROW Component="iconv.dll" ComponentId="{04D5B91D-2767-4D22-9F21-2854D92301A6}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="iconv.dll"/>
-    <ROW Component="icudt64.dll" ComponentId="{8BAD91A4-C6D6-47FC-892A-896B5DC64D33}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="icudt64.dll"/>
-    <ROW Component="icuin64.dll" ComponentId="{EE4131C4-200B-48DD-8020-78F9C60EFB24}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="icuin64.dll"/>
-    <ROW Component="icuuc64.dll" ComponentId="{CB2E11AB-53FD-46F1-8C15-57E1BB03C2D9}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="icuuc64.dll"/>
-    <ROW Component="lapack_lite.cp37win_amd64.pyd" ComponentId="{E943DBFD-3F7C-44D5-B722-5085270B3122}" Directory_="linalg_Dir" Attributes="256" KeyPath="lapack_lite.cp37win_amd64.pyd" Type="0"/>
-    <ROW Component="libEGL.dll" ComponentId="{20815866-C9DF-401E-AC1C-92A67EE7132C}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libEGL.dll"/>
-    <ROW Component="libFLAC8.dll" ComponentId="{3EDF2D8A-1525-4A31-9EA4-F545FF93096B}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libFLAC8.dll"/>
-    <ROW Component="libGLESv2.dll" ComponentId="{0748C94D-C585-4747-BF53-7012CA5D8091}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libGLESv2.dll"/>
-    <ROW Component="libarchive13.dll" ComponentId="{52A72212-E865-4E4C-BA04-0FF88EB03497}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libarchive13.dll"/>
-    <ROW Component="libbz21.dll" ComponentId="{C82D7EE0-888C-4235-8859-3864F8D56B3E}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libbz21.dll"/>
-    <ROW Component="libcairo2.dll" ComponentId="{4BE21065-4E0A-4729-9E4C-25448C217FA4}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libcairo2.dll"/>
-    <ROW Component="libcrypto1_1.dll" ComponentId="{7ECF7EDC-FE49-44C5-A957-19252F3B9097}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libcrypto1_1.dll"/>
-    <ROW Component="libcurl4.dll" ComponentId="{1FF54EF1-1134-4AB2-8DDA-60FDA860E1BF}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libcurl4.dll"/>
-    <ROW Component="libeay32.dll" ComponentId="{0461EA92-13C8-409C-A41D-26FB3A7A4197}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libeay32.dll"/>
-    <ROW Component="libexpat1.dll" ComponentId="{2BA63082-C6F9-440E-8300-BA279954BEA6}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libexpat1.dll"/>
-    <ROW Component="libffi6.dll" ComponentId="{7C8D8C0F-52BF-4373-8F8C-A371F548FEF2}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libffi6.dll"/>
-    <ROW Component="libfontconfig1.dll" ComponentId="{FD89F62D-34F7-41D0-A13A-EDDDA43661BF}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libfontconfig1.dll"/>
-    <ROW Component="libfreetype6.dll" ComponentId="{D707B1F4-A546-4F27-A25F-DB969974C508}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libfreetype6.dll"/>
-    <ROW Component="libfreetype6.dll_1" ComponentId="{0C7D2E76-D2C2-4791-B62E-BB36DCC9CA59}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libfreetype6.dll_1"/>
-    <ROW Component="libgcc_s_seh1.dll" ComponentId="{3B7F9691-5EA5-4B70-A8F3-C90E088F3B8E}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libgcc_s_seh1.dll"/>
-    <ROW Component="libgif7.dll" ComponentId="{9FE0AFB5-607E-4DC9-9D4D-E4B39DFB808A}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libgif7.dll"/>
-    <ROW Component="libglib2.00.dll" ComponentId="{CFF8090A-DFB8-4F45-BD22-9910D49B6D16}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libglib2.00.dll"/>
-    <ROW Component="libgobject2.00.dll" ComponentId="{7992EE13-FBB7-4121-B492-2662D09EE678}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libgobject2.00.dll"/>
-    <ROW Component="libgomp1.dll" ComponentId="{DD82522C-06C0-4C9E-BE97-BE4BAE8F05FC}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libgomp1.dll"/>
-    <ROW Component="libharfbuzz0.dll" ComponentId="{3A339025-D3A6-43E4-8EF2-4F471C8F1593}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libharfbuzz0.dll"/>
-    <ROW Component="libintl8.dll" ComponentId="{611898C5-5D5C-4800-99F9-21CFAFA07B8A}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libintl8.dll"/>
-    <ROW Component="libjbig2.dll" ComponentId="{747C9980-A2F8-4E4F-9EB6-44E0797905F1}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libjbig2.dll"/>
-    <ROW Component="libjpeg8.dll" ComponentId="{0EB516AA-6B9F-4D88-8DBA-46C41E6748FF}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libjpeg8.dll"/>
-    <ROW Component="libjpeg9.dll" ComponentId="{7C47842B-5BFC-40D3-9FB0-3EF40D5F91F5}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libjpeg9.dll"/>
-    <ROW Component="liblept5.dll" ComponentId="{3CA52945-C200-4388-AE35-D242B62F5210}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="liblept5.dll"/>
-    <ROW Component="liblz41.dll" ComponentId="{7880D93E-FEE7-4D14-AADC-997EA8F84320}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="liblz41.dll"/>
-    <ROW Component="liblzma5.dll" ComponentId="{854C4E0B-FB8D-4474-A863-69AFA9601406}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="liblzma5.dll"/>
-    <ROW Component="libmodplug1.dll" ComponentId="{F6CCD949-E8ED-48E4-A417-205D73747000}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libmodplug1.dll"/>
-    <ROW Component="libmpg1230.dll" ComponentId="{70EDE96B-C8BF-449F-B277-D81C4E4B04F4}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libmpg1230.dll"/>
-    <ROW Component="libnettle6.dll" ComponentId="{6C77FAA5-536E-4BCA-932E-9F6F0B218937}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libnettle6.dll"/>
-    <ROW Component="libnghttp214.dll" ComponentId="{10E4D608-D3A5-4D44-B1B2-B08A9B5DD199}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libnghttp214.dll"/>
-    <ROW Component="libogg0.dll" ComponentId="{C5364025-DD90-41E7-8898-2F1335B7D18D}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libogg0.dll"/>
-    <ROW Component="libopenblas.JPIJNSWNNAN3CE6LLI5FWSPHUT2VXMTH.gfortranwin_amd64.dll" ComponentId="{3BFF7462-F8EE-4378-8A72-29F138170A4A}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libopenblas.JPIJNSWNNAN3CE6LLI5FWSPHUT2VXMTH.gfortranwin_amd64.dll"/>
-    <ROW Component="libopenjp2.dll" ComponentId="{C56C02C7-C292-481A-9EBE-DE92C75D9161}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libopenjp2.dll"/>
-    <ROW Component="libopus0.dll" ComponentId="{A85C7E6F-5272-45A1-99FD-712AEDB38916}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libopus0.dll"/>
-    <ROW Component="libopusfile0.dll" ComponentId="{B34FDEB5-0B5B-44C3-8418-78731CE8A221}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libopusfile0.dll"/>
-    <ROW Component="libpango1.00.dll" ComponentId="{AD3C98A7-FA67-43FF-AEA6-2C527071F7B6}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libpango1.00.dll"/>
-    <ROW Component="libpangocairo1.00.dll" ComponentId="{7A1B6221-EFBB-47B1-A46A-E4E9F6476B24}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libpangocairo1.00.dll"/>
-    <ROW Component="libpangoft21.00.dll" ComponentId="{6F47CBF7-69E9-4C2D-9110-04E64798A585}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libpangoft21.00.dll"/>
-    <ROW Component="libpangowin321.00.dll" ComponentId="{7AA477BD-0C59-4E8F-ACC4-15945A0D1D85}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libpangowin321.00.dll"/>
-    <ROW Component="libpcre1.dll" ComponentId="{E5EC77E9-167C-4877-BC02-B7163C1C30FA}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libpcre1.dll"/>
-    <ROW Component="libpixman10.dll" ComponentId="{EBBC4492-D7C9-4CC4-B487-351ECD2F9E09}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libpixman10.dll"/>
-    <ROW Component="libpng1616.dll" ComponentId="{6BFE00CD-04FF-4D0A-B9ED-0EEF6C9C1449}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libpng1616.dll"/>
-    <ROW Component="libpng1616.dll_1" ComponentId="{87318FED-E198-4ABF-A982-35AF1815592C}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libpng1616.dll_1"/>
-    <ROW Component="libssh21.dll" ComponentId="{8E729FCA-C2E9-46A4-B0BC-354B506A4D24}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libssh21.dll"/>
-    <ROW Component="libssl1_1.dll" ComponentId="{D7CA52DB-8F53-4E21-B095-2F613221B6B2}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libssl1_1.dll"/>
-    <ROW Component="libstdc6.dll" ComponentId="{C5547C77-9365-470D-A60D-7447714B8A92}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libstdc6.dll"/>
-    <ROW Component="libtesseract5.dll" ComponentId="{E622145B-7834-4560-B488-CDFFF425E126}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libtesseract5.dll"/>
-    <ROW Component="libtiff5.dll" ComponentId="{3E6E26BE-DE61-4564-8257-FEAE72A96217}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libtiff5.dll"/>
-    <ROW Component="libtiff5.dll_1" ComponentId="{20DD9732-EF8A-4EDC-9896-76C2C54BEFF3}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libtiff5.dll_1"/>
-    <ROW Component="libvorbis0.dll" ComponentId="{CAFBC802-1330-4383-AB27-C269A4D859B2}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libvorbis0.dll"/>
-    <ROW Component="libvorbisfile3.dll" ComponentId="{4A5CFCFE-12EB-441A-BEEA-B1F00B365D99}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libvorbisfile3.dll"/>
-    <ROW Component="libwebp7.dll" ComponentId="{F7AD817C-4443-4C44-80DC-809C12CEB148}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libwebp7.dll"/>
-    <ROW Component="libwebp7.dll_1" ComponentId="{F7AAE181-CE27-4685-8313-A95BC513CBC4}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libwebp7.dll_1"/>
-    <ROW Component="libwinpthread1.dll" ComponentId="{FC0B2858-870A-4D84-938C-876D107CC6F2}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libwinpthread1.dll"/>
-    <ROW Component="libxml22.dll" ComponentId="{81E63CAB-CACD-4048-8068-2AA10F17BEEF}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libxml22.dll"/>
-    <ROW Component="logo.eps" ComponentId="{3ACB7932-0990-47D7-9CEB-7B173133D189}" Directory_="images_Dir" Attributes="0" KeyPath="logo.eps" Type="0"/>
-    <ROW Component="lstmeval.exe" ComponentId="{BFFD07FA-E78F-4AC6-B23D-972B8E30F16F}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="lstmeval.exe"/>
-    <ROW Component="lstmtraining.exe" ComponentId="{7BAF067F-F24C-4FED-9B02-7E0E38AB96E5}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="lstmtraining.exe"/>
-    <ROW Component="merge_unicharsets.exe" ComponentId="{C109B0F0-51EA-4D07-AEDC-978B1D7BBD72}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="merge_unicharsets.exe"/>
-    <ROW Component="mftraining.exe" ComponentId="{A1ABA797-224E-4357-A61A-6E21F52F1380}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="mftraining.exe"/>
-    <ROW Component="msgcat1.6.1.tm" ComponentId="{809E8C94-9F19-4018-9C5C-FD20A2C637DF}" Directory_="__1_Dir" Attributes="0" KeyPath="msgcat1.6.1.tm" Type="0"/>
-    <ROW Component="opencv_videoio_ffmpeg451_64.dll" ComponentId="{12BF5C2F-6EDB-48D4-BB01-82EF44F27AB3}" Directory_="cv2_Dir" Attributes="256" KeyPath="opencv_videoio_ffmpeg451_64.dll"/>
-    <ROW Component="opengl32sw.dll" ComponentId="{76B7BBBC-4525-4A30-BA12-DC451C2735D3}" Directory_="L2easy_Dir" Attributes="256" KeyPath="opengl32sw.dll"/>
-    <ROW Component="optparse.tcl" ComponentId="{3320F42B-5765-4A8D-BD0A-4E8B29186385}" Directory_="opt0.4_Dir" Attributes="0" KeyPath="optparse.tcl" Type="0"/>
-    <ROW Component="platform1.0.14.tm" ComponentId="{81BB7D07-5E20-42C2-BA21-6399790F2426}" Directory_="__Dir" Attributes="0" KeyPath="platform1.0.14.tm" Type="0"/>
-    <ROW Component="portmidi.dll" ComponentId="{8AD88185-EAE8-4934-A2F1-50070D6FDF91}" Directory_="L2easy_Dir" Attributes="256" KeyPath="portmidi.dll"/>
-    <ROW Component="pyconfig.h" ComponentId="{243F6B62-CAFB-4484-A32A-5777CA2884AD}" Directory_="Include_Dir" Attributes="0" KeyPath="pyconfig.h" Type="0"/>
-    <ROW Component="python3.dll" ComponentId="{A8F44119-5040-4BDF-8B26-C98F442460FB}" Directory_="L2easy_Dir" Attributes="256" KeyPath="python3.dll"/>
-    <ROW Component="python37.dll" ComponentId="{8B141059-CCC6-478B-93FB-EA11BF0ACBCE}" Directory_="L2easy_Dir" Attributes="256" KeyPath="python37.dll"/>
-    <ROW Component="qgif.dll" ComponentId="{56351C43-A7DD-475B-A8D2-BD3692F4E648}" Directory_="imageformats_Dir" Attributes="256" KeyPath="qgif.dll"/>
-    <ROW Component="qicns.dll" ComponentId="{731C504D-C845-4E2E-9CEF-6FE80E7204DD}" Directory_="imageformats_Dir" Attributes="256" KeyPath="qicns.dll"/>
-    <ROW Component="qico.dll" ComponentId="{B974AC4E-3C35-467E-A4C6-B3AF0463411C}" Directory_="imageformats_Dir" Attributes="256" KeyPath="qico.dll"/>
-    <ROW Component="qjpeg.dll" ComponentId="{B86EA0CB-3188-49EC-8C0D-58C5359DF733}" Directory_="imageformats_Dir" Attributes="256" KeyPath="qjpeg.dll"/>
-    <ROW Component="qminimal.dll" ComponentId="{14164BB4-FB9E-44D2-B216-63B3201086C5}" Directory_="platforms_Dir" Attributes="256" KeyPath="qminimal.dll"/>
-    <ROW Component="qoffscreen.dll" ComponentId="{8B8E3A94-DAF4-408D-ACA4-5125B5E9FDB1}" Directory_="platforms_Dir" Attributes="256" KeyPath="qoffscreen.dll"/>
-    <ROW Component="qsvg.dll" ComponentId="{37C28801-68BC-4BDB-BC46-A8C76AA69BB3}" Directory_="imageformats_Dir" Attributes="256" KeyPath="qsvg.dll"/>
-    <ROW Component="qsvgicon.dll" ComponentId="{09BCD8A4-46D8-4F45-910B-31E984D8CABA}" Directory_="iconengines_Dir" Attributes="256" KeyPath="qsvgicon.dll"/>
-    <ROW Component="qtbase_ar.qm" ComponentId="{03ABFC93-B5F7-44B1-A833-6FFBA5A74C4B}" Directory_="translations_Dir" Attributes="0" KeyPath="qtbase_ar.qm" Type="0"/>
-    <ROW Component="qtga.dll" ComponentId="{D756B8DB-C481-468D-8E29-C2252E848F7F}" Directory_="imageformats_Dir" Attributes="256" KeyPath="qtga.dll"/>
-    <ROW Component="qtiff.dll" ComponentId="{374275AF-B03A-43CC-AAF9-ED1F3EE0893F}" Directory_="imageformats_Dir" Attributes="256" KeyPath="qtiff.dll"/>
-    <ROW Component="qwbmp.dll" ComponentId="{284FC2F9-098D-4C9D-B40D-8FBC6D052AB9}" Directory_="imageformats_Dir" Attributes="256" KeyPath="qwbmp.dll"/>
-    <ROW Component="qwebgl.dll" ComponentId="{4E80D04F-E749-4BB0-8440-528395514851}" Directory_="platforms_Dir" Attributes="256" KeyPath="qwebgl.dll"/>
-    <ROW Component="qwebp.dll" ComponentId="{5C5B604F-C680-4574-903A-6A41A06829E2}" Directory_="imageformats_Dir" Attributes="256" KeyPath="qwebp.dll"/>
-    <ROW Component="qwindows.dll" ComponentId="{C2C65842-9809-4190-884A-A865271ECC0C}" Directory_="platforms_Dir" Attributes="256" KeyPath="qwindows.dll"/>
-    <ROW Component="qwindowsvistastyle.dll" ComponentId="{80294ECE-2DB5-4CA1-A086-63101E5B4EBB}" Directory_="styles_Dir" Attributes="256" KeyPath="qwindowsvistastyle.dll"/>
-    <ROW Component="qxdgdesktopportal.dll" ComponentId="{554B36F1-9B22-4109-868E-57CB1CB8DEC2}" Directory_="platformthemes_Dir" Attributes="256" KeyPath="qxdgdesktopportal.dll"/>
-    <ROW Component="set_unicharset_properties.exe" ComponentId="{24F68629-E804-4640-A5AD-0CFB5C7434B6}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="set_unicharset_properties.exe"/>
-    <ROW Component="shapeclustering.exe" ComponentId="{0B2E814A-B30C-495D-9B91-ED4A172F6C35}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="shapeclustering.exe"/>
-    <ROW Component="shell1.1.4.tm" ComponentId="{B7FF4550-A0C8-40B1-A14A-140EFAA0BAB2}" Directory_="platform_Dir" Attributes="0" KeyPath="shell1.1.4.tm" Type="0"/>
-    <ROW Component="ssleay32.dll" ComponentId="{194A139B-BA0E-475C-A40D-02A018EF7E9F}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="ssleay32.dll"/>
-    <ROW Component="tcl86t.dll" ComponentId="{5E086D57-402C-45BA-A792-54EA86911C43}" Directory_="L2easy_Dir" Attributes="256" KeyPath="tcl86t.dll"/>
-    <ROW Component="tesseract.exe" ComponentId="{D45C5B2A-DA19-4E4B-83DC-336F552F5F04}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="tesseract.exe"/>
-    <ROW Component="tesseractuninstall.exe" ComponentId="{32065F15-C770-4A36-B77D-B83388F978FA}" Directory_="TesseractOCR_Dir" Attributes="0" KeyPath="tesseractuninstall.exe"/>
-    <ROW Component="text2image.exe" ComponentId="{CBC92148-C382-4E9B-8E9C-4A355E5F6EE4}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="text2image.exe"/>
-    <ROW Component="tk86t.dll" ComponentId="{9DEF0EC3-210F-4FBB-8E57-C70F3F591C36}" Directory_="L2easy_Dir" Attributes="256" KeyPath="tk86t.dll"/>
-    <ROW Component="ucrtbase.dll" ComponentId="{388F98E1-6FAD-42DD-B6E4-F1651E2102C8}" Directory_="L2easy_Dir" Attributes="256" KeyPath="ucrtbase.dll"/>
-    <ROW Component="unicharset_extractor.exe" ComponentId="{D94522C7-BB3A-4FF4-9034-1C2AEDE21295}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="unicharset_extractor.exe"/>
-    <ROW Component="winpath.exe" ComponentId="{572AC23B-683C-4EE1-AFC1-0F60E88AE84C}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="winpath.exe"/>
-    <ROW Component="wordlist2dawg.exe" ComponentId="{3D5D3ECC-FCBC-4A39-B636-C24AA07A772F}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="wordlist2dawg.exe"/>
-    <ROW Component="zlib1.dll" ComponentId="{EDC1604A-9FA7-4E43-B39A-4BB4EA94C58D}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="zlib1.dll"/>
-    <ROW Component="zlib1.dll_1" ComponentId="{7A06D6C9-9465-4286-8F13-B143F3964BA7}" Directory_="L2easy_Dir" Attributes="256" KeyPath="zlib1.dll_1"/>
+    <ROW Component="Qt5Core.dll" ComponentId="{F84335E8-FFAB-473E-BFAA-85E42EFF6BC3}" Directory_="L2easy_Dir" Attributes="256" KeyPath="Qt5Core.dll"/>
+    <ROW Component="Qt5DBus.dll" ComponentId="{307D720E-D4A5-41C1-9D0B-4F3A3ADFD8D0}" Directory_="L2easy_Dir" Attributes="256" KeyPath="Qt5DBus.dll"/>
+    <ROW Component="Qt5Gui.dll" ComponentId="{03B641CD-9B6E-4626-8B9A-E030EEA95AE5}" Directory_="L2easy_Dir" Attributes="256" KeyPath="Qt5Gui.dll"/>
+    <ROW Component="Qt5Network.dll" ComponentId="{CED4AD3C-010E-4958-A133-A111C3CB42E5}" Directory_="L2easy_Dir" Attributes="256" KeyPath="Qt5Network.dll"/>
+    <ROW Component="Qt5Qml.dll" ComponentId="{D784CA06-9D40-49F5-8DB0-4874665723C5}" Directory_="L2easy_Dir" Attributes="256" KeyPath="Qt5Qml.dll"/>
+    <ROW Component="Qt5QmlModels.dll" ComponentId="{43068573-9717-467C-938A-A0F7CDCC7311}" Directory_="L2easy_Dir" Attributes="256" KeyPath="Qt5QmlModels.dll"/>
+    <ROW Component="Qt5Quick.dll" ComponentId="{49A2F947-D8A4-4C40-A1D9-16D51C59F856}" Directory_="L2easy_Dir" Attributes="256" KeyPath="Qt5Quick.dll"/>
+    <ROW Component="Qt5Svg.dll" ComponentId="{809EA1CB-0A50-4C20-A881-728E201127AC}" Directory_="L2easy_Dir" Attributes="256" KeyPath="Qt5Svg.dll"/>
+    <ROW Component="Qt5WebSockets.dll" ComponentId="{AA8810F3-F1C0-441C-8363-E07B5FA0A01E}" Directory_="L2easy_Dir" Attributes="256" KeyPath="Qt5WebSockets.dll"/>
+    <ROW Component="Qt5Widgets.dll" ComponentId="{4BD5BBAB-EC91-4C08-BB67-9F8BD9B7506E}" Directory_="L2easy_Dir" Attributes="256" KeyPath="Qt5Widgets.dll"/>
+    <ROW Component="QtCore.pyd" ComponentId="{6B69D2E8-16F1-475C-BEC6-544944B9CD25}" Directory_="PyQt5_Dir" Attributes="256" KeyPath="QtCore.pyd" Type="0"/>
+    <ROW Component="SDL2.dll" ComponentId="{539E0307-3628-4C1F-A3DC-8F7CA04F1256}" Directory_="L2easy_Dir" Attributes="256" KeyPath="SDL2.dll"/>
+    <ROW Component="SDL2_image.dll" ComponentId="{BEB58AA2-2B6C-4EA1-BEAF-E8B5A21C2FB0}" Directory_="L2easy_Dir" Attributes="256" KeyPath="SDL2_image.dll"/>
+    <ROW Component="SDL2_mixer.dll" ComponentId="{2494C920-CAA3-41AA-8E5A-B9F3B7472CA9}" Directory_="L2easy_Dir" Attributes="256" KeyPath="SDL2_mixer.dll"/>
+    <ROW Component="SDL2_ttf.dll" ComponentId="{EAAFBC4E-6CE5-44C8-A109-466D8BA56040}" Directory_="L2easy_Dir" Attributes="256" KeyPath="SDL2_ttf.dll"/>
+    <ROW Component="VCRUNTIME140.dll" ComponentId="{67773669-6E4D-4CD8-A634-A800DE0872AB}" Directory_="L2easy_Dir" Attributes="256" KeyPath="VCRUNTIME140.dll"/>
+    <ROW Component="VCRUNTIME140_1.dll" ComponentId="{B34F576E-955A-4529-B6E4-8D49381A0825}" Directory_="L2easy_Dir" Attributes="256" KeyPath="VCRUNTIME140_1.dll"/>
+    <ROW Component="_imaging.cp37win_amd64.pyd" ComponentId="{64B52449-3A2A-4EAC-BA06-2C9BD6608429}" Directory_="PIL_Dir" Attributes="256" KeyPath="_imaging.cp37win_amd64.pyd" Type="0"/>
+    <ROW Component="_multiarray_tests.cp37win_amd64.pyd" ComponentId="{8E19E876-B548-477F-B2A7-86A9EADC3201}" Directory_="core_Dir" Attributes="256" KeyPath="_multiarray_tests.cp37win_amd64.pyd" Type="0"/>
+    <ROW Component="_pocketfft_internal.cp37win_amd64.pyd" ComponentId="{A74427EA-8A67-4BF8-BDFF-45C80D70BD09}" Directory_="fft_Dir" Attributes="256" KeyPath="_pocketfft_internal.cp37win_amd64.pyd" Type="0"/>
+    <ROW Component="_yaml.cp37win_amd64.pyd" ComponentId="{5A335C1B-3E7E-4BC4-A552-8DBEEF7F00E8}" Directory_="yaml_Dir" Attributes="256" KeyPath="_yaml.cp37win_amd64.pyd" Type="0"/>
+    <ROW Component="af.msg" ComponentId="{B04C3EEF-1A1D-4C4C-B1F1-665E37DC3F30}" Directory_="msgs_Dir" Attributes="0" KeyPath="af.msg" Type="0"/>
+    <ROW Component="alarm.mp3" ComponentId="{CE270178-7FE6-439B-97B5-E780106DEC64}" Directory_="L2easy_Dir" Attributes="0" KeyPath="alarm.mp3" Type="0"/>
+    <ROW Component="altTheme.tcl" ComponentId="{03991910-B499-41BE-B2BF-36FAB8AFA6E2}" Directory_="ttk_Dir" Attributes="0" KeyPath="altTheme.tcl" Type="0"/>
+    <ROW Component="alto" ComponentId="{6284C28C-5576-484C-8DD9-07C1BD6F0EF6}" Directory_="configs_Dir" Attributes="0" KeyPath="alto" Type="0"/>
+    <ROW Component="ambiguous_words.1.html" ComponentId="{EC1DA459-647D-4C2A-AF0A-F268DB99F611}" Directory_="TesseractOCR_Dir" Attributes="0" KeyPath="ambiguous_words.1.html" Type="0"/>
+    <ROW Component="ambiguous_words.exe" ComponentId="{7E151A0A-2B39-45C3-8F44-E9345385A094}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="ambiguous_words.exe"/>
+    <ROW Component="apimswincoreconsolel110.dll" ComponentId="{D83E6E0F-CCB4-4F38-BA1E-EB1100B258C7}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincoreconsolel110.dll"/>
+    <ROW Component="apimswincoredatetimel110.dll" ComponentId="{2C370C0A-F8B6-49EF-BB61-D6715E7184BE}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincoredatetimel110.dll"/>
+    <ROW Component="apimswincoredebugl110.dll" ComponentId="{4D95FD06-778E-4849-94B9-8C25E3729BA0}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincoredebugl110.dll"/>
+    <ROW Component="apimswincoreerrorhandlingl110.dll" ComponentId="{1F45762C-E3C0-40CB-B4DC-5F852094573B}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincoreerrorhandlingl110.dll"/>
+    <ROW Component="apimswincorefilel110.dll" ComponentId="{4553AAAD-99DF-465F-97A7-047964E822D1}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincorefilel110.dll"/>
+    <ROW Component="apimswincorefilel120.dll" ComponentId="{4F97ABA4-B647-49AD-9AB6-7023BE58E5D6}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincorefilel120.dll"/>
+    <ROW Component="apimswincorefilel210.dll" ComponentId="{BE8D5032-7568-43FD-BC95-4CD946EED306}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincorefilel210.dll"/>
+    <ROW Component="apimswincorehandlel110.dll" ComponentId="{A600097F-F684-41F7-A115-BCAF1D6FF7FB}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincorehandlel110.dll"/>
+    <ROW Component="apimswincoreheapl110.dll" ComponentId="{4CB74197-743C-4829-9F4C-1CD065FA9EB3}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincoreheapl110.dll"/>
+    <ROW Component="apimswincoreinterlockedl110.dll" ComponentId="{6360FD86-3C95-41AA-B03F-D8B3DE235F3C}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincoreinterlockedl110.dll"/>
+    <ROW Component="apimswincorelibraryloaderl110.dll" ComponentId="{29F16DBA-E2F5-44F3-A19B-40C276C65639}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincorelibraryloaderl110.dll"/>
+    <ROW Component="apimswincorelocalizationl120.dll" ComponentId="{A9BBC23A-E56B-47B3-B276-60F3E19620D5}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincorelocalizationl120.dll"/>
+    <ROW Component="apimswincorememoryl110.dll" ComponentId="{9ACDBCC8-CAB8-4F1B-A9A0-BC36795431F0}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincorememoryl110.dll"/>
+    <ROW Component="apimswincorenamedpipel110.dll" ComponentId="{A9E764D3-BAC9-4BF3-BD50-6C93F428268E}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincorenamedpipel110.dll"/>
+    <ROW Component="apimswincoreprocessenvironmentl110.dll" ComponentId="{AC2461DD-6234-4F9D-BB44-28EEA8120FFF}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincoreprocessenvironmentl110.dll"/>
+    <ROW Component="apimswincoreprocessthreadsl110.dll" ComponentId="{A0CB69B0-8DE0-44C9-BBB9-9256A51DAF1F}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincoreprocessthreadsl110.dll"/>
+    <ROW Component="apimswincoreprocessthreadsl111.dll" ComponentId="{0FB631CC-8E1A-46A2-97FD-E5656F931C2C}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincoreprocessthreadsl111.dll"/>
+    <ROW Component="apimswincoreprofilel110.dll" ComponentId="{3E5B2664-A60E-4BA0-AF0A-1A9FE0ACD3B2}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincoreprofilel110.dll"/>
+    <ROW Component="apimswincorertlsupportl110.dll" ComponentId="{D3DD3E93-327C-4301-85C6-4D4AD7127FE1}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincorertlsupportl110.dll"/>
+    <ROW Component="apimswincorestringl110.dll" ComponentId="{F6F5A430-EA1D-46E5-9167-F8C32AC0BF6C}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincorestringl110.dll"/>
+    <ROW Component="apimswincoresynchl110.dll" ComponentId="{34C80B9B-6657-46BB-B426-D0DC090CC6CF}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincoresynchl110.dll"/>
+    <ROW Component="apimswincoresynchl120.dll" ComponentId="{099670E3-D0E6-498A-B4F4-A748FAEDF85E}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincoresynchl120.dll"/>
+    <ROW Component="apimswincoresysinfol110.dll" ComponentId="{0A422367-307B-494D-8C1D-1F1524954F99}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincoresysinfol110.dll"/>
+    <ROW Component="apimswincoretimezonel110.dll" ComponentId="{0282786D-BF1E-4FB8-8E89-B2DED5953BE8}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincoretimezonel110.dll"/>
+    <ROW Component="apimswincoreutill110.dll" ComponentId="{7D8C8F95-66A1-4F16-B5B1-9C0E076F2FB2}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincoreutill110.dll"/>
+    <ROW Component="apimswincrtconiol110.dll" ComponentId="{A1CD5D5F-72E3-441B-8AE2-12F6E44EC23D}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincrtconiol110.dll"/>
+    <ROW Component="apimswincrtconvertl110.dll" ComponentId="{A47D723F-5285-43C0-A2FF-4C821ABDABAF}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincrtconvertl110.dll"/>
+    <ROW Component="apimswincrtenvironmentl110.dll" ComponentId="{A585D426-CC41-4432-9097-D5D10E3F63D9}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincrtenvironmentl110.dll"/>
+    <ROW Component="apimswincrtfilesysteml110.dll" ComponentId="{3125F3AC-00CE-4C27-8743-5EC1C0632A27}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincrtfilesysteml110.dll"/>
+    <ROW Component="apimswincrtheapl110.dll" ComponentId="{544CABDF-7FDC-42A8-970C-38C7D8A3AC73}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincrtheapl110.dll"/>
+    <ROW Component="apimswincrtlocalel110.dll" ComponentId="{C0450538-B065-4AC0-AA28-684C0BC4CC46}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincrtlocalel110.dll"/>
+    <ROW Component="apimswincrtmathl110.dll" ComponentId="{C1784D98-C8A7-4454-9D60-B4AB97B3DCCF}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincrtmathl110.dll"/>
+    <ROW Component="apimswincrtprocessl110.dll" ComponentId="{AA6C3E21-4CF4-4C54-8DD1-84BE8A88F118}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincrtprocessl110.dll"/>
+    <ROW Component="apimswincrtruntimel110.dll" ComponentId="{7466176D-4D09-4F0F-99F2-0E0C34014875}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincrtruntimel110.dll"/>
+    <ROW Component="apimswincrtstdiol110.dll" ComponentId="{5B19BB11-35B0-4992-A4A8-EC6891D4D167}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincrtstdiol110.dll"/>
+    <ROW Component="apimswincrtstringl110.dll" ComponentId="{440F359F-09EE-4C78-859C-686D930BD66E}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincrtstringl110.dll"/>
+    <ROW Component="apimswincrttimel110.dll" ComponentId="{6BFF8F88-C5E4-4167-BB25-EBB3BBB37130}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincrttimel110.dll"/>
+    <ROW Component="apimswincrtutilityl110.dll" ComponentId="{189FC6F6-030C-445A-956D-BCEE77B6AA0F}" Directory_="L2easy_Dir" Attributes="256" KeyPath="apimswincrtutilityl110.dll"/>
+    <ROW Component="ascii.enc" ComponentId="{5E601D56-798B-4960-A6D4-4E243A739B66}" Directory_="encoding_Dir" Attributes="0" KeyPath="ascii.enc" Type="0"/>
+    <ROW Component="auto.tcl" ComponentId="{1BB5A9B7-1DD8-4C49-85B8-D334198A33E8}" Directory_="tcl_Dir" Attributes="0" KeyPath="auto.tcl" Type="0"/>
+    <ROW Component="base.cp37win_amd64.pyd" ComponentId="{C2B09A3E-6D1C-48C6-8738-C3F2CBC9BFB6}" Directory_="pygame_Dir" Attributes="256" KeyPath="base.cp37win_amd64.pyd" Type="0"/>
+    <ROW Component="batch" ComponentId="{5B3BA85D-59D2-4D05-99C1-909FD03C8C88}" Directory_="tessconfigs_Dir" Attributes="0" KeyPath="batch" Type="0"/>
+    <ROW Component="bgerror.tcl" ComponentId="{ABAC66DB-5796-40B8-BC63-FB90BD9625C8}" Directory_="tk_Dir" Attributes="0" KeyPath="bgerror.tcl" Type="0"/>
+    <ROW Component="bit_generator.cp37win_amd64.pyd" ComponentId="{260A37E9-4847-420C-8543-DCE1BC319448}" Directory_="random_Dir" Attributes="256" KeyPath="bit_generator.cp37win_amd64.pyd" Type="0"/>
+    <ROW Component="classifier_tester.exe" ComponentId="{F95B634B-259E-4810-BA4F-EDEF15FD753E}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="classifier_tester.exe"/>
+    <ROW Component="cntraining.exe" ComponentId="{5870D846-95EF-4793-AC2D-50315211B960}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="cntraining.exe"/>
+    <ROW Component="combine_lang_model.exe" ComponentId="{C81FCBF3-3B1D-412B-88EF-71FA4CC0B717}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="combine_lang_model.exe"/>
+    <ROW Component="combine_tessdata.exe" ComponentId="{AF141CAF-9EBA-4508-BAC1-1EBD598E77B8}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="combine_tessdata.exe"/>
+    <ROW Component="cs.msg" ComponentId="{F9DF36B8-EF67-4B70-B374-8D2EF29E296D}" Directory_="msgs_1_Dir" Attributes="0" KeyPath="cs.msg_1" Type="0"/>
+    <ROW Component="cv2.cp37win_amd64.pyd" ComponentId="{C9A3C1C7-B21E-4587-AD86-CCF53E64B9DD}" Directory_="cv2_Dir" Attributes="256" KeyPath="cv2.cp37win_amd64.pyd" Type="0"/>
+    <ROW Component="d3dcompiler_47.dll" ComponentId="{6ED20344-32C3-4F6D-B0C4-5EF8F8CFC4F6}" Directory_="L2easy_Dir" Attributes="256" KeyPath="d3dcompiler_47.dll"/>
+    <ROW Component="dawg2wordlist.exe" ComponentId="{DD0B0684-78CB-4C14-9651-086CDC0FC330}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="dawg2wordlist.exe"/>
+    <ROW Component="digits_comma.traineddata" ComponentId="{A7A66557-A655-426D-8E87-601D724510C7}" Directory_="tessdata_Dir" Attributes="0" KeyPath="digits_comma.traineddata" Type="0"/>
+    <ROW Component="eng.traineddata" ComponentId="{29E6288F-F5DD-410A-9046-2B25D69C6DC4}" Directory_="tessdata_1_Dir" Attributes="0" KeyPath="eng.traineddata" Type="0"/>
+    <ROW Component="http.tcl" ComponentId="{9DD84CAD-BCB0-4C9C-841F-FF7F9CBAC740}" Directory_="http1.0_Dir" Attributes="0" KeyPath="http.tcl" Type="0"/>
+    <ROW Component="http2.9.0.tm" ComponentId="{1F6B1D61-67D4-4D4A-B942-528F6E440A88}" Directory_="__2_Dir" Attributes="0" KeyPath="http2.9.0.tm" Type="0"/>
+    <ROW Component="iconv.dll" ComponentId="{918CAB45-8500-4F63-B852-36C3FC8CBAE3}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="iconv.dll"/>
+    <ROW Component="icudt64.dll" ComponentId="{EF35D6A5-905E-4F8F-99BA-4C06B8979069}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="icudt64.dll"/>
+    <ROW Component="icuin64.dll" ComponentId="{3869C655-0CFE-4DA7-A11A-0B3CC3F18C86}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="icuin64.dll"/>
+    <ROW Component="icuuc64.dll" ComponentId="{2D16CE7B-7582-441C-BF8B-182D25F3176F}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="icuuc64.dll"/>
+    <ROW Component="lapack_lite.cp37win_amd64.pyd" ComponentId="{7F90E211-3D08-442B-8957-B1442792E6B6}" Directory_="linalg_Dir" Attributes="256" KeyPath="lapack_lite.cp37win_amd64.pyd" Type="0"/>
+    <ROW Component="libEGL.dll" ComponentId="{FC71E201-0799-4D15-871D-8FBD9F797D4B}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libEGL.dll"/>
+    <ROW Component="libFLAC8.dll" ComponentId="{35AA6A1C-E02C-4EBF-A857-930420DFD679}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libFLAC8.dll"/>
+    <ROW Component="libGLESv2.dll" ComponentId="{58E68835-42A5-45D4-AFE2-C1F308A2C5C9}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libGLESv2.dll"/>
+    <ROW Component="libarchive13.dll" ComponentId="{86DEEC8A-ECEA-4753-A764-1ECA2BD08FC1}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libarchive13.dll"/>
+    <ROW Component="libbz21.dll" ComponentId="{F8F0E5F5-BB0E-44A5-9D24-27DF0BDA7654}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libbz21.dll"/>
+    <ROW Component="libcairo2.dll" ComponentId="{C9A4DA06-3FD9-422C-8372-44C24E61FACE}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libcairo2.dll"/>
+    <ROW Component="libcrypto1_1.dll" ComponentId="{AE514D6B-9F02-46B0-82DE-1D1A1D9E14E4}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libcrypto1_1.dll"/>
+    <ROW Component="libcurl4.dll" ComponentId="{8664EE0C-19AF-4294-AA13-F71C64FC3414}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libcurl4.dll"/>
+    <ROW Component="libeay32.dll" ComponentId="{AD3399D3-39FE-4F5F-898E-2A2797660865}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libeay32.dll"/>
+    <ROW Component="libexpat1.dll" ComponentId="{4B506E8B-DE91-4556-B5E9-2A654BF77714}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libexpat1.dll"/>
+    <ROW Component="libffi6.dll" ComponentId="{648FA6B1-DD4F-48E1-BE7F-A8691B9C7311}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libffi6.dll"/>
+    <ROW Component="libfontconfig1.dll" ComponentId="{E9A7AB90-99A9-4FBF-9E03-331C5E9AEAAD}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libfontconfig1.dll"/>
+    <ROW Component="libfreetype6.dll" ComponentId="{8A4DDF1A-7314-4C10-BD3B-A485FFB00950}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libfreetype6.dll"/>
+    <ROW Component="libfreetype6.dll_1" ComponentId="{8668FC75-A54F-497E-A572-CB00790CBF6C}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libfreetype6.dll_1"/>
+    <ROW Component="libgcc_s_seh1.dll" ComponentId="{E1A8265F-8950-4360-ACD6-1FB08A57EA9F}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libgcc_s_seh1.dll"/>
+    <ROW Component="libgif7.dll" ComponentId="{9E762236-6F37-4ED3-B085-01559049BEAA}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libgif7.dll"/>
+    <ROW Component="libglib2.00.dll" ComponentId="{D3406BE3-7CE9-4D9A-808F-5E5051313B7E}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libglib2.00.dll"/>
+    <ROW Component="libgobject2.00.dll" ComponentId="{D54A0C19-CFEB-48C3-BCCD-7AE486E064A3}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libgobject2.00.dll"/>
+    <ROW Component="libgomp1.dll" ComponentId="{7E020A9D-7A70-44AD-ADB1-C93AC0427A61}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libgomp1.dll"/>
+    <ROW Component="libharfbuzz0.dll" ComponentId="{6E1416B2-25E5-45D9-B63F-8E86E83B04E9}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libharfbuzz0.dll"/>
+    <ROW Component="libintl8.dll" ComponentId="{7B65EC24-4D2B-41DA-AB74-8ECE10A5F343}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libintl8.dll"/>
+    <ROW Component="libjbig2.dll" ComponentId="{A41960FE-0DA2-4E53-8B00-836F3DD37DCC}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libjbig2.dll"/>
+    <ROW Component="libjpeg8.dll" ComponentId="{019E434B-FE36-402B-958D-E42329B0AC1C}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libjpeg8.dll"/>
+    <ROW Component="libjpeg9.dll" ComponentId="{BACDC52B-7EDF-469F-AA80-9240D632C74B}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libjpeg9.dll"/>
+    <ROW Component="liblept5.dll" ComponentId="{9BAD3AA7-4999-404A-85BC-8B8984146049}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="liblept5.dll"/>
+    <ROW Component="liblz41.dll" ComponentId="{1E3D2FF6-CED6-4087-854C-2AB7E02F90F3}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="liblz41.dll"/>
+    <ROW Component="liblzma5.dll" ComponentId="{359CE719-689D-40C1-88F5-47BB195C70E0}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="liblzma5.dll"/>
+    <ROW Component="libmodplug1.dll" ComponentId="{E7FF2C15-F1BC-444E-ABAB-24F7F670F618}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libmodplug1.dll"/>
+    <ROW Component="libmpg1230.dll" ComponentId="{70BD8315-878D-4FA5-89FA-DF9D5A5949FA}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libmpg1230.dll"/>
+    <ROW Component="libnettle6.dll" ComponentId="{56872895-36C2-469C-8116-DE3DC9E95E6D}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libnettle6.dll"/>
+    <ROW Component="libnghttp214.dll" ComponentId="{B96C33DC-A49A-43CE-961B-192245B02C10}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libnghttp214.dll"/>
+    <ROW Component="libogg0.dll" ComponentId="{B1CEC299-F651-4387-A68A-8B7380979BEB}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libogg0.dll"/>
+    <ROW Component="libopenblas.JPIJNSWNNAN3CE6LLI5FWSPHUT2VXMTH.gfortranwin_amd64.dll" ComponentId="{DEFE97CA-30F0-4C30-90CC-53B26119CE0F}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libopenblas.JPIJNSWNNAN3CE6LLI5FWSPHUT2VXMTH.gfortranwin_amd64.dll"/>
+    <ROW Component="libopenjp2.dll" ComponentId="{00A6291B-F071-4D12-8C38-93E8AB2F4C0E}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libopenjp2.dll"/>
+    <ROW Component="libopus0.dll" ComponentId="{75A2161E-4DE6-4B5C-9248-C14048439EFA}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libopus0.dll"/>
+    <ROW Component="libopusfile0.dll" ComponentId="{AD238BF1-B6F9-48C1-A7AB-0D429F0843B5}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libopusfile0.dll"/>
+    <ROW Component="libpango1.00.dll" ComponentId="{0E8C8AF0-6FED-4C64-BE3B-EA76B47D2420}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libpango1.00.dll"/>
+    <ROW Component="libpangocairo1.00.dll" ComponentId="{63951EBA-203F-4EEF-8947-8BC94DFB45E8}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libpangocairo1.00.dll"/>
+    <ROW Component="libpangoft21.00.dll" ComponentId="{2B85ACE2-11B6-4E1C-BB04-782DF114CD18}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libpangoft21.00.dll"/>
+    <ROW Component="libpangowin321.00.dll" ComponentId="{56FF7983-85FE-46B3-82F7-A22AAA1462D6}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libpangowin321.00.dll"/>
+    <ROW Component="libpcre1.dll" ComponentId="{002F888E-CB43-4899-B552-605F85DF2EF3}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libpcre1.dll"/>
+    <ROW Component="libpixman10.dll" ComponentId="{4D3CA3FF-609F-4AFC-BE5F-C2FC37BA3FF8}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libpixman10.dll"/>
+    <ROW Component="libpng1616.dll" ComponentId="{F8A20CD1-46AC-423A-9472-8C9F593814CE}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libpng1616.dll"/>
+    <ROW Component="libpng1616.dll_1" ComponentId="{1818B004-D6D5-4263-8463-A4E71C10E549}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libpng1616.dll_1"/>
+    <ROW Component="libssh21.dll" ComponentId="{4A250F94-13E6-4E7A-93DD-76A234D9116A}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libssh21.dll"/>
+    <ROW Component="libssl1_1.dll" ComponentId="{BA4AE0D9-E0C5-4BF9-A661-CF76A60FAA47}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libssl1_1.dll"/>
+    <ROW Component="libstdc6.dll" ComponentId="{B5EFEF10-0684-4135-BED2-6CE621A7C6BA}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libstdc6.dll"/>
+    <ROW Component="libtesseract5.dll" ComponentId="{05AAF7F6-722E-49DE-8BA3-87705BFB2A37}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libtesseract5.dll"/>
+    <ROW Component="libtiff5.dll" ComponentId="{C63037CE-C740-4EA8-AA6E-433A670898DD}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libtiff5.dll"/>
+    <ROW Component="libtiff5.dll_1" ComponentId="{E4F2EFB3-89BC-4704-9145-176AC133F07A}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libtiff5.dll_1"/>
+    <ROW Component="libvorbis0.dll" ComponentId="{ED9B4819-978C-424D-B48B-E913368F74AA}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libvorbis0.dll"/>
+    <ROW Component="libvorbisfile3.dll" ComponentId="{D40A0339-C744-4E86-9B68-D820A0DCD026}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libvorbisfile3.dll"/>
+    <ROW Component="libwebp7.dll" ComponentId="{FFBBB3EB-EBB8-4489-A66A-9EFF928EBC3E}" Directory_="L2easy_Dir" Attributes="256" KeyPath="libwebp7.dll"/>
+    <ROW Component="libwebp7.dll_1" ComponentId="{C54B6E1B-D779-4A9F-A6E1-8A2B214F8715}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libwebp7.dll_1"/>
+    <ROW Component="libwinpthread1.dll" ComponentId="{ECCEE604-A969-4DD0-9FCC-E7941ED6624D}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libwinpthread1.dll"/>
+    <ROW Component="libxml22.dll" ComponentId="{2B912896-745E-4FF2-A9D9-3910B416511C}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="libxml22.dll"/>
+    <ROW Component="logo.eps" ComponentId="{DCE33950-225A-424B-BC7B-756F66EF5641}" Directory_="images_Dir" Attributes="0" KeyPath="logo.eps" Type="0"/>
+    <ROW Component="lstmeval.exe" ComponentId="{6D514057-33CE-4C56-B468-99F7A2ABBA92}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="lstmeval.exe"/>
+    <ROW Component="lstmtraining.exe" ComponentId="{924D2E75-CAA9-4DBE-92B0-19DB67DCC9B0}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="lstmtraining.exe"/>
+    <ROW Component="merge_unicharsets.exe" ComponentId="{F8C62CB1-E63A-4B9C-8E6C-51B40B8282DB}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="merge_unicharsets.exe"/>
+    <ROW Component="mftraining.exe" ComponentId="{5BCB3532-6329-41CA-8232-623FC2DC5222}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="mftraining.exe"/>
+    <ROW Component="msgcat1.6.1.tm" ComponentId="{C8647279-D136-489E-BA72-EFCE9F233FA8}" Directory_="__1_Dir" Attributes="0" KeyPath="msgcat1.6.1.tm" Type="0"/>
+    <ROW Component="opencv_videoio_ffmpeg451_64.dll" ComponentId="{64CD93BF-8C66-4DA8-B058-6DF5848368CE}" Directory_="cv2_Dir" Attributes="256" KeyPath="opencv_videoio_ffmpeg451_64.dll"/>
+    <ROW Component="opengl32sw.dll" ComponentId="{C9DECECD-A660-4DE7-9694-7782446DA37F}" Directory_="L2easy_Dir" Attributes="256" KeyPath="opengl32sw.dll"/>
+    <ROW Component="optparse.tcl" ComponentId="{A8E77266-9053-4739-A6B0-599242A7D213}" Directory_="opt0.4_Dir" Attributes="0" KeyPath="optparse.tcl" Type="0"/>
+    <ROW Component="platform1.0.14.tm" ComponentId="{CABC3D38-B913-4079-83FB-E6AB01B5AC07}" Directory_="__Dir" Attributes="0" KeyPath="platform1.0.14.tm" Type="0"/>
+    <ROW Component="portmidi.dll" ComponentId="{EFCE6C6A-FD3E-4F7F-A799-1C5BD6477222}" Directory_="L2easy_Dir" Attributes="256" KeyPath="portmidi.dll"/>
+    <ROW Component="pyconfig.h" ComponentId="{D8C4CF32-FBD3-4AB5-93FF-11E1B98EECA2}" Directory_="Include_Dir" Attributes="0" KeyPath="pyconfig.h" Type="0"/>
+    <ROW Component="python3.dll" ComponentId="{26E9084B-1E05-4311-9240-21102459EBC4}" Directory_="L2easy_Dir" Attributes="256" KeyPath="python3.dll"/>
+    <ROW Component="python37.dll" ComponentId="{E3E56C5B-2C02-40EF-B2D0-5A976513D7CA}" Directory_="L2easy_Dir" Attributes="256" KeyPath="python37.dll"/>
+    <ROW Component="qgif.dll" ComponentId="{16255DBF-5922-4DAA-94E3-F736A9A0FF88}" Directory_="imageformats_Dir" Attributes="256" KeyPath="qgif.dll"/>
+    <ROW Component="qicns.dll" ComponentId="{8AF81B9D-238D-433D-9DA6-48042EEA9A57}" Directory_="imageformats_Dir" Attributes="256" KeyPath="qicns.dll"/>
+    <ROW Component="qico.dll" ComponentId="{B48487C4-862B-4EF2-A5CD-6E9EFEEE67E6}" Directory_="imageformats_Dir" Attributes="256" KeyPath="qico.dll"/>
+    <ROW Component="qjpeg.dll" ComponentId="{30A9CA9F-91E9-42EC-BD58-4F6988FDD8D2}" Directory_="imageformats_Dir" Attributes="256" KeyPath="qjpeg.dll"/>
+    <ROW Component="qminimal.dll" ComponentId="{967D34FB-A80A-4472-8E5C-23001113C28E}" Directory_="platforms_Dir" Attributes="256" KeyPath="qminimal.dll"/>
+    <ROW Component="qoffscreen.dll" ComponentId="{A2CFA82B-2784-471F-BBE7-8C5B4B01F119}" Directory_="platforms_Dir" Attributes="256" KeyPath="qoffscreen.dll"/>
+    <ROW Component="qsvg.dll" ComponentId="{2F8CDB2A-A572-44F6-AD51-105EA38D3300}" Directory_="imageformats_Dir" Attributes="256" KeyPath="qsvg.dll"/>
+    <ROW Component="qsvgicon.dll" ComponentId="{79AC01FC-2A6B-426D-BC5A-3C30F8215ACD}" Directory_="iconengines_Dir" Attributes="256" KeyPath="qsvgicon.dll"/>
+    <ROW Component="qtbase_ar.qm" ComponentId="{622C2C98-E657-4C27-930F-F2FCCE2BDC84}" Directory_="translations_Dir" Attributes="0" KeyPath="qtbase_ar.qm" Type="0"/>
+    <ROW Component="qtga.dll" ComponentId="{BF5B4659-3EC2-48D2-BF51-587045727C45}" Directory_="imageformats_Dir" Attributes="256" KeyPath="qtga.dll"/>
+    <ROW Component="qtiff.dll" ComponentId="{C8099D8B-790A-4497-B292-24F94B4B6DF4}" Directory_="imageformats_Dir" Attributes="256" KeyPath="qtiff.dll"/>
+    <ROW Component="qwbmp.dll" ComponentId="{6C52B8CE-8511-47C3-AE61-15AD1E0A033F}" Directory_="imageformats_Dir" Attributes="256" KeyPath="qwbmp.dll"/>
+    <ROW Component="qwebgl.dll" ComponentId="{E8FC0A73-75F1-4638-A1C8-C6CA0F8A9179}" Directory_="platforms_Dir" Attributes="256" KeyPath="qwebgl.dll"/>
+    <ROW Component="qwebp.dll" ComponentId="{0AB657AC-4E7A-4712-880E-1CDB0E13A2CE}" Directory_="imageformats_Dir" Attributes="256" KeyPath="qwebp.dll"/>
+    <ROW Component="qwindows.dll" ComponentId="{A6E372B8-7801-4979-B2AD-058B4ACB5DD1}" Directory_="platforms_Dir" Attributes="256" KeyPath="qwindows.dll"/>
+    <ROW Component="qwindowsvistastyle.dll" ComponentId="{0B6755BB-2C2E-4602-AEAE-68BCCEB3711D}" Directory_="styles_Dir" Attributes="256" KeyPath="qwindowsvistastyle.dll"/>
+    <ROW Component="qxdgdesktopportal.dll" ComponentId="{CB014831-7A0E-4070-97D8-85D3AB9E80E4}" Directory_="platformthemes_Dir" Attributes="256" KeyPath="qxdgdesktopportal.dll"/>
+    <ROW Component="set_unicharset_properties.exe" ComponentId="{7741672A-80E9-4438-B056-4CF6B64A75C3}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="set_unicharset_properties.exe"/>
+    <ROW Component="shapeclustering.exe" ComponentId="{6AF43D68-0DC6-44CC-B451-B915911D752E}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="shapeclustering.exe"/>
+    <ROW Component="shell1.1.4.tm" ComponentId="{21327B0C-1F64-4D4E-8C0E-508A21A3E3FB}" Directory_="platform_Dir" Attributes="0" KeyPath="shell1.1.4.tm" Type="0"/>
+    <ROW Component="ssleay32.dll" ComponentId="{AFD2B2A0-2FF1-4E08-96FC-5F301356828F}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="ssleay32.dll"/>
+    <ROW Component="tcl86t.dll" ComponentId="{F7211D45-B0D2-4613-AD1E-034B5C502D82}" Directory_="L2easy_Dir" Attributes="256" KeyPath="tcl86t.dll"/>
+    <ROW Component="tesseract.exe" ComponentId="{5593314B-0706-42E0-BCF8-59E60A50BAD2}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="tesseract.exe"/>
+    <ROW Component="tesseractuninstall.exe" ComponentId="{0401E1C0-63AE-4C95-A28F-EEF3295C86D9}" Directory_="TesseractOCR_Dir" Attributes="0" KeyPath="tesseractuninstall.exe"/>
+    <ROW Component="text2image.exe" ComponentId="{EF55D153-B94C-496C-839D-5A29FC5B95CA}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="text2image.exe"/>
+    <ROW Component="tk86t.dll" ComponentId="{AA06C090-26B8-4B26-9895-FD31BC83F90E}" Directory_="L2easy_Dir" Attributes="256" KeyPath="tk86t.dll"/>
+    <ROW Component="ucrtbase.dll" ComponentId="{9A856952-9B9E-4E85-9FAC-38F4DFF23F9C}" Directory_="L2easy_Dir" Attributes="256" KeyPath="ucrtbase.dll"/>
+    <ROW Component="unicharset_extractor.exe" ComponentId="{70870745-CCDC-4968-9129-FCBF491E3D43}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="unicharset_extractor.exe"/>
+    <ROW Component="winpath.exe" ComponentId="{05CFDC13-1B0E-4636-88AF-A315878F5C15}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="winpath.exe"/>
+    <ROW Component="wordlist2dawg.exe" ComponentId="{FC33799B-59CA-4DFD-8B34-9C7AE1915B7E}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="wordlist2dawg.exe"/>
+    <ROW Component="zlib1.dll" ComponentId="{F0C20C99-B4BC-4552-B45F-F7A5958A74A0}" Directory_="TesseractOCR_Dir" Attributes="256" KeyPath="zlib1.dll"/>
+    <ROW Component="zlib1.dll_1" ComponentId="{A2DA9C03-58B3-4943-88EF-DBB5E10C5BC1}" Directory_="L2easy_Dir" Attributes="256" KeyPath="zlib1.dll_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
     <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0"/>
@@ -1887,7 +1887,7 @@
     <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
-    <ROW Shortcut="L2easy3.4" Directory_="DesktopFolder" Name="L2-EAS~1.4|L2-easy 3.4" Component_="L2easy.exe" Target="[#L2easy.exe]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="L2easy_Dir" CustomFlags="1"/>
+    <ROW Shortcut="L2easy3.6" Directory_="DesktopFolder" Name="L2-EAS~1.8|L2-easy 3.8" Component_="L2easy.exe" Target="[#L2easy.exe]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="L2easy_Dir" CustomFlags="1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>
