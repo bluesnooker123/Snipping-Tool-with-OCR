@@ -1272,8 +1272,60 @@ class SettingWindow(QtWidgets.QWidget):
         self.time_F = int(self.edit_F.text())
         self.time_G = int(self.edit_G.text())
 
+        self.Alarm_Newest_Bid = int(self.edit_Alarm_Newest_Bid.text())
+        self.Alarm_Newest_Ask = int(self.edit_Alarm_Newest_Ask.text())
+        self.Alarm_A_Bid = int(self.edit_Alarm_A_Bid.text())
+        self.Alarm_A_Ask = int(self.edit_Alarm_A_Ask.text())
+        self.Alarm_B_Bid = int(self.edit_Alarm_B_Bid.text())
+        self.Alarm_B_Ask = int(self.edit_Alarm_B_Ask.text())
+        self.Alarm_C_Bid = int(self.edit_Alarm_C_Bid.text())
+        self.Alarm_C_Ask = int(self.edit_Alarm_C_Ask.text())
+        self.Alarm_D_Bid = int(self.edit_Alarm_D_Bid.text())
+        self.Alarm_D_Ask = int(self.edit_Alarm_D_Ask.text())
+        self.Alarm_E_Bid = int(self.edit_Alarm_E_Bid.text())
+        self.Alarm_E_Ask = int(self.edit_Alarm_E_Ask.text())
+        self.Alarm_F_Bid = int(self.edit_Alarm_F_Bid.text())
+        self.Alarm_F_Ask = int(self.edit_Alarm_F_Ask.text())
+        self.Alarm_G_Bid = int(self.edit_Alarm_G_Bid.text())
+        self.Alarm_G_Ask = int(self.edit_Alarm_G_Ask.text())
+
+        if self.radio_Newest_Active_Yes.isChecked():
+        	config['alarm_active'][0] = True
+        else:
+        	config['alarm_active'][0] = False
+        if self.radio_A_Active_Yes.isChecked():
+        	config['alarm_active'][1] = True
+        else:
+        	config['alarm_active'][1] = False
+        if self.radio_B_Active_Yes.isChecked():
+        	config['alarm_active'][2] = True
+        else:
+        	config['alarm_active'][2] = False
+        if self.radio_C_Active_Yes.isChecked():
+        	config['alarm_active'][3] = True
+        else:
+        	config['alarm_active'][3] = False
+        if self.radio_D_Active_Yes.isChecked():
+        	config['alarm_active'][4] = True
+        else:
+        	config['alarm_active'][4] = False
+        if self.radio_E_Active_Yes.isChecked():
+        	config['alarm_active'][5] = True
+        else:
+        	config['alarm_active'][5] = False
+        if self.radio_F_Active_Yes.isChecked():
+        	config['alarm_active'][6] = True
+        else:
+        	config['alarm_active'][6] = False
+        if self.radio_G_Active_Yes.isChecked():
+        	config['alarm_active'][7] = True
+        else:
+        	config['alarm_active'][7] = False
+
         config['interval'] = int(self.interval_val_spin.value())
         config['time_periods'] = [self.time_A, self.time_B, self.time_C, self.time_D, self.time_E, self.time_F, self.time_G]
+        config['alarm_threshold_bid'] = [self.Alarm_Newest_Bid, self.Alarm_A_Bid, self.Alarm_B_Bid, self.Alarm_C_Bid, self.Alarm_D_Bid, self.Alarm_E_Bid, self.Alarm_F_Bid, self.Alarm_G_Bid]
+        config['alarm_threshold_ask'] = [self.Alarm_Newest_Ask, self.Alarm_A_Ask, self.Alarm_B_Ask, self.Alarm_C_Ask, self.Alarm_D_Ask, self.Alarm_E_Ask, self.Alarm_F_Ask, self.Alarm_G_Ask]
         
         save_config(config)
         self.save_event.emit()
