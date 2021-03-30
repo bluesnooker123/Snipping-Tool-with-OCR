@@ -49,7 +49,7 @@ python main.py
       
 6. You can make exe file using below command.
 
-pyinstaller app.py --add-data L2-easy.ico;. --add-data config.yaml;. --add-data tessdata;tessdata --add-data LexActivator.dll;. --add-data product_v5b67c9c8-4094-4f55-b3d3-fd1227899e1a.dat;. -w --clean -y --name L2-easy --icon=L2-easy.ico --windowed
+pyinstaller app.py --add-data L2-easy.ico;. --add-data alarm.mp3;. --add-data config.yaml;. --add-data tessdata;tessdata --add-data LexActivator.dll;. --add-data product_v5b67c9c8-4094-4f55-b3d3-fd1227899e1a.dat;. -w --clean -y --name L2-easy --icon=L2-easy.ico --windowed
 
 7. How to make installer file
 
