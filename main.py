@@ -20,7 +20,7 @@ from mss import mss
 from PIL import Image
 from ctypes import windll, byref, Structure, WinError, POINTER, WINFUNCTYPE, c_int, c_ulong, c_double
 from ctypes.wintypes import BOOL, HMONITOR, HDC, RECT, LPARAM, DWORD, BYTE, WCHAR, HANDLE
-from playsound import playsound
+import pygame
 
 from ocr_utils import extract_data
 
@@ -158,6 +158,13 @@ sums = {
 
 # The application mode: ['view']
 mode = None
+
+pygame.mixer.init()
+# If you want more channels, change 8 to a desired number. 8 is the default number of channel
+pygame.mixer.set_num_channels(8)
+# This is the sound channel
+global_voice = pygame.mixer.Channel(5)
+global_sound = pygame.mixer.Sound('alarm.mp3')
 
 class OCRWorker(QRunnable):
     def __init__(self, pts1, pts2, interval=1):
@@ -424,6 +431,7 @@ class MainWindow(QtWidgets.QWidget):
         ###########################################
 
         self.setWindowFlags(self.windowFlags() | QtCore.Qt.CustomizeWindowHint | QtCore.Qt.WindowStaysOnTopHint)
+
     
     def setupUi(self, Form):
         Form.setObjectName('Form')
@@ -539,6 +547,7 @@ class MainWindow(QtWidgets.QWidget):
     
     def update_sums(self):
         global sums
+        global global_voice, global_sound
         with show_lock:
             # Update history
             for i, period in enumerate(self.history, 1):
@@ -561,7 +570,9 @@ class MainWindow(QtWidgets.QWidget):
                     config_scale = config['alarm_threshold_bid'][0]/config['alarm_threshold_ask'][0]
                     #print(cur_scale, " : ", config_scale)
                     if(cur_scale >= config_scale):
-                    	playsound('alarm.mp3',False)
+                        if not global_voice.get_busy():
+                            global_voice.play(global_sound)
+
             
             for i, period in enumerate(config['time_periods'], 1):
                 if self.step_cnt % period == 0:
