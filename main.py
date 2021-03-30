@@ -600,10 +600,10 @@ class MainWindow(QtWidgets.QWidget):
                     self.values[i].setText(text)
 
                     if (config['alarm_active'][i] == True):
-                        if acc_bid >= config['alarm_threshold_bid'][i]:
+                        if float(bid_text) >= config['alarm_threshold_bid'][i]:
                             if not global_voice.get_busy():
                                 global_voice.play(global_sound)
-                        if acc_ask >= config['alarm_threshold_ask'][i]:
+                        if float(ask_text) >= config['alarm_threshold_ask'][i]:
                             if not global_voice.get_busy():
                                 global_voice.play(global_sound)
         # Reset
