@@ -72,7 +72,6 @@ def capture_screenshot(screen_id):
         # Convert to PIL/Pillow Image
         return Image.frombytes('RGB', sct_img.size, sct_img.bgra, 'raw', 'BGRX')
 
-
 def _enumerate_monitors():		#Get array of HMONITOR
     MONITORS = []
     def callback(hmonitor, hdc, lprect, lparam):
@@ -118,7 +117,6 @@ def set_screen_id():
 
     config['screen_id'] = screen_id
     save_config(config)
-
     #print("screen_id: ", screen_id)
 
 def get_screen_position():
@@ -673,7 +671,6 @@ class MainWindow(QtWidgets.QWidget):
         ready_event.clear()
         terminate_event.set()
         self.close()
-
 
 class ActivateWindow(QtWidgets.QWidget):
 
@@ -1400,7 +1397,6 @@ class Controller:
 
     def show_main(self):
         
-        
         self.window = MainWindow()
         self.window.open_setting.connect(self.show_setting_window)
         self.window.switch_window.connect(self.show_roi_selector)
@@ -1505,7 +1501,6 @@ def main():
     controller = Controller()
     controller.show_activate()
     sys.exit(app.exec_())
-
 
 if __name__ == '__main__':
     main()
