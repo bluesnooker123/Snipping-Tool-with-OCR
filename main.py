@@ -569,12 +569,11 @@ class MainWindow(QtWidgets.QWidget):
                     cur_scale = bid_data[0] / ask_data[0]
                     config_scale = config['alarm_threshold_bid'][0]/config['alarm_threshold_ask'][0]
                     #print(cur_scale, " : ", config_scale)
-                    if(cur_scale >= config_scale):
+                    if(cur_scale >= config_scale) and (config['alarm_active'][0] == True):
                         if not global_voice.get_busy():
                             global_voice.play(global_sound)
-
             
-            for i, period in enumerate(config['time_periods'], 1):
+            for i, period in enumerate(config['time_periods'], 1):	# i start from 1
                 if self.step_cnt % period == 0:
                     acc_bid = sum(self.history[period]['bid'])
                     acc_ask = sum(self.history[period]['ask'])
@@ -596,6 +595,14 @@ class MainWindow(QtWidgets.QWidget):
                         ask_text = '{label:<{n}}'.format(label='1', n=self.text_len)
                     text = '{} : {}'.format(bid_text, ask_text)
                     self.values[i].setText(text)
+
+                    cur_scale = acc_bid / acc_ask
+                    config_scale = config['alarm_threshold_bid'][i]/config['alarm_threshold_ask'][i]
+                    #print(cur_scale, " : ", config_scale)
+                    if(cur_scale >= config_scale)  and (config['alarm_active'][i] == True):
+                        if not global_voice.get_busy():
+                            global_voice.play(global_sound)
+
         
         # Reset
         if self.step_cnt == self.steps[-1]:
