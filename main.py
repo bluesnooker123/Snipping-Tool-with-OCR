@@ -36,6 +36,9 @@ default_config = {
         'right': [0, 0, 0, 0]
     },
     'time_periods': [10, 20, 30, 60, 300, 1200, 1800],
+    'alarm_active': [True ,True, True, True, True, True, True, True],
+    'alarm_threshold_bid': [1000, 1, 1, 1, 1, 1, 1, 1],
+    'alarm_threshold_ask': [1000, 1, 1, 1, 1, 1, 1, 1],
 }
 
 _MONITORENUMPROC_HMONITOR = WINFUNCTYPE(BOOL, HMONITOR, HDC, POINTER(RECT), LPARAM)
@@ -429,11 +432,8 @@ class MainWindow(QtWidgets.QWidget):
         #    QtGui.QCursor(QtCore.Qt.ArrowCursor)
         #)
         ###########################################
-
         self.stop_button.setEnabled(False)
-
         self.setWindowFlags(self.windowFlags() | QtCore.Qt.CustomizeWindowHint | QtCore.Qt.WindowStaysOnTopHint)
-
     
     def setupUi(self, Form):
         Form.setObjectName('Form')
