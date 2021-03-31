@@ -160,6 +160,8 @@ sums = {
 # The application mode: ['view']
 mode = None
 
+global_is_started = False
+
 pygame.mixer.init()
 # If you want more channels, change 8 to a desired number. 8 is the default number of channel
 pygame.mixer.set_num_channels(8)
@@ -193,29 +195,32 @@ class OCRWorker(QRunnable):
             'ask': (self.second_x1, self.second_y1, self.second_x2, self.second_y2)
         }
     
-    def _process_results(self, results):
-        """Post process the given results.
-        """
-        sorted_rs = sorted(results, key=lambda x: x[1])
-        prev = None
-        data = []
-        row = []
-        for text_box in sorted_rs:
-            y1, y2 = text_box[1], text_box[3]
-            if prev is None:
-                row = [text_box]
-            else:
-                if y1 > prev:
-                    data.append(text_box)
-                    row = [text_box]
-                else:
-                    row.append(text_box)
-            prev = y2
-        return data
+    # def _process_results(self, results):
+    #     """Post process the given results.
+    #     """
+    #     print("_process_results")
+    #     sorted_rs = sorted(results, key=lambda x: x[1])
+    #     prev = None
+    #     data = []
+    #     row = []
+    #     for text_box in sorted_rs:
+    #         y1, y2 = text_box[1], text_box[3]
+    #         if prev is None:
+    #             row = [text_box]
+    #         else:
+    #             if y1 > prev:
+    #                 data.append(text_box)
+    #                 row = [text_box]
+    #             else:
+    #                 row.append(text_box)
+    #         prev = y2
+    #     return data
 
     def run(self):
+        # print("def run(self)")
         """Extract bid and ask values from the input RoIs"""
         global show_lock, sums
+        global global_is_started
         while True:
             # Check terminate signal
             if terminate_event.wait(0.01):
@@ -254,6 +259,10 @@ class OCRWorker(QRunnable):
                 results[col_name] = col_result
                 #print(results[col_name])
 
+            if not global_is_started:
+                return
+
+            # print("result:   ", results)
             # Post-processing
             if len(results) > 0:
                 with show_lock:
@@ -269,6 +278,7 @@ class OCRWorker(QRunnable):
                             except:
                                 pass
                         sums[col_name].appendleft(sum_)
+                # print("::: ", sums, ":::")
             else:
                 logger.warning('Not found anything')
 
@@ -392,11 +402,11 @@ class ROISelector(QtWidgets.QMainWindow):
         #get_screen_position()
 
 class MainWindow(QtWidgets.QWidget):
-
     open_setting = QtCore.pyqtSignal()
     switch_window = QtCore.pyqtSignal()
 
     def __init__(self):
+        global global_is_started
         """
         """
         QtWidgets.QWidget.__init__(self)
@@ -423,7 +433,7 @@ class MainWindow(QtWidgets.QWidget):
 
         self.setting_button.clicked.connect(self.setting_button_handler)
         
-        self.is_started = False
+        global_is_started = False
 
         ### Always make cursor to Arrow pointer ###
         #QtWidgets.QApplication.setOverrideCursor(
@@ -510,7 +520,7 @@ class MainWindow(QtWidgets.QWidget):
                     if period % 60 == 0:
                         text = '{:<8}'.format('%d min.' % (period // 60))
                     else:
-                        text = '{:<8}'.format('%.2f min.' % (period / 70))
+                        text = '{:<8}'.format('%.2f min.' % (period / 60))
                 label_widget_layout.addWidget(QtWidgets.QLabel(text))
 
             # Bid column
@@ -620,7 +630,8 @@ class MainWindow(QtWidgets.QWidget):
         self.switch_window.emit()
 
     def start_button_handler(self):
-        if not self.is_started:        
+        global global_is_started
+        if not global_is_started:        
             ready_event.set()
             terminate_event.clear()
             
@@ -636,7 +647,7 @@ class MainWindow(QtWidgets.QWidget):
             self.pool = QThreadPool.globalInstance()
             runnable = OCRWorker(config['rois']['left'], config['rois']['right'], config['interval'])
             self.pool.start(runnable)
-            self.is_started = True
+            global_is_started = True
             
             # Disable view
             self.start_button.setEnabled(False)
@@ -645,6 +656,8 @@ class MainWindow(QtWidgets.QWidget):
             self.select_button.setEnabled(False)
 
     def stop_button_handler(self):
+        global sums
+        global global_is_started
         # Reset UI
         for i, widget in enumerate(self.values):
             left_text = ' ' * (self.text_len + 4)
@@ -654,13 +667,34 @@ class MainWindow(QtWidgets.QWidget):
         
         ready_event.clear()
         terminate_event.set()
-        self.is_started = False
+        global_is_started = False
         self.view_button.setEnabled(True)
         self.select_button.setEnabled(True)
         self.start_button.setEnabled(True)
         self.stop_button.setEnabled(False)
         self.timer.stop()
         self.step_cnt = 0
+        # print("------------------")
+        # print("self.history : ", self.history)
+        # print("------------------")
+        self.history = {}
+        for period in config['time_periods']:
+            max_len = int(period)
+            self.history[period] = {
+                'bid': deque([0] * max_len, maxlen=max_len),
+                'ask': deque([0] * max_len, maxlen=max_len),
+            }
+        # print("------------------")
+        # print("sums : ", sums)
+        # print("------------------")
+        sums = {
+            'bid': deque([0] * (len(config['time_periods']) + 1), maxlen=(len(config['time_periods']) + 1)),
+            'ask': deque([0] * (len(config['time_periods']) + 1), maxlen=(len(config['time_periods']) + 1)),
+        }
+        # print("------------------")
+        # print("sums after: ", sums)
+        # print("------------------")
+
 
     def setting_button_handler(self):
         global mode
@@ -1269,7 +1303,7 @@ class SettingWindow(QtWidgets.QWidget):
         self.retranslateUi(self)
 
     def save_button_handler(self):
-
+        global sums
         msgBox = QMessageBox()
         msgBox.setWindowIcon(QtGui.QIcon('L2-easy.ico'))
         msgBox.setIcon(QtWidgets.QMessageBox.Warning)
@@ -1369,6 +1403,10 @@ class SettingWindow(QtWidgets.QWidget):
         config['alarm_threshold_ask'] = [self.Alarm_Newest_Ask, self.Alarm_A_Ask, self.Alarm_B_Ask, self.Alarm_C_Ask, self.Alarm_D_Ask, self.Alarm_E_Ask, self.Alarm_F_Ask, self.Alarm_G_Ask]
         
         save_config(config)
+        sums = {
+            'bid': deque([0] * (len(config['time_periods']) + 1), maxlen=(len(config['time_periods']) + 1)),
+            'ask': deque([0] * (len(config['time_periods']) + 1), maxlen=(len(config['time_periods']) + 1)),
+        }
         self.save_event.emit()
 
     def cancel_button_handler(self):
