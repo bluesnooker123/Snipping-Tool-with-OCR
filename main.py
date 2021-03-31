@@ -278,7 +278,7 @@ class OCRWorker(QRunnable):
                             except:
                                 pass
                         sums[col_name].appendleft(sum_)
-                # print("::: ", sums, ":::")
+                #print("::: ", sums, ":::")
             else:
                 logger.warning('Not found anything')
 
@@ -585,7 +585,7 @@ class MainWindow(QtWidgets.QWidget):
                             global_voice.play(global_sound)
             
             for i, period in enumerate(config['time_periods'], 1):	# i start from 1
-                if self.step_cnt % period == 0:
+                #if self.step_cnt % period == 0:
                     acc_bid = sum(self.history[period]['bid'])
                     acc_ask = sum(self.history[period]['ask'])
                     if acc_bid == 0 or acc_ask == 0:
