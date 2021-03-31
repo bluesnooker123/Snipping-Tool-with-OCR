@@ -28,15 +28,15 @@ You have to install pyinstaller module to virtual environment to create exe file
 ```
 
 3. Goto source code directory and run below command.
-
+```
 pip install -r requirements.txt
-
+```
 4. Run program using below command.
-
+```
 python main.py
-
+```
 5. You can change some parameters of app using config.yaml
-
+```
       interval -> time between OCR operation per second
 
       max_trace -> max count of log
@@ -46,11 +46,11 @@ python main.py
       screen_id -> ID of screen in multiple displays
       
       time_periods -> second of time periods
-      
+```    
 6. You can make exe file using below command.
-
+```
 pyinstaller app.py --add-data L2-easy.ico;. --add-data alarm.mp3;. --add-data config.yaml;. --add-data tessdata;tessdata --add-data LexActivator.dll;. --add-data product_v5b67c9c8-4094-4f55-b3d3-fd1227899e1a.dat;. -w --clean -y --name L2-easy --icon=L2-easy.ico --windowed
-
+```
 7. How to make installer file
 
 You can use Advanced Installer (https://www.advancedinstaller.com/?utm_source=adwords&utm_medium=paid&utm_campaign=advancedinstaller&gclid=EAIaIQobChMIgL3TgO-q7wIVFpayCh17BwBIEAAYASAAEgJmrfD_BwE)  to make installer file.
