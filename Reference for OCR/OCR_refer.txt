@@ -1,0 +1,11 @@
+1. Make a folder named tessdata. 
+
+2. Download tesseract data at https://github.com/Shreeshrii/tessdata_shreetest/blob/master/digits_comma.traineddata
+
+3. Then put it into that folder.
+
+Note:
+```
+- Basically I just applied binary threshold to get the numbers then used tesseract (numbers only model)
+- Resizing image with high dpi is important step
+```
