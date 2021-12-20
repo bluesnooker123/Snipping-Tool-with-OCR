@@ -8,6 +8,8 @@ __pycache__/
 
 # Distribution / packaging
 .Python
+L2-easy-cache/
+L2-easy-SetupFiles/
 my-env/
 __pycache__/
 tmp/
