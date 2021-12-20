@@ -31,16 +31,16 @@ interval: 1
 logfile: app.log
 rois:
   left:
-  - 85
-  - 326
-  - 131
-  - 413
+  - 519
+  - 223
+  - 569
+  - 314
   right:
-  - 200
-  - 323
-  - 261
-  - 410
-screen_id: 2
+  - 577
+  - 219
+  - 659
+  - 316
+screen_id: 1
 time_periods:
 - 10
 - 20
