@@ -60,4 +60,4 @@ To make simple setting for installer file, you can use trial version of Advanced
 You have to copy `Tesseract-OCR` which installed in `C:\Program Files\Tesseract-ORC` and paste to the project folder when making installer file, so that Users don't need to install tesseract-ocr-w64-setup-v5.0.0.20211201.exe.
 
 You have to set Envirionment Paths Variable in the Advanced Installer project file(*.aip) 
-![alt text](https://ibb.co/k2kJk1Z)
+(https://ibb.co/k2kJk1Z)
