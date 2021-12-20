@@ -15,7 +15,7 @@ from PyQt5.QtCore import QRunnable, Qt, QThreadPool
 from PyQt5.QtGui import QIntValidator, QIcon, QDoubleValidator
 import tkinter as tk
 from PIL import ImageGrab
-from cryptlex.lexactivator import LexActivator, LexStatusCodes, PermissionFlags
+# from cryptlex.lexactivator import LexActivator, LexStatusCodes, PermissionFlags
 from mss import mss
 from PIL import Image
 from ctypes import windll, byref, Structure, WinError, POINTER, WINFUNCTYPE, c_int, c_ulong, c_double
