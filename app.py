@@ -708,82 +708,82 @@ class MainWindow(QtWidgets.QWidget):
         terminate_event.set()
         self.close()
 
-class ActivateWindow(QtWidgets.QWidget):
+# class ActivateWindow(QtWidgets.QWidget):
 
-    switch_window = QtCore.pyqtSignal()
-    def __init__(self, message):
-        QtWidgets.QWidget.__init__(self)
-        self.setGeometry(300, 300, 600, 100)
-        self.message = message
-        self.setupUi(self)
+#     switch_window = QtCore.pyqtSignal()
+#     def __init__(self, message):
+#         QtWidgets.QWidget.__init__(self)
+#         self.setGeometry(300, 300, 600, 100)
+#         self.message = message
+#         self.setupUi(self)
 
-        self.activate_button.clicked.connect(self.activate_button_handler)
-        self.activate_input_box.textChanged.connect(self.text_changed_handler)
+#         self.activate_button.clicked.connect(self.activate_button_handler)
+#         self.activate_input_box.textChanged.connect(self.text_changed_handler)
     
-    def setupUi(self, Form):
-        Form.setObjectName('Form')
-        Form.resize(600, 100)
+#     def setupUi(self, Form):
+#         Form.setObjectName('Form')
+#         Form.resize(600, 100)
         
-        g_layout = QtWidgets.QVBoxLayout()
-        row_widget_1 = QtWidgets.QLabel()
-        row_widget_2 = QtWidgets.QWidget()
-        g_layout.addWidget(row_widget_1)
-        g_layout.addWidget(row_widget_2)
-        row_widget_2_layout = QtWidgets.QHBoxLayout()
-        row_widget_2.setLayout(row_widget_2_layout)
+#         g_layout = QtWidgets.QVBoxLayout()
+#         row_widget_1 = QtWidgets.QLabel()
+#         row_widget_2 = QtWidgets.QWidget()
+#         g_layout.addWidget(row_widget_1)
+#         g_layout.addWidget(row_widget_2)
+#         row_widget_2_layout = QtWidgets.QHBoxLayout()
+#         row_widget_2.setLayout(row_widget_2_layout)
         
-        self.activate_input_box = QtWidgets.QLineEdit()
-        font = self.activate_input_box.font()
-        font.setPointSize(10)
-        self.activate_input_box.setFont(font)
-        self.activate_button = QtWidgets.QPushButton()
-        self.activate_button.setObjectName('activate_button')
-        self.activate_status = QtWidgets.QLabel()
-        row_widget_2_layout.addWidget(self.activate_input_box)
-        row_widget_2_layout.addSpacing(10)
-        row_widget_2_layout.addWidget(self.activate_status)
-        row_widget_2_layout.addSpacing(50)
-        row_widget_2_layout.addWidget(self.activate_button)
-        self.setLayout(g_layout)
+#         self.activate_input_box = QtWidgets.QLineEdit()
+#         font = self.activate_input_box.font()
+#         font.setPointSize(10)
+#         self.activate_input_box.setFont(font)
+#         self.activate_button = QtWidgets.QPushButton()
+#         self.activate_button.setObjectName('activate_button')
+#         self.activate_status = QtWidgets.QLabel()
+#         row_widget_2_layout.addWidget(self.activate_input_box)
+#         row_widget_2_layout.addSpacing(10)
+#         row_widget_2_layout.addWidget(self.activate_status)
+#         row_widget_2_layout.addSpacing(50)
+#         row_widget_2_layout.addWidget(self.activate_button)
+#         self.setLayout(g_layout)
         
-        row_widget_1.setText(self.message)
-        self.activate_input_box.setPlaceholderText('XXXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX')
-        self.retranslateUi(self)
+#         row_widget_1.setText(self.message)
+#         self.activate_input_box.setPlaceholderText('XXXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX')
+#         self.retranslateUi(self)
     
-    def retranslateUi(self, Form):
-        _translate = QtCore.QCoreApplication.translate
-        self.setWindowIcon(QtGui.QIcon('L2-easy.ico'))
-        Form.setWindowTitle(_translate('Form', 'To purchase a license, please visit our website at market-lv2data.com'))
-        self.activate_button.setText(_translate('Form', 'Activate'))
-        self.activate_input_box.setFixedSize(330, 25)
-        self.activate_button.setFixedSize(60, 30)
+#     def retranslateUi(self, Form):
+#         _translate = QtCore.QCoreApplication.translate
+#         self.setWindowIcon(QtGui.QIcon('L2-easy.ico'))
+#         Form.setWindowTitle(_translate('Form', 'To purchase a license, please visit our website at market-lv2data.com'))
+#         self.activate_button.setText(_translate('Form', 'Activate'))
+#         self.activate_input_box.setFixedSize(330, 25)
+#         self.activate_button.setFixedSize(60, 30)
     
-    def text_changed_handler(self):
-        curr_text = self.activate_input_box.text()
-        self.activate_status.setText('')
+#     def text_changed_handler(self):
+#         curr_text = self.activate_input_box.text()
+#         self.activate_status.setText('')
     
-    def activate_button_handler(self):
-        license_key = self.activate_input_box.text()
-        try:
-            LexActivator.SetLicenseKey(license_key)
-        except Exception as e:
-            logger.exception(f'Failed when set license key: {e}')
-            self.activate_status.setText('Failed')
-            self.activate_status.setStyleSheet('color: red')
-            return
+#     def activate_button_handler(self):
+#         license_key = self.activate_input_box.text()
+#         try:
+#             LexActivator.SetLicenseKey(license_key)
+#         except Exception as e:
+#             logger.exception(f'Failed when set license key: {e}')
+#             self.activate_status.setText('Failed')
+#             self.activate_status.setStyleSheet('color: red')
+#             return
 
-        try:
-            status = LexActivator.ActivateLicense()
-            if LexStatusCodes.LA_OK == status or LexStatusCodes.LA_EXPIRED == status or LexStatusCodes.LA_SUSPENDED == status:
-                self.switch_window.emit()
-                self.close()
-            else:
-                self.activate_status.setText('failed')
-                self.activate_status.setStyleSheet('color: red')
-        except Exception as e:
-            logger.error(f'Failed when activate license: {e}')
-            self.activate_status.setText('failed')
-            self.activate_status.setStyleSheet('color: red')
+#         try:
+#             status = LexActivator.ActivateLicense()
+#             if LexStatusCodes.LA_OK == status or LexStatusCodes.LA_EXPIRED == status or LexStatusCodes.LA_SUSPENDED == status:
+#                 self.switch_window.emit()
+#                 self.close()
+#             else:
+#                 self.activate_status.setText('failed')
+#                 self.activate_status.setStyleSheet('color: red')
+#         except Exception as e:
+#             logger.error(f'Failed when activate license: {e}')
+#             self.activate_status.setText('failed')
+#             self.activate_status.setStyleSheet('color: red')
 
 class SettingWindow(QtWidgets.QWidget):
     save_event = QtCore.pyqtSignal()
@@ -1468,72 +1468,72 @@ class Controller:
             self.setting_window.close()
         self.window.show()
 
-    def show_activate(self):
-        # Initialize license verification
-        LexActivator.SetProductFile('product_v5b67c9c8-4094-4f55-b3d3-fd1227899e1a.dat')
-        LexActivator.SetProductId(
-            '5b67c9c8-4094-4f55-b3d3-fd1227899e1a', PermissionFlags.LA_USER)
+    # def show_activate(self):
+    #     # Initialize license verification
+    #     LexActivator.SetProductFile('product_v5b67c9c8-4094-4f55-b3d3-fd1227899e1a.dat')
+    #     LexActivator.SetProductId(
+    #         '5b67c9c8-4094-4f55-b3d3-fd1227899e1a', PermissionFlags.LA_USER)
         
-        # License verification
-        activate_required = True
-        activate_message = ''
-        status = LexActivator.IsLicenseGenuine()
-        if status == LexStatusCodes.LA_OK:
-            expiry_date = LexActivator.GetLicenseExpiryDate()
-            days_left = (expiry_date - time.time()) / 86400
-            username = LexActivator.GetLicenseUserName()
-            logger.info(f'License user: {username}')
-            logger.info('License is genuinely activated!')
-            activate_required = False
-        elif LexStatusCodes.LA_EXPIRED == status:
-            logger.error('License is genuinely activated but has expired!')
-            activate_required = True
-            activate_message = 'License is genuinely activated but has expired!'
-        elif LexStatusCodes.LA_SUSPENDED == status:
-            logger.error('License is genuinely activated but has been suspended!')
-            activate_required = True
-            activate_message = 'License is genuinely activated but has been suspended!'
-        elif LexStatusCodes.LA_GRACE_PERIOD_OVER == status:
-            logger.error('License is genuinely activated but grace period is over!')
-            activate_message = 'License is genuinely activated but grace period is over!'
-            activate_required = True
-        else:
-            trial_status = LexActivator.IsTrialGenuine()
-            if LexStatusCodes.LA_OK == trial_status:
-                trial_expiry_date = LexActivator.GetTrialExpiryDate()
-                days_left = (trial_expiry_date - time.time()) / 86400
-                logger.info('Trial days left: {}'.format(days_left))
-                activate_required = False
-            elif LexStatusCodes.LA_TRIAL_EXPIRED == trial_status:
-                logger.info('Trial has expired!')
-                # Time to buy the license and activate the app
-                activate_message = 'The trial has expired. Please visit https://market-lv2data.com to get activation key!'
-                activate_required = True
-            else:
-                try:
-                    status = LexActivator.ActivateTrial()
-                    if LexStatusCodes.LA_OK == status:
-                        logger.info("Product trial activated successfully!")
-                        activate_required = False
-                    elif LexStatusCodes.LA_TRIAL_EXPIRED == status:
-                        logger.info("Product trial has expired")
-                        activate_message = 'The trial has expired. Please visit https://market-lv2data.com to get activation key!'
-                        activate_required = True
-                    else:
-                        logger.info("Product trial has failed")
-                        activate_message = 'The trial has failed. Please visit https://market-lv2data.com to get activation key!'
-                        activate_required = True
-                except Exception as e:
-                    logger.error(f'Trial activation has failed')
-                    activate_message = 'The trial activation has failed. Please visit https://market-lv2data.com to get activation key!'
-                    activate_required = True
+    #     # License verification
+    #     activate_required = True
+    #     activate_message = ''
+    #     status = LexActivator.IsLicenseGenuine()
+    #     if status == LexStatusCodes.LA_OK:
+    #         expiry_date = LexActivator.GetLicenseExpiryDate()
+    #         days_left = (expiry_date - time.time()) / 86400
+    #         username = LexActivator.GetLicenseUserName()
+    #         logger.info(f'License user: {username}')
+    #         logger.info('License is genuinely activated!')
+    #         activate_required = False
+    #     elif LexStatusCodes.LA_EXPIRED == status:
+    #         logger.error('License is genuinely activated but has expired!')
+    #         activate_required = True
+    #         activate_message = 'License is genuinely activated but has expired!'
+    #     elif LexStatusCodes.LA_SUSPENDED == status:
+    #         logger.error('License is genuinely activated but has been suspended!')
+    #         activate_required = True
+    #         activate_message = 'License is genuinely activated but has been suspended!'
+    #     elif LexStatusCodes.LA_GRACE_PERIOD_OVER == status:
+    #         logger.error('License is genuinely activated but grace period is over!')
+    #         activate_message = 'License is genuinely activated but grace period is over!'
+    #         activate_required = True
+    #     else:
+    #         trial_status = LexActivator.IsTrialGenuine()
+    #         if LexStatusCodes.LA_OK == trial_status:
+    #             trial_expiry_date = LexActivator.GetTrialExpiryDate()
+    #             days_left = (trial_expiry_date - time.time()) / 86400
+    #             logger.info('Trial days left: {}'.format(days_left))
+    #             activate_required = False
+    #         elif LexStatusCodes.LA_TRIAL_EXPIRED == trial_status:
+    #             logger.info('Trial has expired!')
+    #             # Time to buy the license and activate the app
+    #             activate_message = 'The trial has expired. Please visit https://market-lv2data.com to get activation key!'
+    #             activate_required = True
+    #         else:
+    #             try:
+    #                 status = LexActivator.ActivateTrial()
+    #                 if LexStatusCodes.LA_OK == status:
+    #                     logger.info("Product trial activated successfully!")
+    #                     activate_required = False
+    #                 elif LexStatusCodes.LA_TRIAL_EXPIRED == status:
+    #                     logger.info("Product trial has expired")
+    #                     activate_message = 'The trial has expired. Please visit https://market-lv2data.com to get activation key!'
+    #                     activate_required = True
+    #                 else:
+    #                     logger.info("Product trial has failed")
+    #                     activate_message = 'The trial has failed. Please visit https://market-lv2data.com to get activation key!'
+    #                     activate_required = True
+    #             except Exception as e:
+    #                 logger.error(f'Trial activation has failed')
+    #                 activate_message = 'The trial activation has failed. Please visit https://market-lv2data.com to get activation key!'
+    #                 activate_required = True
 
-        if activate_required:
-            self.activate_window = ActivateWindow(activate_message)
-            self.activate_window.switch_window.connect(self.show_main)
-            self.activate_window.show()
-        else:
-            self.show_main()
+    #     if activate_required:
+    #         self.activate_window = ActivateWindow(activate_message)
+    #         self.activate_window.switch_window.connect(self.show_main)
+    #         self.activate_window.show()
+    #     else:
+    #         self.show_main()
 
 
 def main():
